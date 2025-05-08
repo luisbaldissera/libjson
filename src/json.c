@@ -33,82 +33,82 @@ struct __JSON_struct __restin_json_null = {.type = JSON_OBJECT};
 struct __JSON_struct __restin_json_true = {.type = JSON_OBJECT};
 struct __JSON_struct __restin_json_false = {.type = JSON_OBJECT};
 
-JSON JSON_null() { return &__restin_json_null; }
+json json_null() { return &__restin_json_null; }
 
-JSON JSON_true() { return &__restin_json_true; }
+json json_true() { return &__restin_json_true; }
 
-JSON JSON_false() { return &__restin_json_false; }
+json json_false() { return &__restin_json_false; }
 
-JSON JSON_decimal(double value)
+json json_decimal(double value)
 {
-  JSON json = malloc(sizeof(struct __JSON_struct));
+  json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_DECIMAL;
   json->value.decimal = value;
   return json;
 }
 
-JSON JSON_integer(int value)
+json JSON_integer(int value)
 {
-  JSON json = malloc(sizeof(struct __JSON_struct));
+  json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_INTEGER;
   json->value.integer = value;
   return json;
 }
 
-JSON JSON_string(const char *value)
+json JSON_string(const char *value)
 {
-  JSON json = malloc(sizeof(struct __JSON_struct));
+  json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_STRING;
   json->value.string = strdup(value);
   return json;
 }
 
-JSON JSON_array()
+json JSON_array()
 {
-  JSON json = malloc(sizeof(struct __JSON_struct));
+  json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_ARRAY;
   json->value.array.first = NULL;
   json->value.array.last = NULL;
   return json;
 }
 
-JSON JSON_object()
+json JSON_object()
 {
-  JSON json = malloc(sizeof(struct __JSON_struct));
+  json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_OBJECT;
   json->value.object = hash_table_new();
   return json;
 }
 
-int JSON_isnull(JSON node) { return node == &__restin_json_null; }
+int JSON_isnull(json node) { return node == &__restin_json_null; }
 
-int JSON_isboolean(JSON node)
+int JSON_isboolean(json node)
 {
   return node == &__restin_json_true || node == &__restin_json_false;
 }
 
-int JSON_isnumber(JSON node)
+int JSON_isnumber(json node)
 {
   return node->type == JSON_DECIMAL || node->type == JSON_INTEGER;
 }
 
-int JSON_isstring(JSON node) { return node->type == JSON_STRING; }
+int JSON_isstring(json node) { return node->type == JSON_STRING; }
 
-int JSON_isarray(JSON node) { return node->type == JSON_ARRAY; }
+int JSON_isarray(json node) { return node->type == JSON_ARRAY; }
 
-int JSON_isobject(JSON node) { return node->type == JSON_OBJECT; }
+int JSON_isobject(json node) { return node->type == JSON_OBJECT; }
 
-void JSON_object_set(JSON object, const char *key, JSON value)
+void json_object_set(json object, const char *key, json value)
 {
   hash_table_set(object->value.object, key, value);
 }
 
-JSON JSON_object_get(const JSON object, const char *key)
+json JSON_object_get(const json object, const char *key)
 {
   return HT_get(object->value.object, key);
 }
 
-void JSON_array_push(JSON array, JSON value)
+void JSON_array_push(json array, json value)
 {
   if (array->value.array.first == NULL)
   {
@@ -122,7 +122,7 @@ void JSON_array_push(JSON array, JSON value)
   }
 }
 
-int JSON_fwrite(JSON node, FILE *out)
+int JSON_fwrite(json node, FILE *out)
 {
   if (node->type == JSON_DECIMAL)
   {
@@ -171,7 +171,7 @@ int JSON_fwrite(JSON node, FILE *out)
 }
 
 void __JSON_HT_free(char *key, void *value) { JSON_free(value); }
-void JSON_free(JSON json)
+void JSON_free(json json)
 {
   if (json->type == JSON_STRING)
   {
