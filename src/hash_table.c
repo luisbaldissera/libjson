@@ -1,6 +1,9 @@
 #include "libjson/hash_table.h"
+#include "libjson/linked_list.h"
+#include "libjson/closure.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #define LIBJSON_HASH_TABLE_BUCKET_SIZE (1 << 8)
 #define LIBJSON_HASH_TABLE_KEY_MAX (1 << 8)
@@ -11,6 +14,11 @@ struct hash_table_entry
 {
     char key[LIBJSON_HASH_TABLE_KEY_MAX];
     void *value;
+};
+
+struct hash_table
+{
+    struct linked_list *bucket[LIBJSON_HASH_TABLE_BUCKET_SIZE];
 };
 
 static void hash_table_init(struct hash_table *table)
@@ -43,13 +51,8 @@ static int hash_table_key_equals_closure_func(struct hash_table_entry *entry, co
 
 static struct closure *hash_table_key_equals(const char *key)
 {
-    return closure_new(hash_table_key_equals_closure_func, key);
+    return closure_new((closure_func)hash_table_key_equals_closure_func, (void*)key);
 }
-
-struct hash_table
-{
-    struct linked_list *bucket[LIBJSON_HASH_TABLE_BUCKET_SIZE];
-};
 
 struct hash_table *hash_table_new()
 {
@@ -104,7 +107,7 @@ void *hash_table_get(const struct hash_table *table, const char *key)
         return NULL;
 
     key_closure = hash_table_key_equals(key);
-    ll_entry = LL_find_with_closure(ll_bucket, key_closure, NULL);
+    ll_entry = linked_list_find(ll_bucket, key_closure, NULL);
     closure_free(key_closure);
 
     if (!ll_entry)
@@ -133,7 +136,7 @@ void hash_table_free(struct hash_table *table, struct closure *free_value)
             free(entry);
             current = linked_list_next(current);
         }
-        linked_list_free(table->bucket[i]);
+        linked_list_free(table->bucket[i], free_value);
     }
     free(table);
 }

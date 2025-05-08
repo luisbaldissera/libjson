@@ -6,6 +6,8 @@
 #ifndef LIBJSON_HASH_TABLE_H
 #define LIBJSON_HASH_TABLE_H
 
+#include "libjson/closure.h"
+
 /**
  * @brief Hash table entry structure
  */
