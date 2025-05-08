@@ -137,3 +137,51 @@ void hash_table_free(struct hash_table *table, struct closure *free_value)
     }
     free(table);
 }
+
+int hash_table_keys(const struct hash_table *table, char **keys)
+{
+    int count = 0;
+    for (int i = 0; i < LIBJSON_HASH_TABLE_BUCKET_SIZE; i++)
+    {
+        struct linked_list *current = table->bucket[i];
+        while (current)
+        {
+            struct hash_table_entry *entry = linked_list_value(current);
+            if (keys)
+            {
+                keys[count] = strdup(entry->key);
+            }
+            count++;
+            current = linked_list_next(current);
+        }
+    }
+    return count;
+}
+
+void hash_table_foreach(const struct hash_table *table, struct closure *closure)
+{
+    if (!table || !closure)
+    {
+        return;
+    }
+    for (int i = 0; i < LIBJSON_HASH_TABLE_BUCKET_SIZE; i++)
+    {
+        struct linked_list *current = table->bucket[i];
+        while (current)
+        {
+            struct hash_table_entry *entry = linked_list_value(current);
+            closure_invoke(closure, entry->value);
+            current = linked_list_next(current);
+        }
+    }
+}
+
+const char *hash_table_entry_key(const struct hash_table_entry *entry)
+{
+    return entry ? entry->key : NULL;
+}
+
+void *hash_table_entry_value(const struct hash_table_entry *entry)
+{
+    return entry ? entry->value : NULL;
+}
