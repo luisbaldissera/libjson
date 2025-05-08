@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <libjson/ds.h>
+#include <libjson/closure.h>
+#include <libjson/linked_list.h>
 
 // A simple structure to store in our linked list
 struct Person
