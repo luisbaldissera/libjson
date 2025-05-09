@@ -4,28 +4,6 @@
 #include <assert.h>
 #include "libjson/json.h"
 
-void test_json_array_manipulation()
-{
-    struct json *array = json_array();
-
-    // Create the values
-    struct json *value1 = json_number(10);
-    struct json *value2 = json_number(20);
-
-    // Push to array (array takes ownership)
-    json_array_push(array, value1);
-    json_array_push(array, value2);
-
-
-    // Test the array
-    assert(json_array_length(array) == 2);
-    assert(json_toint(json_array_get(array, 0)) == 10);
-    assert(json_toint(json_array_get(array, 1)) == 20);
-
-    // Free the array (and all its contents)
-    json_free(array);
-}
-
 void test_json_object_manipulation()
 {
     struct json *object = json_object();
@@ -35,7 +13,6 @@ void test_json_object_manipulation()
 
     // Set on object (object takes ownership)
     json_object_set(object, "key", value);
-
 
     // Test the object
     assert(json_object_get(object, "key") != NULL);
@@ -49,9 +26,7 @@ void test_json_object_manipulation()
 
 int main()
 {
-    test_json_array_manipulation();
     test_json_object_manipulation();
-
-    printf("All tests passed!\n");
+    printf("All object tests passed!\n");
     return 0;
 }
