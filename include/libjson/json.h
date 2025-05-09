@@ -114,6 +114,25 @@ int json_isstring(struct json *node);
  */
 int json_isarray(struct json *node);
 
+////////////////////////////////////////
+// JSON Array Access functions
+////////////////////////////////////////
+
+/**
+ * @brief Gets the length of a JSON array
+ * @param array JSON array to query
+ * @return The number of elements in the array
+ */
+int json_array_length(struct json *array);
+
+/**
+ * @brief Gets the value at a specific index in a JSON array
+ * @param array JSON array to query
+ * @param index Index of the element to retrieve
+ * @return The JSON value at the specified index, or NULL if index is out of bounds
+ */
+struct json *json_array_get(const struct json *array, int index);
+
 //////////////////////////////////////
 // JSON Access functions
 //////////////////////////////////////

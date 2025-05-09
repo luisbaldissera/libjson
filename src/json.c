@@ -38,9 +38,9 @@ struct json
 };
 
 // Static JSON singleton values
-static struct json json_null_value = { .type = JSON_NULL, .value = {0}};
-static struct json json_true_value = { .type = JSON_BOOLEAN, .value = { .boolean = 1}};
-static struct json json_false_value = { .type = JSON_BOOLEAN, .value = { .boolean = 0}};
+static struct json json_null_value = {.type = JSON_NULL, .value = {0}};
+static struct json json_true_value = {.type = JSON_BOOLEAN, .value = {.boolean = 1}};
+static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean = 0}};
 
 // Forward declarations of helper functions
 static void json_write_indent(FILE *out, int indent_level);
@@ -120,15 +120,6 @@ struct json *json_object()
   return node;
 }
 
-static void *json_free_closure_func(void *value, void *ctx)
-{
-  if (value)
-  {
-    json_free((struct json *)value);
-  }
-  return NULL;
-}
-
 void json_free(struct json *json)
 {
   if (!json || json == &json_null_value || json == &json_true_value || json == &json_false_value)
@@ -141,7 +132,7 @@ void json_free(struct json *json)
     break;
   case JSON_ARRAY:
   {
-    struct closure *free_closure = closure_new(json_free_closure_func, NULL);
+    struct closure *free_closure = closure_call((call_func)json_free);
     if (free_closure)
     {
       linked_list_free(json->value.array, free_closure);
@@ -151,7 +142,7 @@ void json_free(struct json *json)
   }
   case JSON_OBJECT:
   {
-    struct closure *free_closure = closure_new(json_free_closure_func, NULL);
+    struct closure *free_closure = closure_call((call_func)json_free);
     if (free_closure)
     {
       hash_table_free(json->value.object, free_closure);
@@ -198,6 +189,27 @@ int json_isarray(struct json *node)
 int json_isobject(struct json *node)
 {
   return node && node->type == JSON_OBJECT;
+}
+
+int json_array_length(struct json *array)
+{
+  if (!array || !json_isarray(array))
+    return 0;
+
+  return linked_list_length(array->value.array);
+}
+
+struct json *json_array_get(const struct json *array, int index)
+{
+  if (!array || !json_isarray((struct json *)array) || index < 0)
+    return NULL;
+
+  struct linked_list *node = array->value.array;
+  for (int i = 0; i < index && node; i++)
+  {
+    node = linked_list_next(node);
+  }
+  return (struct json *)linked_list_value(node);
 }
 
 /************************************
