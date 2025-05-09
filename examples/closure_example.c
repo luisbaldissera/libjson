@@ -12,10 +12,10 @@ struct Person
 };
 
 // Pretty-print a person
-void print_person(void *data)
+int print_person(void *data)
 {
     struct Person *person = (struct Person *)data;
-    printf("Person: %s, Age: %d\n", person->name, person->age);
+    return printf("Person: %s, Age: %d\n", person->name, person->age);
 }
 
 // Create a new Person
@@ -48,14 +48,14 @@ struct closure *age_equals(int age)
 {
     int *age_ptr = malloc(sizeof(int));
     *age_ptr = age;
-    return closure_new(person_with_age, age_ptr);
+    return closure_new((closure_func)person_with_age, (void *)age_ptr);
 }
 
 // Create a closure for finding a person with a specific name
 struct closure *name_equals(const char *name)
 {
     char *name_copy = strdup(name);
-    return closure_new(person_with_name, name_copy);
+    return closure_new((closure_func)person_with_name, (void *)name_copy);
 }
 
 int main()
@@ -72,8 +72,10 @@ int main()
     linked_list_insert(linked_list_next(linked_list_next(people)), alice);
 
     printf("All people in the list:\n");
-    linked_list_foreach(people, print_person);
+    struct closure *print_person_closure = closure_pure((pure_func)print_person);
+    linked_list_foreach(people, print_person_closure);
     printf("\n");
+    closure_free(print_person_closure);
 
     // Find people by age using closures
     struct linked_list *prev = NULL;
@@ -105,8 +107,8 @@ int main()
     }
 
     // Clean up
-    linked_list_foreach(people, free); // Free all Person structs
-    linked_list_free(people);          // Free the linked list
-
+    struct closure *free_person_closure = closure_pure((pure_func)free);
+    linked_list_free(people, free_person_closure);
+    closure_free(free_person_closure);
     return 0;
 }

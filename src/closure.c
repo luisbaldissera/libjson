@@ -8,6 +8,11 @@ struct closure
     void *ctx;
 };
 
+struct closure *closure_pure(pure_func func)
+{
+    return closure_new((closure_func)func, NULL);
+}
+
 struct closure *closure_new(closure_func func, void *ctx)
 {
     struct closure *closure = malloc(sizeof(struct closure));

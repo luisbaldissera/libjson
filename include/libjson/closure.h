@@ -19,6 +19,16 @@ struct closure;
 typedef void *(*closure_func)(void *arg, void *ctx);
 
 /**
+ * @brief Function type for closures with function argument only.
+ */
+typedef void *(*pure_func)(void *arg);
+
+/**
+ * @brief Adapter to create closure for pure functions
+ */
+struct closure *closure_pure(pure_func func);
+
+/**
  * @brief Creates a new closure
  * @param func The function to call
  * @param context The context to pass to the function

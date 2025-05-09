@@ -18,7 +18,7 @@
  * This type represents any JSON value (null, boolean, number, string, array, or object)
  * and hides implementation details from the user.
  */
-typedef struct json;
+struct json;
 
 ////////////////////////////////////
 // JSON Creation functions
