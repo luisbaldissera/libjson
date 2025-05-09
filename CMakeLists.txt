@@ -12,11 +12,14 @@ add_library(json STATIC ${SOURCES})
 
 enable_testing()
 
+# Instead of combining all test files, create a separate executable for each test file
 file(GLOB TEST_SOURCES "tests/*.c")
-add_executable(json_tests ${TEST_SOURCES})
-target_link_libraries(json_tests json)
-
-add_test(NAME json_tests COMMAND json_tests)
+foreach(TEST_SOURCE ${TEST_SOURCES})
+    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
+    add_executable(${TEST_NAME} ${TEST_SOURCE})
+    target_link_libraries(${TEST_NAME} json)
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+endforeach()
 
 file(GLOB EXAMPLES "examples/*.c")
 foreach(EXAMPLE ${EXAMPLES})
