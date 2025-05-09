@@ -24,6 +24,13 @@ struct linked_list;
 struct linked_list *linked_list_new(void *value);
 
 /**
+ * @brief Gets the length of the linked list
+ * @param list The head of the linked list
+ * @return The number of nodes in the linked list
+ */
+int linked_list_length(struct linked_list *list);
+
+/**
  * @brief Frees a linked list and optionally its values
  * @param list The head of the linked list to free
  * @param free_value Closure to free the values in the linked list. If NULL is passed,

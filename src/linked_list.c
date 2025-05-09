@@ -16,6 +16,18 @@ struct linked_list *linked_list_new(void *value)
     return node;
 }
 
+int linked_list_length(struct linked_list *list)
+{
+    int length = 0;
+    struct linked_list *current = list;
+    while (current != NULL)
+    {
+        length++;
+        current = current->next;
+    }
+    return length;
+}
+
 struct linked_list *linked_list_insert(struct linked_list *last, void *value)
 {
     struct linked_list *node = linked_list_new(value);
