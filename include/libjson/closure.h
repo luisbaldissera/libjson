@@ -24,9 +24,19 @@ typedef void *(*closure_func)(void *arg, void *ctx);
 typedef void *(*pure_func)(void *arg);
 
 /**
+ * @brief Function type for closures with only args and no return value.
+ */
+typedef void (*call_func)(void *arg);
+
+/**
  * @brief Adapter to create closure for pure functions
  */
 struct closure *closure_pure(pure_func func);
+
+/**
+ * @brief Adapter to create closure for functions with no return value
+ */
+struct closure *closure_call(call_func func);
 
 /**
  * @brief Creates a new closure

@@ -13,6 +13,21 @@ struct closure *closure_pure(pure_func func)
     return closure_new((closure_func)func, NULL);
 }
 
+void *closure_call_func(void *arg, void *ctx)
+{
+    call_func func = (call_func)ctx;
+    if (func)
+    {
+        func(arg);
+    }
+    return NULL;
+}
+
+struct closure *closure_call(call_func func)
+{
+    return closure_new(closure_call_func, (void *)func);
+}
+
 struct closure *closure_new(closure_func func, void *ctx)
 {
     struct closure *closure = malloc(sizeof(struct closure));
