@@ -11,9 +11,7 @@ libjson is a lightweight C library for creating, manipulating, and serializing J
 
 ## Installation
 
-To install libjson, you can either clone the repository or download the source code directly. After obtaining the source code, you can build the library using either CMake or Make.
-
-### Using CMake
+To install libjson, you can either clone the repository or download the source code directly. After obtaining the source code, you can build the library using CMake
 
 1. Navigate to the project directory:
    ```
@@ -36,18 +34,6 @@ To install libjson, you can either clone the repository or download the source c
    make
    ```
 
-### Using Make
-
-1. Navigate to the project directory:
-   ```
-   cd path/to/libjson
-   ```
-
-2. Build the library:
-   ```
-   make
-   ```
-
 ## Usage
 
 To use libjson in your project, include the header file in your source code:
@@ -61,9 +47,30 @@ To use libjson in your project, include the header file in your source code:
 Here is a simple example of creating a JSON object:
 
 ```c
-JSON json = JSON_object();
-JSON_object_set(json, "name", JSON_string("libjson"));
-JSON_object_set(json, "version", JSON_decimal(1.0));
+struct json *obj = json_object();
+json_object_set(obj, "name", json_string("libjson"));
+json_object_set(obj, "version", json_number(1.0));
+json_object_set(obj, "features", json_array());
+
+struct json *features = json_object_get(obj, "features");
+json_array_push(features, json_string("Easy to use"));
+json_array_push(features, json_string("Lightweight"));
+json_array_push(features, json_string("Fast"));
+
+// Serialize to stdout
+json_fwrite(obj, stdout);
+// {
+//   "name": "libjson",
+//   "version": 1.0,
+//   "features": [
+//     "Easy to use",
+//     "Lightweight",
+//     "Fast"
+//   ]
+// }
+
+// Free memory when done
+json_free(obj);
 ```
 
 ## Running Tests
