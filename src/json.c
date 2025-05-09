@@ -46,7 +46,7 @@ json json_decimal(double value)
   return json;
 }
 
-json JSON_integer(int value)
+json json_integer(int value)
 {
   json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_INTEGER;
@@ -54,7 +54,7 @@ json JSON_integer(int value)
   return json;
 }
 
-json JSON_string(const char *value)
+json json_string(const char *value)
 {
   json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_STRING;
@@ -62,7 +62,7 @@ json JSON_string(const char *value)
   return json;
 }
 
-json JSON_array()
+json json_array()
 {
   json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_ARRAY;
@@ -71,7 +71,7 @@ json JSON_array()
   return json;
 }
 
-json JSON_object()
+json json_object()
 {
   json json = malloc(sizeof(struct __JSON_struct));
   json->type = JSON_OBJECT;
@@ -79,35 +79,35 @@ json JSON_object()
   return json;
 }
 
-int JSON_isnull(json node) { return node == &__restin_json_null; }
+int json_isnull(json node) { return node == &__restin_json_null; }
 
-int JSON_isboolean(json node)
+int json_isboolean(json node)
 {
   return node == &__restin_json_true || node == &__restin_json_false;
 }
 
-int JSON_isnumber(json node)
+int json_isnumber(json node)
 {
   return node->type == JSON_DECIMAL || node->type == JSON_INTEGER;
 }
 
-int JSON_isstring(json node) { return node->type == JSON_STRING; }
+int json_isstring(json node) { return node->type == JSON_STRING; }
 
-int JSON_isarray(json node) { return node->type == JSON_ARRAY; }
+int json_isarray(json node) { return node->type == JSON_ARRAY; }
 
-int JSON_isobject(json node) { return node->type == JSON_OBJECT; }
+int json_isobject(json node) { return node->type == JSON_OBJECT; }
 
 void json_object_set(json object, const char *key, json value)
 {
   hash_table_set(object->value.object, key, value);
 }
 
-json JSON_object_get(const json object, const char *key)
+json json_object_get(const json object, const char *key)
 {
   return HT_get(object->value.object, key);
 }
 
-void JSON_array_push(json array, json value)
+void json_array_push(json array, json value)
 {
   if (array->value.array.first == NULL)
   {
@@ -121,7 +121,7 @@ void JSON_array_push(json array, json value)
   }
 }
 
-int JSON_fwrite(json node, FILE *out)
+int json_fwrite(json node, FILE *out)
 {
   if (node->type == JSON_DECIMAL)
   {
@@ -141,7 +141,7 @@ int JSON_fwrite(json node, FILE *out)
     struct linked_list *current = node->value.array.first;
     while (current != NULL)
     {
-      JSON_fwrite(linked_list_value(current), out);
+      json_fwrite(linked_list_value(current), out);
       current = linked_list_next(current);
       if (current != NULL)
       {
@@ -158,7 +158,7 @@ int JSON_fwrite(json node, FILE *out)
     for (int i = 0; i < size; i++)
     {
       fprintf(out, "\"%s\":", keys[i]);
-      JSON_fwrite(HT_get(node->value.object, keys[i]), out);
+      json_fwrite(HT_get(node->value.object, keys[i]), out);
       if (i < size - 1)
       {
         fprintf(out, ",");
@@ -169,8 +169,8 @@ int JSON_fwrite(json node, FILE *out)
   return 0;
 }
 
-void __JSON_HT_free(char *key, void *value) { JSON_free(value); }
-void JSON_free(json json)
+void __JSON_HT_free(char *key, void *value) { json_free(value); }
+void json_free(json json)
 {
   if (json->type == JSON_STRING)
   {
@@ -178,7 +178,7 @@ void JSON_free(json json)
   }
   else if (json->type == JSON_ARRAY)
   {
-    linked_list_foreach(json->value.array.first, JSON_free);
+    linked_list_foreach(json->value.array.first, json_free);
     linked_list_free(json->value.array.first);
   }
   else if (json->type == JSON_OBJECT)

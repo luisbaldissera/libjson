@@ -5,39 +5,39 @@
 void test_json_creation()
 {
     json json_null = json_null();
-    assert(JSON_isnull(json_null));
+    assert(json_isnull(json_null));
 
     json json_true = json_true();
-    assert(JSON_isboolean(json_true));
+    assert(json_isboolean(json_true));
 
     json json_false = json_false();
-    assert(JSON_isboolean(json_false));
+    assert(json_isboolean(json_false));
 
     json json_decimal = json_decimal(3.14);
-    assert(JSON_isnumber(json_decimal));
+    assert(json_isnumber(json_decimal));
     assert(json_decimal->value.decimal == 3.14);
 
-    json json_integer = JSON_integer(42);
-    assert(JSON_isnumber(json_integer));
+    json json_integer = json_integer(42);
+    assert(json_isnumber(json_integer));
     assert(json_integer->value.integer == 42);
 
-    json json_string = JSON_string("Hello, World!");
-    assert(JSON_isstring(json_string));
+    json json_string = json_string("Hello, World!");
+    assert(json_isstring(json_string));
 
-    json json_array = JSON_array();
-    assert(JSON_isarray(json_array));
+    json json_array = json_array();
+    assert(json_isarray(json_array));
 
-    json json_object = JSON_object();
-    assert(JSON_isobject(json_object));
+    json json_object = json_object();
+    assert(json_isobject(json_object));
 
-    JSON_free(json_null);
-    JSON_free(json_true);
-    JSON_free(json_false);
-    JSON_free(json_decimal);
-    JSON_free(json_integer);
-    JSON_free(json_string);
-    JSON_free(json_array);
-    JSON_free(json_object);
+    json_free(json_null);
+    json_free(json_true);
+    json_free(json_false);
+    json_free(json_decimal);
+    json_free(json_integer);
+    json_free(json_string);
+    json_free(json_array);
+    json_free(json_object);
 }
 
 int main()

@@ -6,12 +6,12 @@
 
 void test_json_array_manipulation()
 {
-    json array = JSON_array();
-    json value1 = JSON_integer(1);
-    json value2 = JSON_integer(2);
+    json array = json_array();
+    json value1 = json_integer(1);
+    json value2 = json_integer(2);
 
-    JSON_array_push(array, value1);
-    JSON_array_push(array, value2);
+    json_array_push(array, value1);
+    json_array_push(array, value2);
 
     TEST_ASSERT_EQUAL_INT(2, JSON_array_length(array));
     TEST_ASSERT_EQUAL_INT(1, JSON_integer_value(JSON_array_get(array, 0)));
@@ -24,12 +24,12 @@ void test_json_array_manipulation()
 
 void test_json_object_manipulation()
 {
-    json object = JSON_object();
-    json value = JSON_string("test");
+    json object = json_object();
+    json value = json_string("test");
 
     json_object_set(object, "key", value);
 
-    TEST_ASSERT_EQUAL_STRING("test", JSON_string_value(JSON_object_get(object, "key")));
+    TEST_ASSERT_EQUAL_STRING("test", JSON_string_value(json_object_get(object, "key")));
 
     JSON_free(value);
     JSON_free(object);
