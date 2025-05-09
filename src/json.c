@@ -135,7 +135,7 @@ void json_free(struct json *json)
     struct closure *free_closure = closure_call((call_func)json_free);
     if (free_closure)
     {
-      linked_list_free(json->value.array, free_closure);
+      linked_list_foreach(json->value.array, free_closure);
       closure_free(free_closure);
     }
     break;
@@ -145,7 +145,7 @@ void json_free(struct json *json)
     struct closure *free_closure = closure_call((call_func)json_free);
     if (free_closure)
     {
-      hash_table_free(json->value.object, free_closure);
+      hash_table_foreach(json->value.object, free_closure);
       closure_free(free_closure);
     }
     break;
