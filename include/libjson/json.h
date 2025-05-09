@@ -40,7 +40,7 @@ struct json *json_true();
  * @brief Creates a JSON false boolean value
  * @return A new JSON false value
  */
-struct json *JSON_false();
+struct json *json_false();
 
 /**
  * @brief Creates a JSON decimal number value
