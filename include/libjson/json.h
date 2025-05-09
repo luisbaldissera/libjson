@@ -43,18 +43,11 @@ struct json *json_true();
 struct json *json_false();
 
 /**
- * @brief Creates a JSON decimal number value
- * @param value The double value to store
+ * @brief Creates a JSON number value
+ * @param value The numeric value to store
  * @return A new JSON number value
  */
-struct json *json_decimal(double value);
-
-/**
- * @brief Creates a JSON integer value
- * @param value The int value to store
- * @return A new JSON integer value
- */
-struct json *json_integer(int value);
+struct json *json_number(double value);
 
 /**
  * @brief Creates a JSON string value
