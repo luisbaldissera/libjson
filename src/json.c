@@ -43,6 +43,7 @@ static struct json json_true_value = {.type = JSON_BOOLEAN, .value = {.boolean =
 static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean = 0}};
 
 // Forward declarations of helper functions
+static int json_write_escaped_string(const char *str, FILE *out);
 
 /************************************
  * JSON Creation Functions
@@ -303,6 +304,80 @@ struct json *json_object_remove(struct json *object, const char *key)
  * JSON Serialization Functions
  ************************************/
 
+/**
+ * Helper function to write escaped strings according to JSON specification
+ * Handles escaping of control characters, double quotes, and backslashes
+ */
+static int json_write_escaped_string(const char *str, FILE *out)
+{
+  if (!str || !out)
+    return -1;
+
+  int bytes_written = 0;
+  int ret;
+
+  ret = fputc('"', out);
+  if (ret == EOF)
+    return -1;
+  bytes_written++;
+
+  for (const unsigned char *ptr = (const unsigned char *)str; *ptr; ptr++)
+  {
+    switch (*ptr)
+    {
+    case '"': // Double quote
+      ret = fputs("\\\"", out);
+      break;
+    case '\\': // Backslash
+      ret = fputs("\\\\", out);
+      break;
+    case '\b': // Backspace
+      ret = fputs("\\b", out);
+      break;
+    case '\f': // Form feed
+      ret = fputs("\\f", out);
+      break;
+    case '\n': // Newline
+      ret = fputs("\\n", out);
+      break;
+    case '\r': // Carriage return
+      ret = fputs("\\r", out);
+      break;
+    case '\t': // Tab
+      ret = fputs("\\t", out);
+      break;
+    default:
+      // Control characters (0-31) need special handling
+      if (*ptr < 32)
+      {
+        // Use the \u escape sequence for control characters
+        char escape_seq[8];
+        sprintf(escape_seq, "\\u%04x", *ptr);
+        ret = fputs(escape_seq, out);
+      }
+      else
+      {
+        // Normal character, output directly
+        ret = fputc(*ptr, out);
+        if (ret != EOF)
+          ret = 1; // fputc returns the character written, not bytes written
+      }
+      break;
+    }
+
+    if (ret < 0)
+      return -1;
+    bytes_written += ret;
+  }
+
+  ret = fputc('"', out);
+  if (ret == EOF)
+    return -1;
+  bytes_written++;
+
+  return bytes_written;
+}
+
 int json_fwrite(struct json *node, FILE *out)
 {
   if (!node || !out)
@@ -333,8 +408,8 @@ int json_fwrite(struct json *node, FILE *out)
   }
   case JSON_STRING:
   {
-    // Simple string serialization (a more complete implementation would handle escaping)
-    return fprintf(out, "\"%s\"", node->value.string ? node->value.string : "");
+    // Use our helper function to properly escape JSON strings
+    return json_write_escaped_string(node->value.string ? node->value.string : "", out);
   }
   case JSON_ARRAY:
   {
@@ -388,7 +463,16 @@ int json_fwrite(struct json *node, FILE *out)
     struct hash_table_entry *entry;
     while (entry = hash_table_iter_next(iter))
     {
-      int ret = fprintf(out, "\"%s\":", hash_table_entry_key(entry));
+      // Properly escape the object key
+      ret = json_write_escaped_string(hash_table_entry_key(entry), out);
+      if (ret < 0)
+      {
+        hash_table_iter_free(iter);
+        return ret;
+      }
+      bytes_written += ret;
+
+      ret = fprintf(out, ":");
       if (ret < 0)
       {
         hash_table_iter_free(iter);
