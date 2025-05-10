@@ -86,4 +86,38 @@ struct linked_list *linked_list_find(struct linked_list *node, struct closure *c
  */
 struct linked_list *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev);
 
+/**
+ * @brief Opaque structure representing a linked list iterator
+ */
+struct linked_list_iter;
+
+/**
+ * @brief Creates a new iterator for the linked list
+ * @param list The head of the linked list to iterate over
+ * @return Pointer to the new iterator, or NULL on allocation failure
+ * @note The iterator must be freed using linked_list_iter_free() when done
+ */
+struct linked_list_iter *linked_list_iter_new(struct linked_list *list);
+
+/**
+ * @brief Gets the next value from the iterator
+ * @param iter The iterator to get the next value from
+ * @return Pointer to the next value, or NULL if there are no more values
+ */
+void *linked_list_iter_next(struct linked_list_iter *iter);
+
+/**
+ * @brief Checks if there are more values in the iterator
+ * @param iter The iterator to check
+ * @return Non-zero if there are more values, 0 otherwise
+ */
+int linked_list_iter_has_next(struct linked_list_iter *iter);
+
+/**
+ * @brief Frees the iterator
+ * @param iter The iterator to free
+ * @note The iterator does not free the values it points to
+ */
+void linked_list_iter_free(struct linked_list_iter *iter);
+
 #endif // LIBJSON_LINKED_LIST_H

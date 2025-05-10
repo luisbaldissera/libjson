@@ -44,28 +44,6 @@ static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean 
 
 // Forward declarations of helper functions
 
-/**
- * @brief Closure like function to iterate over JSON array elements
- * @param _ Ignored closure argument
- * @param ctx The closure context, which is the pointer to the current linked list node
- *
- */
-static struct json *json_array_iter_next_closure_func(void *_, struct linked_list **ctx);
-
-/**
- * @brief Creates an iterator closure for the given JSON array
- * @param array The JSON array to iterate over
- * @return A closure that can be used to iterate over the array elements when called
- */
-static struct closure *json_array_iter(struct json *array);
-
-/**
- * @brief Gets the next element in the JSON array iterator
- * @param iter The iterator closure
- * @return The next JSON value in the array, or NULL if there are no more elements
- */
-static struct json *json_array_iter_next(struct closure *iter);
-
 /************************************
  * JSON Creation Functions
  ************************************/
@@ -321,43 +299,6 @@ struct json *json_object_remove(struct json *object, const char *key)
   return value;
 }
 
-static struct json *json_array_iter_next_closure_func(void *_, struct linked_list **ctx)
-{
-  struct linked_list *current = *ctx;
-
-  if (!current)
-    return NULL;
-
-  struct json *value = (struct json *)linked_list_value(current);
-  *ctx = linked_list_next(current);
-  return value;
-}
-
-static struct closure *json_array_iter(struct json *array)
-{
-  if (!array || !json_isarray(array))
-    return NULL;
-
-  struct closure *closure = closure_new((closure_func)json_array_iter_next_closure_func, (void *)&array->value.array);
-  if (!closure)
-    return NULL;
-
-  return closure;
-}
-
-static struct json *json_array_iter_next(struct closure *iter)
-{
-  if (!iter)
-    return NULL;
-
-  struct json *value = (struct json *)closure_invoke(iter, NULL);
-  if (!value)
-  {
-    return NULL;
-  }
-
-  return value;
-}
 /************************************
  * JSON Serialization Functions
  ************************************/
@@ -397,42 +338,38 @@ int json_fwrite(struct json *node, FILE *out)
   }
   case JSON_ARRAY:
   {
-    int ret, bytes_written = 0, first_iteration = 1;
+    int ret, bytes_written = 0;
+    struct linked_list_iter *iter = linked_list_iter_new(node->value.array);
+    if (!iter)
+    {
+      return -1;
+    }
     ret = fprintf(out, "[");
     if (ret < 0)
       return ret;
     bytes_written += ret;
-    struct closure *array_iter = json_array_iter(node);
-    if (!array_iter)
+    struct json *element;
+    while (element = linked_list_iter_next(iter))
     {
-      return -1;
-    }
-    struct json *iter;
-    while (iter = json_array_iter_next(array_iter))
-    {
-      if (!first_iteration)
+      int ret = json_fwrite(element, out);
+      if (ret < 0)
+      {
+        linked_list_iter_free(iter);
+        return ret;
+      }
+      bytes_written += ret;
+      if (linked_list_iter_has_next(iter))
       {
         ret = fprintf(out, ",");
         if (ret < 0)
         {
-          closure_free(array_iter);
+          linked_list_iter_free(iter);
           return ret;
         }
         bytes_written += ret;
       }
-      else
-      {
-        first_iteration = 0;
-      }
-      int ret = json_fwrite(iter, out);
-      if (ret < 0)
-      {
-        closure_free(array_iter);
-        return ret;
-      }
-      bytes_written += ret;
     }
-    closure_free(array_iter);
+    linked_list_iter_free(iter);
     bytes_written += fprintf(out, "]");
     return bytes_written;
   }

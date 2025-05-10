@@ -121,3 +121,31 @@ struct linked_list *linked_list_remove(struct linked_list *node, struct closure 
     }
     return NULL;
 }
+
+struct linked_list_iter {
+    struct linked_list *current;
+};
+
+struct linked_list_iter *linked_list_iter_new(struct linked_list *list) {
+    struct linked_list_iter *iter = malloc(sizeof(struct linked_list_iter));
+    iter->current = list;
+    return iter;
+}
+
+void *linked_list_iter_next(struct linked_list_iter *iter) {
+    if (iter->current == NULL) {
+        return NULL;
+    }
+    void *value = iter->current->value;
+    iter->current = iter->current->next;
+    return value;
+}
+
+int linked_list_iter_has_next(struct linked_list_iter *iter) {
+    return iter->current != NULL;
+}
+
+void linked_list_iter_free(struct linked_list_iter *iter) {
+    free(iter);
+}
+
