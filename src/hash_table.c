@@ -188,3 +188,71 @@ void *hash_table_entry_value(const struct hash_table_entry *entry)
 {
     return entry ? entry->value : NULL;
 }
+
+struct hash_table_iter
+{
+    const struct hash_table *table;
+    int bucket_index;
+    struct linked_list *current_entry;
+};
+
+struct hash_table_iter *hash_table_iter_new(const struct hash_table *table)
+{
+    struct hash_table_iter *iter = malloc(sizeof(struct hash_table_iter));
+    if (!iter)
+    {
+        return NULL;
+    }
+    iter->table = table;
+    iter->bucket_index = 0;
+    iter->current_entry = NULL;
+
+    // Find the first non-empty bucket
+    while (iter->bucket_index < LIBJSON_HASH_TABLE_BUCKET_SIZE && !table->bucket[iter->bucket_index])
+    {
+        iter->bucket_index++;
+    }
+
+    if (iter->bucket_index < LIBJSON_HASH_TABLE_BUCKET_SIZE)
+    {
+        iter->current_entry = table->bucket[iter->bucket_index];
+    }
+
+    return iter;
+}
+
+void hash_table_iter_free(struct hash_table_iter *iter)
+{
+    if (iter)
+    {
+        free(iter);
+    }
+}
+
+struct hash_table_entry *hash_table_iter_next(struct hash_table_iter *iter)
+{
+    if (!iter || !iter->current_entry)
+    {
+        return NULL;
+    }
+
+    struct hash_table_entry *entry = linked_list_value(iter->current_entry);
+    iter->current_entry = linked_list_next(iter->current_entry);
+
+    // Move to the next non-empty bucket if needed
+    while (!iter->current_entry && ++iter->bucket_index < LIBJSON_HASH_TABLE_BUCKET_SIZE)
+    {
+        iter->current_entry = iter->table->bucket[iter->bucket_index];
+    }
+
+    return entry;
+}
+
+int hash_table_iter_has_next(struct hash_table_iter *iter)
+{
+    if (!iter)
+    {
+        return 0;
+    }
+    return iter->current_entry != NULL;
+}

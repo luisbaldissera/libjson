@@ -375,56 +375,47 @@ int json_fwrite(struct json *node, FILE *out)
   }
   case JSON_OBJECT:
   {
-    int ret, bytes_written = 0, first_iteration = 1;
+    int ret, bytes_written = 0;
+    struct hash_table_iter *iter = hash_table_iter_new(node->value.object);
+    if (!iter)
+    {
+      return -1;
+    }
     ret = fprintf(out, "{");
     if (ret < 0)
       return ret;
     bytes_written += ret;
-    int num_keys = hash_table_keys(node->value.object, NULL);
-    char **keys = malloc(num_keys * sizeof(char *));
-    if (!keys)
+    struct hash_table_entry *entry;
+    while (entry = hash_table_iter_next(iter))
     {
-      return -1;
-    }
-    for (int i = 0; i < num_keys; i++)
-    {
-      keys[i] = malloc(256);
-      if (!keys[i])
+      int ret = fprintf(out, "\"%s\":", hash_table_entry_key(entry));
+      if (ret < 0)
       {
-        for (int j = 0; j < i; j++)
-          free(keys[j]);
-        free(keys);
-        return -1;
+        hash_table_iter_free(iter);
+        return ret;
       }
-    }
-    for (int i = 0; i < num_keys; i++)
-    {
-      if (!first_iteration)
+      bytes_written += ret;
+
+      ret = json_fwrite(hash_table_entry_value(entry), out);
+      if (ret < 0)
+      {
+        hash_table_iter_free(iter);
+        return ret;
+      }
+      bytes_written += ret;
+
+      if (hash_table_iter_has_next(iter))
       {
         ret = fprintf(out, ",");
         if (ret < 0)
+        {
+          hash_table_iter_free(iter);
           return ret;
+        }
         bytes_written += ret;
       }
-      else
-      {
-        first_iteration = 0;
-      }
-      struct json *value = (struct json *)hash_table_get(node->value.object, keys[i]);
-      if (!value)
-        continue;
-
-      ret = fprintf(out, "\"%s\":", keys[i]);
-      if (ret < 0)
-        return ret;
-      bytes_written += ret;
-
-      ret = json_fwrite(value, out);
-      if (ret < 0)
-        return ret;
-      bytes_written += ret;
     }
-    free(keys);
+    hash_table_iter_free(iter);
     bytes_written += fprintf(out, "}");
     return bytes_written;
   }

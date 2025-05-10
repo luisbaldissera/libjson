@@ -81,4 +81,33 @@ int hash_table_keys(const struct hash_table *table, char **keys);
  */
 void hash_table_foreach(const struct hash_table *table, struct closure *closure);
 
+struct hash_table_iter;
+
+/**
+ * @brief Creates a new iterator for the hash table
+ * @param table The hash table to iterate
+ * @return Pointer to the new iterator, or NULL on allocation failure
+ */
+struct hash_table_iter *hash_table_iter_new(const struct hash_table *table);
+
+/**
+ * @brief Frees the hash table iterator
+ * @param iter The iterator to free
+ */
+void hash_table_iter_free(struct hash_table_iter *iter);
+
+/**
+ * @brief Gets the next entry in the hash table iterator
+ * @param iter The iterator to use
+ * @return Pointer to the next hash table entry, or NULL if there are no more entries
+ */
+struct hash_table_entry *hash_table_iter_next(struct hash_table_iter *iter);
+
+/**
+ * @brief Checks if the iterator has more entries
+ * @param iter The iterator to check
+ * @return Non-zero if there are more entries, 0 otherwise
+ */
+int hash_table_iter_has_next(struct hash_table_iter *iter);
+
 #endif // LIBJSON_HASH_TABLE_H
