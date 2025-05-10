@@ -3,6 +3,23 @@
 
 int main()
 {
+
+    struct json *array = json_array();
+    json_array_push(array, json_string("Hello"));
+    json_array_push(array, json_number(42));
+    json_array_push(array, json_true());
+    json_array_push(array, json_false());
+    json_array_push(array, json_null());
+    struct json *nested_array = json_array();
+    json_array_push(nested_array, json_string("Nested"));
+    json_array_push(array, nested_array);
+
+    printf("Created JSON array:\n");
+    json_fwrite(array, stdout);
+    printf("\n");
+
+    json_free(array);
+
     struct json *json_obj = json_object();
 
     struct json *json_name = json_string("John Doe");
