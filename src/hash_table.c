@@ -51,7 +51,7 @@ static int hash_table_key_equals_closure_func(struct hash_table_entry *entry, co
 
 static struct closure *hash_table_key_equals(const char *key)
 {
-    return closure_new((closure_func)hash_table_key_equals_closure_func, (void*)key);
+    return closure_new((closure_func)hash_table_key_equals_closure_func, (void *)key);
 }
 
 struct hash_table *hash_table_new()

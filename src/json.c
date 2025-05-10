@@ -43,9 +43,28 @@ static struct json json_true_value = {.type = JSON_BOOLEAN, .value = {.boolean =
 static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean = 0}};
 
 // Forward declarations of helper functions
-static void json_write_indent(FILE *out, int indent_level);
-static int json_fwrite_internal(struct json *node, FILE *out, int indent, int indent_level);
-static void *json_free_closure_func(void *value, void *ctx);
+
+/**
+ * @brief Closure like function to iterate over JSON array elements
+ * @param _ Ignored closure argument
+ * @param ctx The closure context, which is the pointer to the current linked list node
+ *
+ */
+static struct json *json_array_iter_next_closure_func(void *_, struct linked_list **ctx);
+
+/**
+ * @brief Creates an iterator closure for the given JSON array
+ * @param array The JSON array to iterate over
+ * @return A closure that can be used to iterate over the array elements when called
+ */
+static struct closure *json_array_iter(struct json *array);
+
+/**
+ * @brief Gets the next element in the JSON array iterator
+ * @param iter The iterator closure
+ * @return The next JSON value in the array, or NULL if there are no more elements
+ */
+static struct json *json_array_iter_next(struct closure *iter);
 
 /************************************
  * JSON Creation Functions
@@ -302,204 +321,43 @@ struct json *json_object_remove(struct json *object, const char *key)
   return value;
 }
 
-/************************************
- * JSON Helper Functions for Serialization
- ************************************/
-
-static void json_write_indent(FILE *out, int indent_level)
+static struct json *json_array_iter_next_closure_func(void *_, struct linked_list **ctx)
 {
-  for (int i = 0; i < indent_level; i++)
-  {
-    fprintf(out, "  ");
-  }
+  struct linked_list *current = *ctx;
+
+  if (!current)
+    return NULL;
+
+  struct json *value = (struct json *)linked_list_value(current);
+  *ctx = linked_list_next(current);
+  return value;
 }
 
-// Helper struct for array serialization
-struct array_write_context
+static struct closure *json_array_iter(struct json *array)
 {
-  FILE *out;
-  int indent;
-  int indent_level;
-  int first;
-};
+  if (!array || !json_isarray(array))
+    return NULL;
 
-// Closure function for array serialization
-static void *array_write_closure_func(void *value, void *ctx)
-{
-  struct array_write_context *context = (struct array_write_context *)ctx;
-  struct json *json_value = (struct json *)value;
+  struct closure *closure = closure_new((closure_func)json_array_iter_next_closure_func, (void *)&array->value.array);
+  if (!closure)
+    return NULL;
 
-  if (!context->first)
-  {
-    fprintf(context->out, ",");
-  }
-  else
-  {
-    context->first = 0;
-  }
-
-  if (context->indent)
-  {
-    fprintf(context->out, "\n");
-    json_write_indent(context->out, context->indent_level + 1);
-  }
-  else
-  {
-    fprintf(context->out, " ");
-  }
-
-  json_fwrite_internal(json_value, context->out, context->indent, context->indent_level + 1);
-  return NULL;
+  return closure;
 }
 
-// Helper struct for object serialization
-struct object_write_context
+static struct json *json_array_iter_next(struct closure *iter)
 {
-  FILE *out;
-  int indent;
-  int indent_level;
-  int first;
-};
+  if (!iter)
+    return NULL;
 
-// Closure function for object serialization
-static void *object_write_closure_func(void *entry, void *ctx)
-{
-  struct object_write_context *context = (struct object_write_context *)ctx;
-  struct hash_table_entry *hash_entry = (struct hash_table_entry *)entry;
-  const char *key = hash_table_entry_key(hash_entry);
-  struct json *value = (struct json *)hash_table_entry_value(hash_entry);
-
-  if (!context->first)
+  struct json *value = (struct json *)closure_invoke(iter, NULL);
+  if (!value)
   {
-    fprintf(context->out, ",");
-  }
-  else
-  {
-    context->first = 0;
+    return NULL;
   }
 
-  if (context->indent)
-  {
-    fprintf(context->out, "\n");
-    json_write_indent(context->out, context->indent_level + 1);
-  }
-  else
-  {
-    fprintf(context->out, " ");
-  }
-
-  // Write key with quotes
-  fprintf(context->out, "\"%s\":%s", key, context->indent ? " " : "");
-
-  // Write value
-  json_fwrite_internal(value, context->out, context->indent, context->indent_level + 1);
-  return NULL;
+  return value;
 }
-
-static int json_fwrite_internal(struct json *node, FILE *out, int indent, int indent_level)
-{
-  if (!node || !out)
-    return -1;
-
-  int bytes_written = 0;
-
-  switch (node->type)
-  {
-  case JSON_NULL:
-    bytes_written = fprintf(out, "null");
-    break;
-  case JSON_BOOLEAN:
-    bytes_written = fprintf(out, node->value.boolean ? "true" : "false");
-    break;
-  case JSON_NUMBER:
-  {
-    // Check if the number is an integer to avoid printing decimals unnecessarily
-    double intpart;
-    if (modf(node->value.number, &intpart) == 0.0)
-    {
-      bytes_written = fprintf(out, "%.0f", node->value.number);
-    }
-    else
-    {
-      bytes_written = fprintf(out, "%g", node->value.number);
-    }
-    break;
-  }
-  case JSON_STRING:
-    // Simple string serialization (a more complete implementation would handle escaping)
-    bytes_written = fprintf(out, "\"%s\"", node->value.string ? node->value.string : "");
-    break;
-  case JSON_ARRAY:
-  {
-    bytes_written = fprintf(out, "[");
-
-    if (node->value.array)
-    {
-      struct array_write_context context = {
-          .out = out,
-          .indent = indent,
-          .indent_level = indent_level,
-          .first = 1};
-
-      struct closure *write_closure = closure_new(array_write_closure_func, &context);
-      if (write_closure)
-      {
-        linked_list_foreach(node->value.array, write_closure);
-        closure_free(write_closure);
-      }
-    }
-
-    if (indent && node->value.array)
-    {
-      fprintf(out, "\n");
-      json_write_indent(out, indent_level);
-    }
-    else if (node->value.array)
-    {
-      fprintf(out, " ");
-    }
-
-    bytes_written += fprintf(out, "]");
-    break;
-  }
-  case JSON_OBJECT:
-  {
-    bytes_written = fprintf(out, "{");
-
-    if (node->value.object)
-    {
-      struct object_write_context context = {
-          .out = out,
-          .indent = indent,
-          .indent_level = indent_level,
-          .first = 1};
-
-      struct closure *write_closure = closure_new(object_write_closure_func, &context);
-      if (write_closure)
-      {
-        hash_table_foreach(node->value.object, write_closure);
-        closure_free(write_closure);
-      }
-    }
-
-    if (indent && node->value.object)
-    {
-      fprintf(out, "\n");
-      json_write_indent(out, indent_level);
-    }
-    else if (node->value.object)
-    {
-      fprintf(out, " ");
-    }
-
-    bytes_written += fprintf(out, "}");
-    break;
-  }
-  }
-
-  return bytes_written;
-}
-
 /************************************
  * JSON Serialization Functions
  ************************************/
@@ -509,6 +367,131 @@ int json_fwrite(struct json *node, FILE *out)
   if (!node || !out)
     return -1;
 
-  // Use pretty printing with indentation by default
-  return json_fwrite_internal(node, out, 1, 0);
+  switch (node->type)
+  {
+  case JSON_NULL:
+  {
+    return fprintf(out, "null");
+  }
+  case JSON_BOOLEAN:
+  {
+    return fprintf(out, node->value.boolean ? "true" : "false");
+  }
+  case JSON_NUMBER:
+  {
+    // Check if the number is an integer to avoid printing decimals unnecessarily
+    double intpart;
+    if (modf(node->value.number, &intpart) == 0.0)
+    {
+      return fprintf(out, "%.0f", node->value.number);
+    }
+    else
+    {
+      return fprintf(out, "%g", node->value.number);
+    }
+  }
+  case JSON_STRING:
+  {
+    // Simple string serialization (a more complete implementation would handle escaping)
+    return fprintf(out, "\"%s\"", node->value.string ? node->value.string : "");
+  }
+  case JSON_ARRAY:
+  {
+    int ret, bytes_written = 0, first_iteration = 1;
+    ret = fprintf(out, "[");
+    if (ret < 0)
+      return ret;
+    bytes_written += ret;
+    struct closure *array_iter = json_array_iter(node);
+    if (!array_iter)
+    {
+      return -1;
+    }
+    struct json *iter;
+    while (iter = json_array_iter_next(array_iter))
+    {
+      if (!first_iteration)
+      {
+        ret = fprintf(out, ",");
+        if (ret < 0)
+        {
+          closure_free(array_iter);
+          return ret;
+        }
+        bytes_written += ret;
+      }
+      else
+      {
+        first_iteration = 0;
+      }
+      int ret = json_fwrite(iter, out);
+      if (ret < 0)
+      {
+        closure_free(array_iter);
+        return ret;
+      }
+      bytes_written += ret;
+    }
+    closure_free(array_iter);
+    bytes_written += fprintf(out, "]");
+    return bytes_written;
+  }
+  case JSON_OBJECT:
+  {
+    int ret, bytes_written = 0, first_iteration = 1;
+    ret = fprintf(out, "{");
+    if (ret < 0)
+      return ret;
+    bytes_written += ret;
+    int num_keys = hash_table_keys(node->value.object, NULL);
+    char **keys = malloc(num_keys * sizeof(char *));
+    if (!keys)
+    {
+      return -1;
+    }
+    for (int i = 0; i < num_keys; i++)
+    {
+      keys[i] = malloc(256);
+      if (!keys[i])
+      {
+        for (int j = 0; j < i; j++)
+          free(keys[j]);
+        free(keys);
+        return -1;
+      }
+    }
+    for (int i = 0; i < num_keys; i++)
+    {
+      if (!first_iteration)
+      {
+        ret = fprintf(out, ",");
+        if (ret < 0)
+          return ret;
+        bytes_written += ret;
+      }
+      else
+      {
+        first_iteration = 0;
+      }
+      struct json *value = (struct json *)hash_table_get(node->value.object, keys[i]);
+      if (!value)
+        continue;
+
+      ret = fprintf(out, "\"%s\":", keys[i]);
+      if (ret < 0)
+        return ret;
+      bytes_written += ret;
+
+      ret = json_fwrite(value, out);
+      if (ret < 0)
+        return ret;
+      bytes_written += ret;
+    }
+    free(keys);
+    bytes_written += fprintf(out, "}");
+    return bytes_written;
+  }
+  default:
+    break;
+  }
 }
