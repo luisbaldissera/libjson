@@ -60,21 +60,17 @@ struct closure *name_equals(const char *name)
 
 int main()
 {
-    // Create a linked list of people
-    struct Person *john = create_person("John", 30);
-    struct Person *jane = create_person("Jane", 25);
-    struct Person *bob = create_person("Bob", 40);
-    struct Person *alice = create_person("Alice", 25);
-
-    struct linked_list *people = linked_list_new(john);
-    linked_list_insert(people, jane);
-    linked_list_insert(linked_list_next(people), bob);
-    linked_list_insert(linked_list_next(linked_list_next(people)), alice);
+    struct linked_list *people_first = linked_list_new(create_person("John", 30));
+    struct linked_list *people_last = people_first;
+    people_last = linked_list_insert(people_last, create_person("Jane", 25));
+    people_last = linked_list_insert(people_last, create_person("Bob", 40));
+    people_last = linked_list_insert(people_last, create_person("Alice", 25));
 
     printf("All people in the list:\n");
-    struct linked_list_iter *iter = linked_list_iter_new(people);
+    struct linked_list_iter *iter = linked_list_iter_new(people_first);
     struct linked_list *element;
-    while (element = linked_list_iter_next(iter)) {
+    while (element = linked_list_iter_next(iter))
+    {
         print_person(linked_list_value(element));
     }
     printf("\n");
@@ -82,7 +78,7 @@ int main()
     // Find people by age using closures
     struct linked_list *prev = NULL;
     struct closure *age25 = age_equals(25);
-    struct linked_list *found = linked_list_find(people, age25, &prev);
+    struct linked_list *found = linked_list_find(people_first, age25, &prev);
 
     if (found)
     {
@@ -101,7 +97,7 @@ int main()
 
     // Find a person by name using the cleaner style you requested
     prev = NULL;
-    found = linked_list_find(people, name_equals("Bob"), &prev);
+    found = linked_list_find(people_first, name_equals("Bob"), &prev);
     if (found)
     {
         printf("\nFound person named Bob:\n");
@@ -110,7 +106,7 @@ int main()
 
     // Clean up
     struct closure *free_person_closure = closure_pure((pure_func)free);
-    linked_list_free(people, free_person_closure);
+    linked_list_free(people_first, free_person_closure);
     closure_free(free_person_closure);
     return 0;
 }
