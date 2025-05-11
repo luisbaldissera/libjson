@@ -13,7 +13,7 @@
  */
 
 /**
- * @brief Opaque pointer to JSON structure
+ * @brief Opaque JSON structure
  *
  * This type represents any JSON value (null, boolean, number, string, array, or object)
  * and hides implementation details from the user.
@@ -159,12 +159,6 @@ int json_toint(const struct json *node);
  * @return The string value stored in the JSON string
  */
 const char *json_tostring(const struct json *node);
-
-/**
- * @brief Gets the first element of a JSON array
- * @param array JSON array to query
- * @return The first JSON value in the array, or NULL if the array is empty
- */
 
 ////////////////////////////////////
 // JSON Manipulation functions
