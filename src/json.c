@@ -453,7 +453,7 @@ static int json_write_array(struct json *node, FILE *out)
   struct json *element;
   while (element = linked_list_iter_next(iter))
   {
-    int ret = json_fwrite(element, out);
+    int ret = json_write(element, out);
     if (ret < 0)
     {
       linked_list_iter_free(iter);
