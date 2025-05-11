@@ -78,13 +78,13 @@ struct linked_list *linked_list_find(struct linked_list *node, struct closure *c
 
 /**
  * @brief Removes a node from the linked list
- * @param node The node to remove
+ * @param node The first node of the linked list to search
  * @param closure The func-closure to use for matching
  * @param prev If provided, will be set to the previous node of the removed node, otherwise use NULL.
- * @return Pointer to the removed node, or NULL if not found
- * @note The caller is responsible for freeing the removed node
+ * @return Pointer to the value stored in the removed node, or NULL if not found
+ * @note The linked list node itself is freed.
  */
-struct linked_list *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev);
+void *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev);
 
 /**
  * @brief Opaque structure representing a linked list iterator

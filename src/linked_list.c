@@ -94,7 +94,7 @@ void linked_list_foreach(struct linked_list *list, struct closure *closure)
     }
 }
 
-struct linked_list *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev)
+void *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev)
 {
     if (!closure)
     {
@@ -114,7 +114,10 @@ struct linked_list *linked_list_remove(struct linked_list *node, struct closure 
             {
                 previous->next = current->next;
             }
-            return current;
+            void *value = current->value;
+            current->next = NULL;
+            linked_list_free(current, NULL);
+            return value;
         }
         previous = current;
         current = current->next;
