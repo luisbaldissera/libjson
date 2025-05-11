@@ -152,45 +152,6 @@ struct json *json_object()
   return node;
 }
 
-static void json_free_string(struct json *json)
-{
-  if (json->type == JSON_STRING)
-  {
-    // Free the string value
-    free(json->value.string);
-  }
-}
-
-static void json_free_array(struct json *json)
-{
-  if (json->type == JSON_ARRAY)
-  {
-    struct linked_list_iter *iter = linked_list_iter_new(json->value.array);
-    struct json *element;
-    while (element = linked_list_iter_next(iter))
-    {
-      json_free(element);
-    }
-    linked_list_iter_free(iter);
-  }
-}
-
-static void json_free_object(struct json *json)
-{
-  if (json->type == JSON_OBJECT)
-  {
-    struct hash_table_iter *iter = hash_table_iter_new(json->value.object);
-    struct hash_table_entry *entry;
-    while (entry = hash_table_iter_next(iter))
-    {
-      struct json *value = (struct json *)hash_table_entry_value(entry);
-      if (value)
-        json_free(value);
-    }
-    hash_table_iter_free(iter);
-  }
-}
-
 void json_free(struct json *json)
 {
   if (!json || json == &json_null_value || json == &json_true_value || json == &json_false_value)
@@ -198,19 +159,15 @@ void json_free(struct json *json)
 
   switch (json->type)
   {
-  case JSON_STRING:
-    json_free_string(json);
-    break;
   case JSON_ARRAY:
-    json_free_array(json);
+    linked_list_free(json->value.array, json_free);
     break;
   case JSON_OBJECT:
-    json_free_object(json);
+    hash_table_free(json->value.object, json_free);
     break;
   default:
-    break; // Nothing to free for simple types
+    break;
   }
-
   free(json);
 }
 
@@ -496,7 +453,7 @@ static int json_write_array(struct json *node, FILE *out)
   struct json *element;
   while (element = linked_list_iter_next(iter))
   {
-    int ret = json_write(element, out);
+    int ret = json_fwrite(element, out);
     if (ret < 0)
     {
       linked_list_iter_free(iter);
@@ -554,7 +511,7 @@ int json_write_object(struct json *node, FILE *out)
     }
     bytes_written += ret;
 
-    ret = json_write(hash_table_entry_value(entry), out);
+    ret = json_fwrite(hash_table_entry_value(entry), out);
     if (ret < 0)
     {
       hash_table_iter_free(iter);
@@ -578,7 +535,7 @@ int json_write_object(struct json *node, FILE *out)
   return bytes_written;
 }
 
-int json_write(struct json *node, FILE *out)
+int json_fwrite(struct json *node, FILE *out)
 {
   if (!node || !out)
     return -1;
@@ -618,7 +575,7 @@ static void set_parse_error(const char *format, ...)
 /**
  * Get the last error message from parsing
  */
-const char *json_error()
+const char *json_get_parse_error()
 {
   return parse_error_buffer[0] != '\0' ? parse_error_buffer : NULL;
 }
