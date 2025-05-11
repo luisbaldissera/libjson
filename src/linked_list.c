@@ -69,15 +69,20 @@ struct linked_list *linked_list_find(struct linked_list *node, struct closure *c
     return NULL;
 }
 
-void linked_list_free(struct linked_list *list, struct closure *free_value)
+void linked_list_free(struct linked_list *list, void (*free_value)(void *))
 {
-    struct linked_list *current = list, *next;
+    if (!list)
+    {
+        return;
+    }
+    struct linked_list *current = list;
+    struct linked_list *next;
     while (current != NULL)
     {
         next = current->next;
         if (free_value)
         {
-            closure_invoke(free_value, current->value);
+            free_value(current->value);
         }
         free(current);
         current = next;

@@ -117,7 +117,7 @@ void *hash_table_get(const struct hash_table *table, const char *key)
     return entry->value;
 }
 
-void hash_table_free(struct hash_table *table, struct closure *free_value)
+void hash_table_free(struct hash_table *table, void (*free_value)(void *))
 {
     if (!table)
     {
@@ -131,7 +131,7 @@ void hash_table_free(struct hash_table *table, struct closure *free_value)
             struct hash_table_entry *entry = linked_list_value(current);
             if (free_value)
             {
-                closure_invoke(free_value, entry->value);
+                free_value(entry->value);
             }
             free(entry);
             current = linked_list_next(current);

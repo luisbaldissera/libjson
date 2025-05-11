@@ -33,10 +33,9 @@ int linked_list_length(struct linked_list *list);
 /**
  * @brief Frees a linked list and optionally its values
  * @param list The head of the linked list to free
- * @param free_value Closure to free the values in the linked list. If NULL is passed,
- *                 the values will not be freed, only the nodes.
+ * @param free_value Function to free the value stored in each node, or NULL if not needed
  */
-void linked_list_free(struct linked_list *list, struct closure *free_value);
+void linked_list_free(struct linked_list *list, void (*free_value)(void *));
 
 /**
  * @brief Applies a function to each value in the linked list

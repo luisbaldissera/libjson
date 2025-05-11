@@ -44,10 +44,9 @@ struct hash_table *hash_table_new();
 /**
  * @brief Frees a hash table and optionally its values
  * @param table The hash table to free
- * @param free_value Closure to free the values in the hash table. If NULL is passed,
- *                  the values will not be freed, onlz the indexes.
+ * @param free_value Function to free the value stored in each entry, or NULL if not needed
  */
-void hash_table_free(struct hash_table *table, struct closure *free_value);
+void hash_table_free(struct hash_table *table, void (*free_value)(void *));
 
 /**
  * @brief Sets a key-value pair in the hash table
