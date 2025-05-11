@@ -21,6 +21,19 @@ void test_json_string_escape()
     assert(strcmp(escaped_str, "test\none\ttwo") == 0);
 
     json_free(str);
+
+    struct json *obj = json_object();
+    json_object_set(obj, "special\tkey", json_null());
+    out = fmemopen(buf, sizeof(buf), "w");
+    ret = json_fwrite(obj, out);
+    fclose(out);
+
+    assert(ret > 0);
+    assert(strcmp(buf, "{\"special\\tkey\":null}") == 0);
+    assert(json_object_get(obj, "special\tkey") != NULL);
+    assert(json_isnull(json_object_get(obj, "special\tkey")));
+
+    json_free(obj);
 }
 
 int main()
