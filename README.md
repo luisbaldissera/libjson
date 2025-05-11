@@ -88,3 +88,14 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## TODOs
+
+- feat: implement escaping correctly
+   - object keys
+   - string values
+   - getting strings (resolve escaping)
+- feat: implement json_read(in: FILE): json*
+- refac: replace closure for iterators
+   - hash table set
+- refac: refactor iterators to be static in memory
