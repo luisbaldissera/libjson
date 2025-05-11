@@ -43,13 +43,19 @@ static struct json json_true_value = {.type = JSON_BOOLEAN, .value = {.boolean =
 static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean = 0}};
 
 // Forward declarations of helper functions
+// string scaping function
 static int json_write_escaped_string(const char *str, FILE *out);
+// json_write functions
 static int json_write_array(struct json *array, FILE *out);
 static int json_write_object(struct json *object, FILE *out);
 static int json_write_string(struct json *node, FILE *out);
 static int json_write_number(struct json *node, FILE *out);
 static int json_write_boolean(struct json *node, FILE *out);
 static int json_write_null(struct json *node, FILE *out);
+// json_free function
+static void json_free_string(struct json *json);
+static void json_free_array(struct json *json);
+static void json_free_object(struct json *json);
 
 /************************************
  * JSON Creation Functions
@@ -83,13 +89,15 @@ struct json *json_number(double value)
 
 struct json *json_string(const char *value)
 {
+  if (!value)
+    return &json_null_value;
   struct json *node = (struct json *)malloc(sizeof(struct json));
   if (!node)
     return NULL;
 
   node->type = JSON_STRING;
-  node->value.string = value ? strdup(value) : NULL;
-  if (!node->value.string && value)
+  node->value.string = strdup(value);
+  if (!node->value.string)
   {
     free(node);
     return NULL;
@@ -124,6 +132,45 @@ struct json *json_object()
   return node;
 }
 
+static void json_free_string(struct json *json)
+{
+  if (json->type == JSON_STRING)
+  {
+    // Free the string value
+    free(json->value.string);
+  }
+}
+
+static void json_free_array(struct json *json)
+{
+  if (json->type == JSON_ARRAY)
+  {
+    struct linked_list_iter *iter = linked_list_iter_new(json->value.array);
+    struct json *element;
+    while (element = linked_list_iter_next(iter))
+    {
+      json_free(element);
+    }
+    linked_list_iter_free(iter);
+  }
+}
+
+static void json_free_object(struct json *json)
+{
+  if (json->type == JSON_OBJECT)
+  {
+    struct hash_table_iter *iter = hash_table_iter_new(json->value.object);
+    struct hash_table_entry *entry;
+    while (entry = hash_table_iter_next(iter))
+    {
+      struct json *value = (struct json *)hash_table_entry_value(entry);
+      if (value)
+        json_free(value);
+    }
+    hash_table_iter_free(iter);
+  }
+}
+
 void json_free(struct json *json)
 {
   if (!json || json == &json_null_value || json == &json_true_value || json == &json_false_value)
@@ -132,28 +179,14 @@ void json_free(struct json *json)
   switch (json->type)
   {
   case JSON_STRING:
-    free(json->value.string);
+    json_free_string(json);
     break;
   case JSON_ARRAY:
-  {
-    struct closure *free_closure = closure_call((call_func)json_free);
-    if (free_closure)
-    {
-      linked_list_foreach(json->value.array, free_closure);
-      closure_free(free_closure);
-    }
+    json_free_array(json);
     break;
-  }
   case JSON_OBJECT:
-  {
-    struct closure *free_closure = closure_call((call_func)json_free);
-    if (free_closure)
-    {
-      hash_table_foreach(json->value.object, free_closure);
-      closure_free(free_closure);
-    }
+    json_free_object(json);
     break;
-  }
   default:
     break; // Nothing to free for simple types
   }
