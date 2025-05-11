@@ -114,8 +114,15 @@ int json_isstring(struct json *node);
  */
 int json_isarray(struct json *node);
 
+/**
+ * @brief Tests if a JSON value is an object
+ * @param node JSON value to test
+ * @return Non-zero if node is an object, 0 otherwise
+ */
+int json_isobject(struct json *node);
+
 ////////////////////////////////////////
-// JSON Array Access functions
+// JSON Access functions
 ////////////////////////////////////////
 
 /**
@@ -132,10 +139,6 @@ int json_array_length(struct json *array);
  * @return The JSON value at the specified index, or NULL if index is out of bounds
  */
 struct json *json_array_get(const struct json *array, int index);
-
-//////////////////////////////////////
-// JSON Access functions
-//////////////////////////////////////
 
 /**
  * @brief Gets the value of a JSON number
@@ -163,13 +166,6 @@ const char *json_tostring(const struct json *node);
 ////////////////////////////////////
 // JSON Manipulation functions
 ////////////////////////////////////
-
-/**
- * @brief Tests if a JSON value is an object
- * @param node JSON value to test
- * @return Non-zero if node is an object, 0 otherwise
- */
-int json_isobject(struct json *node);
 
 /**
  * @brief Sets a key-value pair in a JSON object
