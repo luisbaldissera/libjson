@@ -271,7 +271,7 @@ const char *json_tostring(const struct json *node)
 {
   if (!node || node->type != JSON_STRING)
     return NULL;
-  return node->value.string;
+  return strdup(node->value.string);
 }
 
 /************************************
