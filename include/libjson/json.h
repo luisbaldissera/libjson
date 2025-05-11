@@ -231,6 +231,6 @@ struct json *json_read(FILE *in);
  * @brief Returns the last error message from parsing
  * @return Error message string, or NULL if no error occurred
  */
-const char *json_get_parse_error();
+const char *json_error();
 
 #endif // LIBJSON_JSON_H

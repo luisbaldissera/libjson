@@ -51,7 +51,7 @@ int main()
     struct json *parsed = json_read(temp_file);
     if (!parsed)
     {
-        fprintf(stderr, "Parse error: %s\n", json_get_parse_error());
+        fprintf(stderr, "Parse error: %s\n", json_error());
         fclose(temp_file);
         return 1;
     }
@@ -86,7 +86,7 @@ int main()
     struct json *escaped_json = json_read(temp_file);
     if (!escaped_json)
     {
-        fprintf(stderr, "Parse error for escaped JSON: %s\n", json_get_parse_error());
+        fprintf(stderr, "Parse error for escaped JSON: %s\n", json_error());
         json_free(parsed);
         fclose(temp_file);
         return 1;

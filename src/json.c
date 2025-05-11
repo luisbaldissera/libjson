@@ -618,7 +618,7 @@ static void set_parse_error(const char *format, ...)
 /**
  * Get the last error message from parsing
  */
-const char *json_get_parse_error()
+const char *json_error()
 {
   return parse_error_buffer[0] != '\0' ? parse_error_buffer : NULL;
 }
