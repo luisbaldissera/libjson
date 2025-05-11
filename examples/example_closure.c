@@ -72,10 +72,12 @@ int main()
     linked_list_insert(linked_list_next(linked_list_next(people)), alice);
 
     printf("All people in the list:\n");
-    struct closure *print_person_closure = closure_pure((pure_func)print_person);
-    linked_list_foreach(people, print_person_closure);
+    struct linked_list_iter *iter = linked_list_iter_new(people);
+    struct linked_list *element;
+    while (element = linked_list_iter_next(iter)) {
+        print_person(linked_list_value(element));
+    }
     printf("\n");
-    closure_free(print_person_closure);
 
     // Find people by age using closures
     struct linked_list *prev = NULL;
