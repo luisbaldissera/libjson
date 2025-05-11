@@ -15,7 +15,7 @@ int main()
     json_array_push(array, nested_array);
 
     printf("Created JSON array:\n");
-    json_fwrite(array, stdout);
+    json_write(array, stdout);
     printf("\n");
 
     json_free(array);
@@ -31,7 +31,7 @@ int main()
     json_object_set(json_obj, "is_student", json_is_student);
 
     printf("Created JSON object:\n");
-    json_fwrite(json_obj, stdout);
+    json_write(json_obj, stdout);
     printf("\n");
 
     json_free(json_obj);

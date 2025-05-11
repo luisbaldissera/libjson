@@ -26,7 +26,7 @@ int main()
     json_object_set(jsonObject, "numbers", jsonArray);
 
     // Write the JSON object to stdout
-    json_fwrite(jsonObject, stdout);
+    json_write(jsonObject, stdout);
     printf("\n");
 
     // Free the JSON object

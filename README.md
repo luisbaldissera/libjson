@@ -91,10 +91,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
-- feat: implement escaping correctly
-   - object keys
-   - string values
-   - getting strings (resolve escaping)
 - feat: implement json_read(in: FILE): json*
 - refac: replace closure for iterators
    - hash table set

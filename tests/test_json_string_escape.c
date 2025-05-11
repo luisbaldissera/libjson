@@ -9,7 +9,7 @@ void test_json_string_escape()
     struct json *str = json_string("test\none\ttwo");
     char buf[1024];
     FILE *out = fmemopen(buf, sizeof(buf), "w");
-    int ret = json_fwrite(str, out);
+    int ret = json_write(str, out);
     fclose(out);
 
     assert(ret > 0);
@@ -25,7 +25,7 @@ void test_json_string_escape()
     struct json *obj = json_object();
     json_object_set(obj, "special\tkey", json_null());
     out = fmemopen(buf, sizeof(buf), "w");
-    ret = json_fwrite(obj, out);
+    ret = json_write(obj, out);
     fclose(out);
 
     assert(ret > 0);

@@ -218,6 +218,19 @@ void json_array_push(struct json *array, struct json *value);
  * @param out File stream to write to
  * @return Number of bytes written, or negative value on error
  */
-int json_fwrite(struct json *node, FILE *out);
+int json_write(struct json *node, FILE *out);
+
+/**
+ * @brief Reads a JSON value from a file stream
+ * @param in File stream to read from
+ * @return The parsed JSON value, or NULL on parsing error
+ */
+struct json *json_read(FILE *in);
+
+/**
+ * @brief Returns the last error message from parsing
+ * @return Error message string, or NULL if no error occurred
+ */
+const char *json_get_parse_error();
 
 #endif // LIBJSON_JSON_H
