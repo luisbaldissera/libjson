@@ -66,6 +66,14 @@ void hash_table_set(struct hash_table *table, const char *key, void *value);
 void *hash_table_get(const struct hash_table *table, const char *key);
 
 /**
+ * @brief Checks if a key exists in the hash table
+ * @param table The hash table to query
+ * @param key The key to check
+ * @return Non-zero if the key exists, 0 otherwise
+ */
+int hash_table_has(const struct hash_table *table, const char *key);
+
+/**
  * @brief Gets all keys in the hash table
  * @param table The hash table to query
  * @param keys Array to store the keys (must be pre-allocated). If NULL is passed,
