@@ -14,17 +14,20 @@ libjson is a lightweight C library for creating, manipulating, and serializing J
 To install libjson, you can either clone the repository or download the source code directly. After obtaining the source code, you can build the library using CMake
 
 1. Navigate to the project directory:
+
    ```
    cd path/to/libjson
    ```
 
 2. Create a build directory:
+
    ```
    mkdir build
    cd build
    ```
 
 3. Run CMake to configure the project:
+
    ```
    cmake ..
    ```
@@ -58,7 +61,7 @@ json_array_push(features, json_string("Lightweight"));
 json_array_push(features, json_string("Fast"));
 
 // Serialize to stdout
-json_fwrite(obj, stdout);
+json_write(obj, stdout);
 // {
 //   "name": "libjson",
 //   "version": 1.0,
@@ -91,7 +94,7 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
-- feat: implement json_read(in: FILE): json*
+- feat: implement json_read(in: FILE): json\*
 - refac: replace closure for iterators
-   - hash table set
+  - hash table set
 - refac: refactor iterators to be static in memory

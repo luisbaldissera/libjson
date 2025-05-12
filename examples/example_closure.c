@@ -105,8 +105,6 @@ int main()
     }
 
     // Clean up
-    struct closure *free_person_closure = closure_pure((pure_func)free);
-    linked_list_free(people_first, free_person_closure);
-    closure_free(free_person_closure);
+    linked_list_free(people_first, free);
     return 0;
 }
