@@ -94,7 +94,12 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
+- feat: add stack data structure
 - feat: implement json_read(in: FILE): json\*
-- refac: replace closure for iterators
-  - hash table set
+- feat: add binary tree implementation
+   - feat: use binary tree in hash maps
 - refac: refactor iterators to be static in memory
+- optm: use static buffer in "raw" data structures in general
+   - stack
+   - linked_list
+   - binary_tree
