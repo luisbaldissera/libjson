@@ -7,6 +7,7 @@
 #define LIBJSON_LINKED_LIST_H
 
 #include "libjson/closure.h"
+#include "libjson/types.h"
 
 /**
  * @brief Linked list node structure
@@ -35,7 +36,7 @@ int linked_list_length(struct linked_list *list);
  * @param list The head of the linked list to free
  * @param free_value Function to free the value stored in each node, or NULL if not needed
  */
-void linked_list_free(struct linked_list *list, void (*free_value)(void *));
+void linked_list_free(struct linked_list *list, free_func free_value);
 
 /**
  * @brief Applies a function to each value in the linked list

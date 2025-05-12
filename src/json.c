@@ -160,10 +160,10 @@ void json_free(struct json *json)
   switch (json->type)
   {
   case JSON_ARRAY:
-    linked_list_free(json->value.array, json_free);
+    linked_list_free(json->value.array, (free_func)json_free);
     break;
   case JSON_OBJECT:
-    hash_table_free(json->value.object, json_free);
+    hash_table_free(json->value.object, (free_func)json_free);
     break;
   default:
     break;
@@ -511,7 +511,7 @@ int json_write_object(struct json *node, FILE *out)
     }
     bytes_written += ret;
 
-    ret = json_fwrite(hash_table_entry_value(entry), out);
+    ret = json_write(hash_table_entry_value(entry), out);
     if (ret < 0)
     {
       hash_table_iter_free(iter);

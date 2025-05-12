@@ -69,7 +69,7 @@ struct linked_list *linked_list_find(struct linked_list *node, struct closure *c
     return NULL;
 }
 
-void linked_list_free(struct linked_list *list, void (*free_value)(void *))
+void linked_list_free(struct linked_list *list, free_func free_value)
 {
     if (!list)
     {

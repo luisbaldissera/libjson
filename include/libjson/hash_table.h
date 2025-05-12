@@ -7,6 +7,7 @@
 #define LIBJSON_HASH_TABLE_H
 
 #include "libjson/closure.h"
+#include "libjson/types.h"
 
 /**
  * @brief Hash table entry structure
@@ -46,7 +47,7 @@ struct hash_table *hash_table_new();
  * @param table The hash table to free
  * @param free_value Function to free the value stored in each entry, or NULL if not needed
  */
-void hash_table_free(struct hash_table *table, void (*free_value)(void *));
+void hash_table_free(struct hash_table *table, free_func free_value);
 
 /**
  * @brief Sets a key-value pair in the hash table

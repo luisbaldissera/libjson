@@ -117,7 +117,7 @@ void *hash_table_get(const struct hash_table *table, const char *key)
     return entry->value;
 }
 
-void hash_table_free(struct hash_table *table, void (*free_value)(void *))
+void hash_table_free(struct hash_table *table, free_func free_value)
 {
     if (!table)
     {
