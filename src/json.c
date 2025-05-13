@@ -54,6 +54,27 @@ static int json_write_string(struct json *node, FILE *out);
 static int json_write_number(struct json *node, FILE *out);
 static int json_write_boolean(struct json *node, FILE *out);
 static int json_write_null(struct json *node, FILE *out);
+// json read functions
+struct json_token
+{
+  enum
+  {
+    JSON_TOKEN_NULL,
+    JSON_TOKEN_TRUE,
+    JSON_TOKEN_FALSE,
+    JSON_TOKEN_NUMBER,
+    JSON_TOKEN_STRING,
+    JSON_TOKEN_ARRAY_START,
+    JSON_TOKEN_ARRAY_END,
+    JSON_TOKEN_OBJECT_START,
+    JSON_TOKEN_OBJECT_END,
+    JSON_TOKEN_COLON,
+    JSON_TOKEN_COMMA
+  } type;
+  char *value;
+};
+
+static struct json_token json_read_token(FILE *in);
 
 /************************************
  * JSON Creation Functions
@@ -532,5 +553,108 @@ int json_write(struct json *node, FILE *out)
     return json_write_array(node, out);
   case JSON_OBJECT:
     return json_write_object(node, out);
+  }
+}
+
+static struct json_token json_read_token(FILE *in)
+{
+  struct json_token token = {0};
+  int c;
+
+  // Skip whitespace
+  while (isspace(c = fgetc(in)))
+    ;
+
+  if (c == EOF)
+    return token;
+
+  ungetc(c, in);
+
+  if (fscanf(in, "null") == 0)
+    token.type = JSON_TOKEN_NULL;
+  else if (fscanf(in, "true") == 0)
+    token.type = JSON_TOKEN_TRUE;
+  else if (fscanf(in, "false") == 0)
+    token.type = JSON_TOKEN_FALSE;
+  else if (fscanf(in, "%lf", &token.value) == 1)
+    token.type = JSON_TOKEN_NUMBER;
+  else if (fscanf(in, "\"%[^\"]\"", token.value) == 1)
+    token.type = JSON_TOKEN_STRING;
+  else if ((c = fgetc(in)) == '[')
+    token.type = JSON_TOKEN_ARRAY_START;
+  else if (c == ']')
+    token.type = JSON_TOKEN_ARRAY_END;
+  else if (c == '{')
+    token.type = JSON_TOKEN_OBJECT_START;
+  else if (c == '}')
+    token.type = JSON_TOKEN_OBJECT_END;
+  else if (c == ':')
+    token.type = JSON_TOKEN_COLON;
+  else if (c == ',')
+    token.type = JSON_TOKEN_COMMA;
+
+  return token;
+}
+
+struct json *json_read(FILE *in)
+{
+  struct json_token token = json_read_token(in);
+  if (token.type == JSON_TOKEN_NULL)
+    return json_null();
+  else if (token.type == JSON_TOKEN_TRUE)
+    return json_true();
+  else if (token.type == JSON_TOKEN_FALSE)
+    return json_false();
+  else if (token.type == JSON_TOKEN_NUMBER)
+    return json_number(atof(token.value));
+  else if (token.type == JSON_TOKEN_STRING)
+    return json_string(token.value);
+  else if (token.type == JSON_TOKEN_ARRAY_START)
+  {
+    struct json *array = json_array();
+    while ((token = json_read_token(in)).type != JSON_TOKEN_ARRAY_END)
+    {
+      if (token.type == JSON_TOKEN_COMMA)
+        continue;
+      struct json *value = json_read(in);
+      if (!value)
+      {
+        json_free(array);
+        return NULL;
+      }
+      json_array_push(array, value);
+    }
+    return array;
+  }
+  else if (token.type == JSON_TOKEN_OBJECT_START)
+  {
+    struct json *object = json_object();
+    while ((token = json_read_token(in)).type != JSON_TOKEN_OBJECT_END)
+    {
+      if (token.type == JSON_TOKEN_COMMA)
+        continue;
+      if (token.type != JSON_TOKEN_STRING)
+      {
+        json_free(object);
+        return NULL;
+      }
+      char *key = strdup(token.value);
+      if (json_read_token(in).type != JSON_TOKEN_COLON)
+      {
+        free(key);
+        json_free(object);
+        return NULL;
+      }
+      struct json *value = json_read(in);
+      if (!value)
+      {
+        free(key);
+        json_free(object);
+        return NULL;
+      }
+      json_object_set(object, key, value);
+      free(key);
+    }
+    return object;
   }
 }
