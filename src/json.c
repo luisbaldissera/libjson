@@ -44,16 +44,21 @@ static struct json json_null_value = {.type = JSON_NULL, .value = {0}};
 static struct json json_true_value = {.type = JSON_BOOLEAN, .value = {.boolean = 1}};
 static struct json json_false_value = {.type = JSON_BOOLEAN, .value = {.boolean = 0}};
 
-// Forward declarations of helper functions
-// string scaping function
+/**
+ * @section JSON write helper methods
+ */
 static int json_write_escaped_string(const char *str, FILE *out);
-// json_write functions
 static int json_write_array(struct json *array, FILE *out);
 static int json_write_object(struct json *object, FILE *out);
 static int json_write_string(struct json *node, FILE *out);
 static int json_write_number(struct json *node, FILE *out);
 static int json_write_boolean(struct json *node, FILE *out);
 static int json_write_null(struct json *node, FILE *out);
+
+/**
+ * @section JSON read helper methods
+ */
+
 // json read functions
 // :: JSON := LITERAL | ARRAY | OBJECT
 // :: LITERAL := NULL | TRUE | FALSE | NUMBER | STRING (lexical representation)
@@ -66,6 +71,8 @@ struct json_token
 {
   enum
   {
+    JSON_TOKEN_INVALID,
+    JSON_TOKEN_EOF,
     JSON_TOKEN_NULL,
     JSON_TOKEN_TRUE,
     JSON_TOKEN_FALSE,
@@ -89,9 +96,9 @@ static int json_parser_array(FILE *in, struct json_token *token);
 static int json_parser_object(FILE *in, struct json_token *token);
 static int json_parser_key_value(FILE *in, struct json_token *token);
 
-/************************************
- * JSON Creation Functions
- ************************************/
+/**
+ * @section JSON creation functions
+ */
 
 struct json *json_null()
 {
@@ -183,9 +190,9 @@ void json_free(struct json *json)
   free(json);
 }
 
-/************************************
- * JSON Type Testing Functions
- ************************************/
+/**
+ * @section JSON type checking functions
+ */
 
 int json_isnull(struct json *node)
 {
@@ -217,55 +224,13 @@ int json_isobject(struct json *node)
   return node && node->type == JSON_OBJECT;
 }
 
-int json_array_length(struct json *array)
-{
-  if (!array || !json_isarray(array))
-    return 0;
+/**
+ * @section JSON manipulation functions
+ */
 
-  return linked_list_length(array->value.array);
-}
-
-struct json *json_array_get(const struct json *array, int index)
-{
-  if (!array || !json_isarray((struct json *)array) || index < 0)
-    return NULL;
-
-  struct linked_list *node = array->value.array;
-  for (int i = 0; i < index && node; i++)
-  {
-    node = linked_list_next(node);
-  }
-  return (struct json *)linked_list_value(node);
-}
-
-/************************************
- * JSON Access Functions
- ************************************/
-
-double json_todouble(const struct json *node)
-{
-  if (!node || node->type != JSON_NUMBER)
-    return 0.0;
-  return node->value.number;
-}
-
-int json_toint(const struct json *node)
-{
-  if (!node || node->type != JSON_NUMBER)
-    return 0;
-  return (int)node->value.number;
-}
-
-const char *json_tostring(const struct json *node)
-{
-  if (!node || node->type != JSON_STRING)
-    return NULL;
-  return strdup(node->value.string);
-}
-
-/************************************
- * JSON Array Manipulation Functions
- ************************************/
+/**
+ * @subsection JSON array manipulation functions
+ */
 
 void json_array_push(struct json *array, struct json *value)
 {
@@ -289,9 +254,30 @@ void json_array_push(struct json *array, struct json *value)
   }
 }
 
-/************************************
- * JSON Object Manipulation Functions
- ************************************/
+int json_array_length(struct json *array)
+{
+  if (!array || !json_isarray(array))
+    return 0;
+
+  return linked_list_length(array->value.array);
+}
+
+struct json *json_array_get(const struct json *array, int index)
+{
+  if (!array || !json_isarray((struct json *)array) || index < 0)
+    return NULL;
+
+  struct linked_list *node = array->value.array;
+  for (int i = 0; i < index && node; i++)
+  {
+    node = linked_list_next(node);
+  }
+  return (struct json *)linked_list_value(node);
+}
+
+/**
+ * @subsection JSON object manipulation functions
+ */
 
 void json_object_set(struct json *object, const char *key, struct json *value)
 {
@@ -328,9 +314,38 @@ struct json *json_object_remove(struct json *object, const char *key)
   return value;
 }
 
-/************************************
- * JSON Serialization Functions
- ************************************/
+/**
+ * @section JSON access functions
+ */
+
+double json_todouble(const struct json *node)
+{
+  if (!node || node->type != JSON_NUMBER)
+    return 0.0;
+  return node->value.number;
+}
+
+int json_toint(const struct json *node)
+{
+  if (!node || node->type != JSON_NUMBER)
+    return 0;
+  return (int)node->value.number;
+}
+
+const char *json_tostring(const struct json *node)
+{
+  if (!node || node->type != JSON_STRING)
+    return NULL;
+  return strdup(node->value.string);
+}
+
+/**
+ * @section JSON serialization/deserialization functions
+ */
+
+/**
+ * @subsection JSON write function
+ */
 
 /**
  * Helper function to write escaped strings according to JSON specification
@@ -569,6 +584,10 @@ int json_write(struct json *node, FILE *out)
   }
 }
 
+/**
+ * @subsection JSON read Functions
+ */
+
 struct json *json_read(FILE *in)
 {
   struct json_token token;
@@ -601,6 +620,7 @@ static int json_parser_json(FILE *in, struct json_token *token)
   }
   else
   {
+    // Error: Invalid JSON
     return 0;
   }
 }
@@ -622,6 +642,7 @@ static int json_parser_array(FILE *in, struct json_token *token)
         }
         else
         {
+          // Error: Unexpected token
           return 0;
         }
       }
@@ -632,11 +653,13 @@ static int json_parser_array(FILE *in, struct json_token *token)
     }
     else
     {
+      // Error: Unexpected token
       return 0;
     }
   }
   else
   {
+    // Not an array
     return 0;
   }
 }
@@ -658,6 +681,7 @@ static int json_parser_object(FILE *in, struct json_token *token)
         }
         else
         {
+          // Error: Unexpected token
           return 0;
         }
       }
@@ -668,11 +692,13 @@ static int json_parser_object(FILE *in, struct json_token *token)
     }
     else
     {
+      // Error: Unexpected token.
       return 0;
     }
   }
   else
   {
+    // Not an object
     return 0;
   }
 }
@@ -695,7 +721,7 @@ static int json_parser_key_value(FILE *in, struct json_token *token)
         return 0;
       }
     }
-    else 
+    else
     {
       return 0;
     }
