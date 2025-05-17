@@ -94,12 +94,18 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
-- feat: add stack data structure
-- feat: implement json_read(in: FILE): json\*
-- feat: add binary tree implementation
-   - feat: use binary tree in hash maps
-- refac: refactor iterators to be static in memory
+- fix: double `free(void*)` call when using `json_read`
+- feat: generate documentation/reference.
+- test: write more consistent tests and increase coverage
+- feat(test): auto generate coverage
+- feat: implement `json_read_string(const char *)`
+- feat: add options to `json_write`. E.g. `{ .pretty = true, .sort_keys = true, .indent = 4 }`
+- feat: add support for json5 (in different `json5.h` header)
+  - `struct json * json5_read(FILE*)`
+  - `struct json * json5_read_string(const char *)`
+- feat: add support for YAML (in different `yaml.h` header)
+  - `struct json *yaml_read(FILE*)`
+  - `void yaml_write(struct json *, FILE*)`
+- optm: refactor iterators to be static in memory
+- optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
-   - stack
-   - linked_list
-   - binary_tree
