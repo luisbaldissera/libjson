@@ -89,12 +89,11 @@ struct json_token
   char *value;
 };
 static struct json_token json_read_token(FILE *in);
-static int json_parser_json(FILE *in, struct json_token *token);
-static int json_parser_string(FILE *in, struct json_token *token);
-static int json_parser_literal(FILE *in, struct json_token *token);
-static int json_parser_array(FILE *in, struct json_token *token);
-static int json_parser_object(FILE *in, struct json_token *token);
-static int json_parser_key_value(FILE *in, struct json_token *token);
+static int json_parser_json(FILE *in, struct json_token *token, struct json **dest);
+static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest);
+static int json_parser_array(FILE *in, struct json_token *token, struct json **dest);
+static int json_parser_object(FILE *in, struct json_token *token, struct json **dest);
+static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object);
 
 /**
  * @section JSON creation functions
@@ -594,55 +593,47 @@ struct json *json_read(FILE *in)
   if (!in)
     return NULL;
   token = json_read_token(in);
-  if (json_parser_json(in, &token))
+  struct json *result = NULL;
+  if (json_parser_json(in, &token, &result))
   {
-    // return JSON
+    return result;
   }
-  return NULL;
+  else if (result)
+  {
+    json_free(result);
+    result = NULL;
+  }
+  return result;
 }
 
-static int json_parser_json(FILE *in, struct json_token *token)
+static int json_parser_json(FILE *in, struct json_token *token, struct json **dest)
 {
-  if (json_parser_literal(in, token))
-  {
-    // handle literal token
-    return 1;
-  }
-  else if (json_parser_array(in, token))
-  {
-    // handle array token
-    return 1;
-  }
-  else if (json_parser_object(in, token))
-  {
-    // handle object token
-    return 1;
-  }
-  else
-  {
-    // Error: Invalid JSON
-    return 0;
-  }
+  return json_parser_literal(in, token, dest) || json_parser_array(in, token, dest) || json_parser_object(in, token, dest);
 }
 
-static int json_parser_array(FILE *in, struct json_token *token)
+static int json_parser_array(FILE *in, struct json_token *token, struct json **dest)
 {
   if (token->type == JSON_TOKEN_ARRAY_START)
   {
+    *dest = json_array();
     *token = json_read_token(in);
-    if (json_parse_json(in, token))
+    struct json *element = NULL;
+    if (json_parser_json(in, token, &element))
     {
+      json_array_push(*dest, element);
       *token = json_read_token(in);
       while (token->type == JSON_TOKEN_COMMA)
       {
         *token = json_read_token(in);
-        if (json_parser_json(in, token))
+        if (json_parser_json(in, token, &element))
         {
+          json_array_push(*dest, element);
           *token = json_read_token(in);
         }
-        else
+        else // Error: Unexpected inner JSON
         {
-          // Error: Unexpected token
+          json_free(*dest);
+          *dest = NULL;
           return 0;
         }
       }
@@ -651,37 +642,37 @@ static int json_parser_array(FILE *in, struct json_token *token)
     {
       return 1;
     }
-    else
+    else // Error: Unexpected token
     {
-      // Error: Unexpected token
+      json_free(*dest);
+      *dest = NULL;
       return 0;
     }
   }
-  else
-  {
-    // Not an array
-    return 0;
-  }
+  // Not an array
+  return 0;
 }
 
-static int json_parser_object(FILE *in, struct json_token *token)
+static int json_parser_object(FILE *in, struct json_token *token, struct json **dest)
 {
   if (token->type == JSON_TOKEN_OBJECT_START)
   {
+    *dest = json_object();
     *token = json_read_token(in);
-    if (json_parser_key_value(in, token))
+    if (json_parser_key_value(in, token, *dest))
     {
       *token = json_read_token(in);
       while (token->type == JSON_TOKEN_COMMA)
       {
         *token = json_read_token(in);
-        if (json_parser_key_value(in, token))
+        if (json_parser_key_value(in, token, *dest))
         {
           *token = json_read_token(in);
         }
-        else
+        else // Error: Unexpected inner JSON
         {
-          // Error: Unexpected token
+          json_free(*dest);
+          *dest = NULL;
           return 0;
         }
       }
@@ -690,20 +681,18 @@ static int json_parser_object(FILE *in, struct json_token *token)
     {
       return 1;
     }
-    else
+    else // Error: Unexpected token.
     {
-      // Error: Unexpected token.
+      json_free(*dest);
+      *dest = NULL;
       return 0;
     }
   }
-  else
-  {
-    // Not an object
-    return 0;
-  }
+  // Not an object
+  return 0;
 }
 
-static int json_parser_key_value(FILE *in, struct json_token *token)
+static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object)
 {
   if (token->type == JSON_TOKEN_STRING)
   {
@@ -712,8 +701,11 @@ static int json_parser_key_value(FILE *in, struct json_token *token)
     if (token->type == JSON_TOKEN_COLON)
     {
       *token = json_read_token(in);
-      if (json_parser_json(in, token))
+      struct json *value = NULL;
+      if (json_parser_json(in, token, &value))
       {
+        json_object_set(object, key, value);
+        free(key);
         return 1;
       }
       else
@@ -730,4 +722,237 @@ static int json_parser_key_value(FILE *in, struct json_token *token)
   {
     return 0;
   }
+}
+
+static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest)
+{
+  if (token->type == JSON_TOKEN_NULL)
+  {
+    *dest = json_null();
+    return 1;
+  }
+  else if (token->type == JSON_TOKEN_TRUE)
+  {
+    *dest = json_true();
+    return 1;
+  }
+  else if (token->type == JSON_TOKEN_FALSE)
+  {
+    *dest = json_false();
+    return 1;
+  }
+  else if (token->type == JSON_TOKEN_NUMBER)
+  {
+    *dest = json_number(atof(token->value));
+    return 1;
+  }
+  else if (token->type == JSON_TOKEN_STRING)
+  {
+    *dest = json_string(token->value);
+    return 1;
+  }
+  return 0;
+}
+
+static struct json_token json_read_token(FILE *in)
+{
+  struct json_token token = {0};
+  int c;
+
+  // Skip whitespace
+  while (isspace(c = fgetc(in)))
+    ;
+
+  if (c == EOF)
+  {
+    token.type = JSON_TOKEN_EOF;
+    return token;
+  }
+
+  switch (c)
+  {
+  case 'n':
+  {
+    if (fgetc(in) == 'u' && fgetc(in) == 'l' && fgetc(in) == 'l')
+    {
+      token.type = JSON_TOKEN_NULL;
+    }
+    else
+    {
+      token.type = JSON_TOKEN_INVALID;
+    }
+    break;
+  }
+  case 't':
+  {
+    if (fgetc(in) == 'r' && fgetc(in) == 'u' && fgetc(in) == 'e')
+    {
+      token.type = JSON_TOKEN_TRUE;
+    }
+    else
+    {
+      token.type = JSON_TOKEN_INVALID;
+    }
+    break;
+  }
+  case 'f':
+  {
+    if (fgetc(in) == 'a' && fgetc(in) == 'l' && fgetc(in) == 's' && fgetc(in) == 'e')
+    {
+      token.type = JSON_TOKEN_FALSE;
+    }
+    else
+    {
+      token.type = JSON_TOKEN_INVALID;
+    }
+    break;
+  }
+  case '[':
+  {
+    token.type = JSON_TOKEN_ARRAY_START;
+    break;
+  }
+  case ']':
+  {
+    token.type = JSON_TOKEN_ARRAY_END;
+    break;
+  }
+  case '{':
+  {
+    token.type = JSON_TOKEN_OBJECT_START;
+    break;
+  }
+  case '}':
+  {
+    token.type = JSON_TOKEN_OBJECT_END;
+    break;
+  }
+  case ',':
+  {
+    token.type = JSON_TOKEN_COMMA;
+    break;
+  }
+  case ':':
+  {
+    token.type = JSON_TOKEN_COLON;
+    break;
+  }
+  case '"':
+  {
+    char *str = NULL;
+    struct linked_list *char_list = NULL, *char_list_ptr = NULL;
+    while ((c = fgetc(in)) != '"')
+    {
+      if (c == '\\')
+      {
+        c = fgetc(in);
+        switch (c)
+        {
+        case 'b':
+          c = '\b';
+          break;
+        case 'f':
+          c = '\f';
+          break;
+        case 'n':
+          c = '\n';
+          break;
+        case 'r':
+          c = '\r';
+          break;
+        case 't':
+          c = '\t';
+          break;
+        case '\\':
+          c = '\\';
+          break;
+        case 'u':
+        {
+          char hex[5] = {0, 0, 0, 0, 0};
+          for (int i = 0; i < 4 && isxdigit(c = fgetc(in)); i++)
+          {
+            hex[i] = c;
+          }
+          if (c == EOF)
+          {
+            token.type = JSON_TOKEN_INVALID;
+            break;
+          }
+          c = (char)strtol(hex, NULL, 16);
+        }
+        break;
+        default: // Error: Invalid escape sequence
+          token.type = JSON_TOKEN_INVALID;
+          break;
+        }
+      }
+      if (char_list)
+      {
+        char_list_ptr = linked_list_insert(char_list_ptr, (void *)c);
+      }
+      else
+      {
+        char_list = linked_list_new((void *)c);
+        char_list_ptr = char_list;
+      }
+    }
+    if (char_list)
+    {
+      int length = linked_list_length(char_list);
+      str = (char *)malloc(length + 1);
+      if (str)
+      {
+        struct linked_list *node = char_list;
+        for (int i = 0; i < length; i++)
+        {
+          str[i] = (char)linked_list_value(node);
+          node = linked_list_next(node);
+        }
+        str[length] = '\0';
+        token.value = str;
+        token.type = JSON_TOKEN_STRING;
+        linked_list_free(char_list, NULL);
+      }
+    }
+    else
+    {
+      token.type = JSON_TOKEN_INVALID;
+    }
+    break;
+  }
+  default: // Number or INVALID
+  {
+    ungetc(c, in);
+    char buffer[32];
+    int i = 0;
+    while (isdigit(c = fgetc(in)) || c == '.' || c == '-' || c == '+' || c == 'e' || c == 'E')
+    {
+      if (i < sizeof(buffer) - 1)
+      {
+        buffer[i++] = c;
+      }
+      else
+      {
+        token.type = JSON_TOKEN_INVALID;
+        break;
+      }
+    }
+    if (c != EOF)
+    {
+      ungetc(c, in);
+    }
+    buffer[i] = '\0';
+    if (i > 0)
+    {
+      token.value = strdup(buffer);
+      token.type = JSON_TOKEN_NUMBER;
+    }
+    else
+    {
+      token.type = JSON_TOKEN_INVALID;
+    }
+    break;
+  }
+  }
+  return token;
 }
