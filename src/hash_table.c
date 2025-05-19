@@ -136,7 +136,7 @@ void hash_table_free(struct hash_table *table, free_func free_value)
             free(entry);
             current = linked_list_next(current);
         }
-        linked_list_free(table->bucket[i], free_value);
+        linked_list_free(table->bucket[i], NULL);
     }
     free(table);
 }

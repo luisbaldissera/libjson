@@ -94,7 +94,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
-- fix: double `free(void*)` call when using `json_read`
 - feat: generate documentation/reference.
 - test: write more consistent tests and increase coverage
 - feat(test): auto generate coverage

@@ -183,6 +183,9 @@ void json_free(struct json *json)
   case JSON_OBJECT:
     hash_table_free(json->value.object, (free_func)json_free);
     break;
+  case JSON_STRING:
+    free(json->value.string);
+    break;
   default:
     break;
   }
@@ -710,11 +713,13 @@ static int json_parser_key_value(FILE *in, struct json_token *token, struct json
       }
       else
       {
+        free(key);
         return 0;
       }
     }
     else
     {
+      free(key);
       return 0;
     }
   }

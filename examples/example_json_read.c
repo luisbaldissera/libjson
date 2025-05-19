@@ -5,7 +5,6 @@
 
 int main()
 {
-
     const char *json_string = "{\"key\": \"value\", \"array\": [1, 2, 3], \"object\": {\"nested_key\": \"nested_value\"}}";
     FILE *memfile = fmemopen((void *)json_string, strlen(json_string), "r");
     if (memfile == NULL)
@@ -20,6 +19,7 @@ int main()
     printf("\n");
     // Free the JSON object
     json_free(input_json);
+    fclose(memfile);
 
     return 0;
 }
