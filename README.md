@@ -94,6 +94,7 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## TODOs
 
+- feat: add error handling and definition to parser
 - feat: generate documentation/reference.
 - test: write more consistent tests and increase coverage
 - feat(test): auto generate coverage
@@ -103,7 +104,19 @@ This project is licensed under the MIT License. See the LICENSE file for more de
   - `struct json * json5_read_string(const char *)`
 - feat: add support for YAML (in different `yaml.h` header)
   - `struct json *yaml_read(FILE*)`
+  - `struct json *yaml_read_string(const char *)`
   - `void yaml_write(struct json *, FILE*)`
 - optm: refactor iterators to be static in memory
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
+- feat: add array and object builder in main function
+  ```c
+  struct json *arr = json_array({
+     json_string("First element"),
+     json_number(2.3),
+     json_object({
+        {"version", json_number(1.2)},
+        {"name", json_string("libjson")}
+     })
+  })
+  ```
