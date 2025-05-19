@@ -609,6 +609,20 @@ struct json *json_read(FILE *in)
   return result;
 }
 
+struct json *json_read_string(const char *json_string)
+{
+  if (!json_string)
+    return NULL;
+
+  FILE *memfile = fmemopen((void *)json_string, strlen(json_string), "r");
+  if (!memfile)
+    return NULL;
+
+  struct json *result = json_read(memfile);
+  fclose(memfile);
+  return result;
+}
+
 static int json_parser_json(FILE *in, struct json_token *token, struct json **dest)
 {
   return json_parser_literal(in, token, dest) || json_parser_array(in, token, dest) || json_parser_object(in, token, dest);

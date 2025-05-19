@@ -97,7 +97,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - feat: generate documentation/reference.
 - test: write more consistent tests and increase coverage
 - feat(test): auto generate coverage
-- feat: implement `json_read_string(const char *)`
 - feat: add options to `json_write`. E.g. `{ .pretty = true, .sort_keys = true, .indent = 4 }`
 - feat: add support for json5 (in different `json5.h` header)
   - `struct json * json5_read(FILE*)`
