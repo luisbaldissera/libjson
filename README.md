@@ -76,6 +76,27 @@ json_write(obj, stdout);
 json_free(obj);
 ```
 
+Example on reading json objects:
+
+```c
+struct Person {
+   const char *name;
+   int age;
+   int location[2];
+};
+
+struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}");
+
+struct Person person = {
+   .name = json_tostring(json_object_get(person_json, "name")),
+   .age = json_toint(json_object_get(person_json, "age")),
+   .location = {
+      json_toint(json_array_get(json_object_get(person_json, "location"), 0)),
+      json_toint(json_array_get(json_object_get(person_json, "location"), 1))
+   }
+};
+```
+
 ## Running Tests
 
 To run the unit tests, you can use the following command after building the library:
