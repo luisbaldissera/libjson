@@ -192,12 +192,18 @@ struct json *json_object_get(const struct json *object, const char *key);
 struct json *json_object_remove(struct json *object, const char *key);
 
 /**
+ * @brief Gets the number of key-value pairs in a JSON object
+ * @param object JSON object to query
+ * @return The number of key-value pairs in the object
+ */
+int json_object_length(struct json *object);
+
+/**
  * @brief Adds a value to the end of a JSON array
  * @param array JSON array to modify
  * @param value JSON value to add to the array
  */
 void json_array_push(struct json *array, struct json *value);
-
 ////////////////////////////////////
 // JSON Serialization functions
 ////////////////////////////////////

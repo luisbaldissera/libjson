@@ -308,6 +308,14 @@ struct json *json_object_get(const struct json *object, const char *key)
   return (struct json *)hash_table_get(object->value.object, key);
 }
 
+int json_object_length(struct json *object)
+{
+  if (!object || !json_isobject(object))
+    return 0;
+
+  return hash_table_keys(object->value.object, NULL);
+}
+
 struct json *json_object_remove(struct json *object, const char *key)
 {
   if (!object || !key || !json_isobject(object))
