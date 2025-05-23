@@ -20,6 +20,12 @@
  */
 struct json;
 
+struct json_key_value
+{
+    char *key;          /**< Key string (for objects) */
+    struct json *value; /**< JSON value associated with the key */
+};
+
 ////////////////////////////////////
 // JSON Creation functions
 ////////////////////////////////////
@@ -56,17 +62,11 @@ struct json *json_number(double value);
  */
 struct json *json_string(const char *value);
 
-/**
- * @brief Creates an empty JSON array
- * @return A new empty JSON array
- */
-struct json *json_array();
+struct json *__json_array_macro(struct json *elements[]);
+#define json_array(...) __json_array_macro((struct json *[]){__VA_ARGS__ __VA_OPT__(, ) NULL})
 
-/**
- * @brief Creates an empty JSON object
- * @return A new empty JSON object
- */
-struct json *json_object();
+struct json *__json_object_macro(struct json_key_value elements[]);
+#define json_object(...) __json_object_macro((struct json_key_value[]){__VA_ARGS__ __VA_OPT__(, ){NULL, NULL}})
 
 /**
  * @brief Frees a JSON value and all its children

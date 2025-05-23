@@ -19,10 +19,11 @@ int main()
     json_object_set(jsonObject, "is_answer", jsonBoolean);
 
     // Create a JSON array and add it to the object
-    struct json *jsonArray = json_array();
-    json_array_push(jsonArray, json_number(1));
-    json_array_push(jsonArray, json_number(2));
-    json_array_push(jsonArray, json_number(3));
+    struct json *jsonArray = __json_array_macro((struct json *[]){
+        json_number(1),
+        json_number(2),
+        json_number(3),
+    });
     json_object_set(jsonObject, "numbers", jsonArray);
 
     // Write the JSON object to stdout

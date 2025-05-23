@@ -22,8 +22,8 @@ void test_json_string_escape()
 
     json_free(str);
 
-    struct json *obj = json_object();
-    json_object_set(obj, "special\tkey", json_null());
+    struct json *obj = json_object(
+        {"special\tkey", json_null()});
     out = fmemopen(buf, sizeof(buf), "w");
     ret = json_write(obj, out);
     fclose(out);

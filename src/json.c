@@ -143,7 +143,7 @@ struct json *json_string(const char *value)
   return node;
 }
 
-struct json *json_array()
+struct json *__json_array_macro(struct json *elements[])
 {
   struct json *node = (struct json *)malloc(sizeof(struct json));
   if (!node)
@@ -151,10 +151,15 @@ struct json *json_array()
 
   node->type = JSON_ARRAY;
   node->value.array = NULL; // Empty array initially
+  while (elements && *elements)
+  {
+    json_array_push(node, *elements);
+    elements++;
+  }
   return node;
 }
 
-struct json *json_object()
+struct json *__json_object_macro(struct json_key_value elements[])
 {
   struct json *node = (struct json *)malloc(sizeof(struct json));
   if (!node)
@@ -166,6 +171,12 @@ struct json *json_object()
   {
     free(node);
     return NULL;
+  }
+  while (elements && elements->key)
+  {
+    struct json *value = elements->value;
+    hash_table_set(node->value.object, elements->key, value);
+    elements++;
   }
   return node;
 }

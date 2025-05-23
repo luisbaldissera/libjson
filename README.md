@@ -50,6 +50,27 @@ To use libjson in your project, include the header file in your source code:
 Here is a simple example of creating a JSON object:
 
 ```c
+struct json *obj = json_object(
+   {"simple", json_true()},
+   {"really", json_array(
+      json_number(1),
+      json_string("Piece of cake"))});
+
+json_write(obj, stdout);
+// {
+//    "simple": true,
+//    "really": [
+//      1,
+//      "Piece of cake"
+//    ]
+// }
+
+json_free(obj);
+```
+
+Here a more verbose example:
+
+```c
 struct json *obj = json_object();
 json_object_set(obj, "name", json_string("libjson"));
 json_object_set(obj, "version", json_number(1.0));
@@ -97,6 +118,25 @@ struct Person person = {
 };
 ```
 
+Example of serializing structs to json:
+
+```c
+struct Person {
+   const char *name;
+   int age;
+   int location[2];
+};
+
+struct json *person_to_json(struct Person *p) {
+  return json_object(
+    {"name", json_string(p->name)},
+    {"age", json_number(p->age)},
+    {"location", json_array(
+       p->location[0],
+       p->location[1])});
+}
+```
+
 ## Running Tests
 
 To run the unit tests, you can use the following command after building the library:
@@ -130,14 +170,3 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - optm: refactor iterators to be static in memory
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
-- feat: add array and object builder in main function
-  ```c
-  struct json *arr = json_array({
-     json_string("First element"),
-     json_number(2.3),
-     json_object({
-        {"version", json_number(1.2)},
-        {"name", json_string("libjson")}
-     })
-  })
-  ```
