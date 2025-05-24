@@ -109,11 +109,11 @@ struct Person {
 struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}");
 
 struct Person person = {
-   .name = json_tostring(json_object_get(person_json, "name")),
-   .age = json_toint(json_object_get(person_json, "age")),
+   .name = json_string_value(json_object_get(person_json, "name")),
+   .age = json_int_value(json_object_get(person_json, "age")),
    .location = {
-      json_toint(json_array_get(json_object_get(person_json, "location"), 0)),
-      json_toint(json_array_get(json_object_get(person_json, "location"), 1))
+      json_int_value(json_array_get(json_object_get(person_json, "location"), 0)),
+      json_int_value(json_array_get(json_object_get(person_json, "location"), 1))
    }
 };
 ```

@@ -15,7 +15,7 @@ void test_json_string_escape()
     assert(ret > 0);
     assert(strcmp(buf, "\"test\\none\\ttwo\"") == 0);
 
-    const char *escaped_str = json_tostring(str);
+    const char *escaped_str = json_string_value(str);
 
     assert(escaped_str != NULL);
     assert(strcmp(escaped_str, "test\none\ttwo") == 0);
@@ -31,7 +31,7 @@ void test_json_string_escape()
     assert(ret > 0);
     assert(strcmp(buf, "{\"special\\tkey\":null}") == 0);
     assert(json_object_get(obj, "special\tkey") != NULL);
-    assert(json_isnull(json_object_get(obj, "special\tkey")));
+    assert(json_is_null(json_object_get(obj, "special\tkey")));
 
     json_free(obj);
 }

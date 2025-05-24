@@ -18,8 +18,8 @@ void test_json_array_manipulation()
 
     // Test the array
     assert(json_array_length(array) == 2);
-    assert(json_toint(json_array_get(array, 0)) == 10);
-    assert(json_toint(json_array_get(array, 1)) == 20);
+    assert(json_int_value(json_array_get(array, 0)) == 10);
+    assert(json_int_value(json_array_get(array, 1)) == 20);
 
     // Free the array (and all its contents)
     json_free(array);

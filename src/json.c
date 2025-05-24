@@ -207,32 +207,32 @@ void json_free(struct json *json)
  * @section JSON type checking functions
  */
 
-int json_isnull(struct json *node)
+int json_is_null(struct json *node)
 {
   return node == &json_null_value;
 }
 
-int json_isboolean(struct json *node)
+int json_is_boolean(struct json *node)
 {
   return node && node->type == JSON_BOOLEAN;
 }
 
-int json_isnumber(struct json *node)
+int json_is_number(struct json *node)
 {
   return node && node->type == JSON_NUMBER;
 }
 
-int json_isstring(struct json *node)
+int json_is_string(struct json *node)
 {
   return node && node->type == JSON_STRING;
 }
 
-int json_isarray(struct json *node)
+int json_is_array(struct json *node)
 {
   return node && node->type == JSON_ARRAY;
 }
 
-int json_isobject(struct json *node)
+int json_is_object(struct json *node)
 {
   return node && node->type == JSON_OBJECT;
 }
@@ -247,7 +247,7 @@ int json_isobject(struct json *node)
 
 void json_array_push(struct json *array, struct json *value)
 {
-  if (!array || !value || !json_isarray(array))
+  if (!array || !value || !json_is_array(array))
     return;
 
   if (!array->value.array)
@@ -269,7 +269,7 @@ void json_array_push(struct json *array, struct json *value)
 
 int json_array_length(struct json *array)
 {
-  if (!array || !json_isarray(array))
+  if (!array || !json_is_array(array))
     return 0;
 
   return linked_list_length(array->value.array);
@@ -277,7 +277,7 @@ int json_array_length(struct json *array)
 
 struct json *json_array_get(const struct json *array, int index)
 {
-  if (!array || !json_isarray((struct json *)array) || index < 0)
+  if (!array || !json_is_array((struct json *)array) || index < 0)
     return NULL;
 
   struct linked_list *node = array->value.array;
@@ -294,7 +294,7 @@ struct json *json_array_get(const struct json *array, int index)
 
 void json_object_set(struct json *object, const char *key, struct json *value)
 {
-  if (!object || !key || !value || !json_isobject(object))
+  if (!object || !key || !value || !json_is_object(object))
     return;
 
   hash_table_set(object->value.object, key, value);
@@ -302,7 +302,7 @@ void json_object_set(struct json *object, const char *key, struct json *value)
 
 struct json *json_object_get(const struct json *object, const char *key)
 {
-  if (!object || !key || !json_isobject((struct json *)object))
+  if (!object || !key || !json_is_object((struct json *)object))
     return NULL;
 
   return (struct json *)hash_table_get(object->value.object, key);
@@ -310,7 +310,7 @@ struct json *json_object_get(const struct json *object, const char *key)
 
 int json_object_length(struct json *object)
 {
-  if (!object || !json_isobject(object))
+  if (!object || !json_is_object(object))
     return 0;
 
   return hash_table_keys(object->value.object, NULL);
@@ -318,7 +318,7 @@ int json_object_length(struct json *object)
 
 struct json *json_object_remove(struct json *object, const char *key)
 {
-  if (!object || !key || !json_isobject(object))
+  if (!object || !key || !json_is_object(object))
     return NULL;
 
   // We need to use hash_table_get first to get the value before removal
@@ -339,21 +339,21 @@ struct json *json_object_remove(struct json *object, const char *key)
  * @section JSON access functions
  */
 
-double json_todouble(const struct json *node)
+double json_double_value(const struct json *node)
 {
   if (!node || node->type != JSON_NUMBER)
     return 0.0;
   return node->value.number;
 }
 
-int json_toint(const struct json *node)
+int json_int_value(const struct json *node)
 {
   if (!node || node->type != JSON_NUMBER)
     return 0;
   return (int)node->value.number;
 }
 
-const char *json_tostring(const struct json *node)
+const char *json_string_value(const struct json *node)
 {
   if (!node || node->type != JSON_STRING)
     return NULL;

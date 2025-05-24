@@ -9,7 +9,7 @@ int main()
     struct json *json_true_value = json_true();
 
     // Check if the value is indeed true
-    assert(json_isboolean(json_true_value));
+    assert(json_is_boolean(json_true_value));
     assert(json_true_value == json_true());
 
     // Free the JSON true value

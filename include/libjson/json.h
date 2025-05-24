@@ -84,42 +84,42 @@ void json_free(struct json *json);
  * @param node JSON value to test
  * @return Non-zero if node is null, 0 otherwise
  */
-int json_isnull(struct json *node);
+int json_is_null(struct json *node);
 
 /**
  * @brief Tests if a JSON value is a boolean
  * @param node JSON value to test
  * @return Non-zero if node is a boolean, 0 otherwise
  */
-int json_isboolean(struct json *node);
+int json_is_boolean(struct json *node);
 
 /**
  * @brief Tests if a JSON value is a number
  * @param node JSON value to test
  * @return Non-zero if node is a number, 0 otherwise
  */
-int json_isnumber(struct json *node);
+int json_is_number(struct json *node);
 
 /**
  * @brief Tests if a JSON value is a string
  * @param node JSON value to test
  * @return Non-zero if node is a string, 0 otherwise
  */
-int json_isstring(struct json *node);
+int json_is_string(struct json *node);
 
 /**
  * @brief Tests if a JSON value is an array
  * @param node JSON value to test
  * @return Non-zero if node is an array, 0 otherwise
  */
-int json_isarray(struct json *node);
+int json_is_array(struct json *node);
 
 /**
  * @brief Tests if a JSON value is an object
  * @param node JSON value to test
  * @return Non-zero if node is an object, 0 otherwise
  */
-int json_isobject(struct json *node);
+int json_is_object(struct json *node);
 
 ////////////////////////////////////////
 // JSON Access functions
@@ -145,14 +145,14 @@ struct json *json_array_get(const struct json *array, int index);
  * @param node JSON value to query
  * @return The double value stored in the JSON number
  */
-double json_todouble(const struct json *node);
+double json_double_value(const struct json *node);
 
 /**
  * @brief Gets the value of a JSON integer
  * @param node JSON value to query
  * @return The int value stored in the JSON integer
  */
-int json_toint(const struct json *node);
+int json_int_value(const struct json *node);
 
 /**
  * @brief Gets the value of a JSON string
@@ -161,7 +161,7 @@ int json_toint(const struct json *node);
  * @param node JSON value to query
  * @return The string value stored in the JSON string
  */
-const char *json_tostring(const struct json *node);
+const char *json_string_value(const struct json *node);
 
 ////////////////////////////////////
 // JSON Manipulation functions
@@ -204,6 +204,7 @@ int json_object_length(struct json *object);
  * @param value JSON value to add to the array
  */
 void json_array_push(struct json *array, struct json *value);
+
 ////////////////////////////////////
 // JSON Serialization functions
 ////////////////////////////////////

@@ -16,9 +16,9 @@ void test_json_object_manipulation()
 
     // Test the object
     assert(json_object_get(object, "key") != NULL);
-    assert(json_isstring(json_object_get(object, "key")));
-    assert(json_tostring(json_object_get(object, "key")) != NULL);
-    assert(strcmp(json_tostring(json_object_get(object, "key")), "test") == 0);
+    assert(json_is_string(json_object_get(object, "key")));
+    assert(json_string_value(json_object_get(object, "key")) != NULL);
+    assert(strcmp(json_string_value(json_object_get(object, "key")), "test") == 0);
 
     // Free the object (and all its contents)
     json_free(object);

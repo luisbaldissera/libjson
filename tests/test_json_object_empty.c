@@ -12,7 +12,7 @@ int main()
     assert(object != NULL);
 
     // Check if the object is indeed an object
-    assert(json_isobject(object));
+    assert(json_is_object(object));
 
     // Check if the object is empty
     assert(json_object_length(object) == 0);
