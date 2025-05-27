@@ -161,6 +161,28 @@ int hash_table_keys(const struct hash_table *table, char **keys)
     return count;
 }
 
+int hash_table_has(const struct hash_table *table, const char *key)
+{
+    if (!table || !key)
+    {
+        return 0;
+    }
+    int hash = hash_table_hash(key);
+    struct linked_list *ll_bucket = table->bucket[hash], *ll_entry;
+    struct closure *key_closure;
+
+    if (!ll_bucket)
+    {
+        return 0;
+    }
+
+    key_closure = hash_table_key_equals(key);
+    ll_entry = linked_list_find(ll_bucket, key_closure, NULL);
+    closure_free(key_closure);
+
+    return ll_entry != NULL;
+}
+
 void hash_table_foreach(const struct hash_table *table, struct closure *closure)
 {
     if (!table || !closure)
