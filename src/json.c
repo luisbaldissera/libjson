@@ -685,7 +685,7 @@ int json_write(struct json *node, FILE *out)
  * @subsection JSON read Functions
  */
 
-struct json *json_read(FILE *in)
+struct json *json_read(FILE *in, char *errbuf)
 {
   struct json_token token;
   if (!in)
@@ -704,7 +704,7 @@ struct json *json_read(FILE *in)
   return result;
 }
 
-struct json *json_read_string(const char *json_string)
+struct json *json_read_string(const char *json_string, char *errbuf)
 {
   if (!json_string)
     return NULL;
@@ -713,7 +713,7 @@ struct json *json_read_string(const char *json_string)
   if (!memfile)
     return NULL;
 
-  struct json *result = json_read(memfile);
+  struct json *result = json_read(memfile, errbuf);
   fclose(memfile);
   return result;
 }

@@ -110,7 +110,12 @@ struct Person {
    int location[2];
 };
 
-struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}");
+struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}", NULL);
+
+if (json_error()) {
+   fprintf(stderr, "%s\n", json_error());
+   exit(1);
+}
 
 struct Person person = {
    .name = json_string_value(json_object_get(person_json, "name")),

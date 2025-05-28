@@ -230,18 +230,24 @@ int json_write(struct json *node, FILE *out);
 /**
  * @brief Reads a JSON value from a file stream
  * @param in File stream to read from
+ * @param errbuf Buffer to store error messages (optional). Use in
+ * multi-threaded applications to avoid storing error messages in a static
+ * buffer.
  * @return The parsed JSON value, or NULL on parsing error
  * @see json_read_string()
  */
-struct json *json_read(FILE *in);
+struct json *json_read(FILE *in, char *errbuf);
 
 /**
  * @brief Reads a JSON value from a string
  * @param json_string The JSON string to parse
+ * @param errbuf Buffer to store error messages (optional). Use in
+ * multi-threaded applications to avoid storing error messages in a static
+ * buffer.
  * @return The parsed JSON value, or NULL on parsing error
  * @see json_read()
  */
-struct json *json_read_string(const char *json_string);
+struct json *json_read_string(const char *json_string, char *errbuf);
 
 /**
  * @brief Returns the last error message from parsing
