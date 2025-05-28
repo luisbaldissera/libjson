@@ -1,6 +1,8 @@
 # libjson
 
-libjson is a lightweight C library for creating, manipulating, and serializing JSON objects. It provides a simple API for working with JSON data structures, making it easy to integrate into your C projects.
+libjson is a lightweight C library for creating, manipulating, and serializing
+JSON objects. It provides a simple API for working with JSON data structures,
+making it easy to integrate into your C projects.
 
 ## Features
 
@@ -11,7 +13,9 @@ libjson is a lightweight C library for creating, manipulating, and serializing J
 
 ## Installation
 
-To install libjson, you can either clone the repository or download the source code directly. After obtaining the source code, you can build the library using CMake
+To install libjson, you can either clone the repository or download the source
+code directly. After obtaining the source code, you can build the library using
+CMake
 
 1. Navigate to the project directory:
 
@@ -139,7 +143,8 @@ struct json *person_to_json(struct Person *p) {
 
 ## Running Tests
 
-To run the unit tests, you can use the following command after building the library:
+To run the unit tests, you can use the following command after building the
+library:
 
 ```
 make test
@@ -147,7 +152,22 @@ make test
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+Contributions are welcome! Please feel free to submit a pull request or open an
+issue for any enhancements or bug fixes.
+
+### Technical decisions for contributing
+
+#### Error handling
+
+To handle errors and error messages, use the static error buffer from json.c and
+provide an optional parameter `char *errbuf` that is reentrant to correctly
+handle error in multi-threaded systems.
+
+#### Usage of FILE
+
+Simply try using it whenever possible. Prefer to delegate string based functions
+to the equivalent `FILE*` implementation using in-memory files. See, for example
+`json_read` and `json_read_string`.
 
 ## License
 
