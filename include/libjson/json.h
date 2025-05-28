@@ -69,6 +69,16 @@ struct json *__json_object_macro(struct json_key_value elements[]);
 #define json_object(...) __json_object_macro((struct json_key_value[]){__VA_ARGS__ __VA_OPT__(, ){NULL, NULL}})
 
 /**
+ * @brief Copies a JSON value
+ * @param json JSON value to copy
+ * @return A new JSON value that is a copy of the original
+ * @note The returned value is a deep copy, meaning all nested structures are also copied.
+ *       The caller is responsible for freeing the returned value using json_free().
+ * @see json_free()
+ */
+struct json *json_copy(struct json *json);
+
+/**
  * @brief Frees a JSON value and all its children
  * @param json JSON value to free
  */
