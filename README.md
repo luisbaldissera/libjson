@@ -110,7 +110,14 @@ struct Person {
    int location[2];
 };
 
-struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}");
+// NULL is the default error buffer
+struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}", NULL);
+
+// NULL is the default error buffer
+if (json_error(NULL)) {
+   fprintf(stderr, "%s\n", json_error(NULL));
+   exit(1);
+}
 
 struct Person person = {
    .name = json_string_value(json_object_get(person_json, "name")),
@@ -138,6 +145,27 @@ struct json *person_to_json(struct Person *p) {
     {"location", json_array(
        p->location[0],
        p->location[1])});
+}
+```
+
+Example of reading from json stream, by parsing each json individually until the
+end.
+
+```c
+const char *json_stream =
+"{\"index\":0, \"name\": \"First\"}\n"
+"{\"index\":2, \"name\": \"Third\"}\n"
+"{\"index\":1, \"name\": \"Second\"}";
+
+FILE *stream_file = fmemopen(json_stream, strlen(json_stream), "r");
+
+struct json *element;
+while (element = json_read(stream_file, NULL)) {
+   // process element
+}
+
+if (json_error(NULL)) {
+   fprintf(stderr, "%s\n", json_error(NULL));
 }
 ```
 
@@ -190,3 +218,7 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - optm: refactor iterators to be static in memory
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
+- feat: lazy json read -> only process the when `json_{*}_get()` or
+  `json_{*}_value()` is called. And only until the necessary to return.
+  - note: also handle errbuf in `json_{*}_get(..., errbuf)` and
+    `json_{*}_value(errbuf)`
