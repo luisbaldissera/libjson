@@ -88,12 +88,27 @@ struct json_token
   // only used for JSON_TOKEN_STRING and JSON_TOKEN_NUMBER
   char *value;
 };
-static struct json_token json_read_token(FILE *in);
-static int json_parser_json(FILE *in, struct json_token *token, struct json **dest);
-static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest);
-static int json_parser_array(FILE *in, struct json_token *token, struct json **dest);
-static int json_parser_object(FILE *in, struct json_token *token, struct json **dest);
-static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object);
+
+// Helper for strings
+static void strprep(char *dst, const char *src);
+
+// Helper for error handling
+struct error_context
+{
+  char *message;
+  int line;
+  int column;
+};
+static int update_error_context(struct error_context *errctx, const char c, int index);
+static char __default_errbuf[LIBJSON_ERRBUF_SiZE];
+
+// Helper function for parsing JSON
+static struct json_token json_read_token(FILE *in, struct error_context *errctx);
+static int json_parser_json(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+static int json_parser_array(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+static int json_parser_object(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object, struct error_context *errctx);
 
 /**
  * @section JSON creation functions
@@ -411,6 +426,15 @@ struct json *json_object_remove(struct json *object, const char *key)
   return value;
 }
 
+const char *json_error(char *errbuf) {
+  if (!errbuf)
+    errbuf = __default_errbuf;
+  if (!errbuf || strlen(errbuf) == 0)
+    return NULL;
+
+  return strdup(errbuf);
+}
+
 /**
  * @section JSON access functions
  */
@@ -685,18 +709,31 @@ int json_write(struct json *node, FILE *out)
  * @subsection JSON read Functions
  */
 
-struct json *json_read(FILE *in)
+struct json *json_read(FILE *in, char *errbuf)
 {
   struct json_token token;
+  char linecol[64];
   if (!in)
     return NULL;
-  token = json_read_token(in);
+  if (!errbuf)
+    errbuf = __default_errbuf;
+  struct error_context errctx = {
+      .message = errbuf,
+      .line = 0,
+      .column = 0};
+  token = json_read_token(in, &errctx);
   struct json *result = NULL;
-  if (json_parser_json(in, &token, &result))
+  if (token.type != JSON_TOKEN_INVALID && json_parser_json(in, &token, &result, &errctx))
   {
+    // Sucessfully parsed JSON
+    errbuf[0] = '\0';
     return result;
   }
-  else if (result)
+  int initial_message_length = strlen(errctx.message);
+  sprintf(linecol, "(%d:%d): ", errctx.line + 1, errctx.column);
+  strprep(errctx.message, linecol);
+  strprep(errctx.message, "Error parsing JSON ");
+  if (result)
   {
     json_free(result);
     result = NULL;
@@ -704,7 +741,7 @@ struct json *json_read(FILE *in)
   return result;
 }
 
-struct json *json_read_string(const char *json_string)
+struct json *json_read_string(const char *json_string, char *errbuf)
 {
   if (!json_string)
     return NULL;
@@ -713,34 +750,66 @@ struct json *json_read_string(const char *json_string)
   if (!memfile)
     return NULL;
 
-  struct json *result = json_read(memfile);
+  struct json *result = json_read(memfile, errbuf);
   fclose(memfile);
   return result;
 }
 
-static int json_parser_json(FILE *in, struct json_token *token, struct json **dest)
+static void strprep(char *dst, const char *src)
 {
-  return json_parser_literal(in, token, dest) || json_parser_array(in, token, dest) || json_parser_object(in, token, dest);
+  int len_src = strlen(src);
+  int len_dst = strlen(dst);
+  // Shift existing string to the right
+  memmove(dst + len_src, dst, len_dst + 1);
+  // Copy new string to the beginning
+  memcpy(dst, src, len_src);
 }
 
-static int json_parser_array(FILE *in, struct json_token *token, struct json **dest)
+static int update_error_context(struct error_context *errctx, const char c, int index)
+{
+  if (errctx)
+  {
+    if (c == '\n' || c == '\r')
+    {
+      errctx->line++;
+      errctx->column = 0;
+    }
+    else if (c == ' ')
+    {
+      errctx->column = 0;
+    }
+    else
+    {
+      errctx->column++;
+    }
+    errctx->message[index] = c;
+  }
+  return (int)c;
+}
+
+static int json_parser_json(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx)
+{
+  return json_parser_literal(in, token, dest, errctx) || json_parser_array(in, token, dest, errctx) || json_parser_object(in, token, dest, errctx);
+}
+
+static int json_parser_array(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx)
 {
   if (token->type == JSON_TOKEN_ARRAY_START)
   {
     *dest = json_array();
-    *token = json_read_token(in);
+    *token = json_read_token(in, errctx);
     struct json *element = NULL;
-    if (json_parser_json(in, token, &element))
+    if (json_parser_json(in, token, &element, errctx))
     {
       json_array_push(*dest, element);
-      *token = json_read_token(in);
+      *token = json_read_token(in, errctx);
       while (token->type == JSON_TOKEN_COMMA)
       {
-        *token = json_read_token(in);
-        if (json_parser_json(in, token, &element))
+        *token = json_read_token(in, errctx);
+        if (json_parser_json(in, token, &element, errctx))
         {
           json_array_push(*dest, element);
-          *token = json_read_token(in);
+          *token = json_read_token(in, errctx);
         }
         else // Error: Unexpected inner JSON
         {
@@ -765,21 +834,21 @@ static int json_parser_array(FILE *in, struct json_token *token, struct json **d
   return 0;
 }
 
-static int json_parser_object(FILE *in, struct json_token *token, struct json **dest)
+static int json_parser_object(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx)
 {
   if (token->type == JSON_TOKEN_OBJECT_START)
   {
     *dest = json_object();
-    *token = json_read_token(in);
-    if (json_parser_key_value(in, token, *dest))
+    *token = json_read_token(in, errctx);
+    if (json_parser_key_value(in, token, *dest, errctx))
     {
-      *token = json_read_token(in);
+      *token = json_read_token(in, errctx);
       while (token->type == JSON_TOKEN_COMMA)
       {
-        *token = json_read_token(in);
-        if (json_parser_key_value(in, token, *dest))
+        *token = json_read_token(in, errctx);
+        if (json_parser_key_value(in, token, *dest, errctx))
         {
-          *token = json_read_token(in);
+          *token = json_read_token(in, errctx);
         }
         else // Error: Unexpected inner JSON
         {
@@ -804,17 +873,17 @@ static int json_parser_object(FILE *in, struct json_token *token, struct json **
   return 0;
 }
 
-static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object)
+static int json_parser_key_value(FILE *in, struct json_token *token, struct json *object, struct error_context *errctx)
 {
   if (token->type == JSON_TOKEN_STRING)
   {
     char *key = strdup(token->value);
-    *token = json_read_token(in);
+    *token = json_read_token(in, errctx);
     if (token->type == JSON_TOKEN_COLON)
     {
-      *token = json_read_token(in);
+      *token = json_read_token(in, errctx);
       struct json *value = NULL;
-      if (json_parser_json(in, token, &value))
+      if (json_parser_json(in, token, &value, errctx))
       {
         json_object_set(object, key, value);
         free(key);
@@ -838,7 +907,7 @@ static int json_parser_key_value(FILE *in, struct json_token *token, struct json
   }
 }
 
-static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest)
+static int json_parser_literal(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx)
 {
   if (token->type == JSON_TOKEN_NULL)
   {
@@ -868,13 +937,15 @@ static int json_parser_literal(FILE *in, struct json_token *token, struct json *
   return 0;
 }
 
-static struct json_token json_read_token(FILE *in)
+static struct json_token json_read_token(FILE *in, struct error_context *errctx)
 {
   struct json_token token = {0};
-  int c;
+  int c, i = 0;
+  const char *error = "Invalid token: ";
+  int error_length = strlen(error);
 
   // Skip whitespace
-  while (isspace(c = fgetc(in)))
+  while (isspace(c = update_error_context(errctx, fgetc(in), i)))
     ;
 
   if (c == EOF)
@@ -887,7 +958,11 @@ static struct json_token json_read_token(FILE *in)
   {
   case 'n':
   {
-    if (fgetc(in) == 'u' && fgetc(in) == 'l' && fgetc(in) == 'l')
+    i = 1;
+    if (
+        update_error_context(errctx, fgetc(in), i++) == 'u' &&
+        update_error_context(errctx, fgetc(in), i++) == 'l' &&
+        update_error_context(errctx, fgetc(in), i++) == 'l')
     {
       token.type = JSON_TOKEN_NULL;
     }
@@ -899,7 +974,11 @@ static struct json_token json_read_token(FILE *in)
   }
   case 't':
   {
-    if (fgetc(in) == 'r' && fgetc(in) == 'u' && fgetc(in) == 'e')
+    i = 1;
+    if (
+        update_error_context(errctx, fgetc(in), i++) == 'r' &&
+        update_error_context(errctx, fgetc(in), i++) == 'u' &&
+        update_error_context(errctx, fgetc(in), i++) == 'e')
     {
       token.type = JSON_TOKEN_TRUE;
     }
@@ -911,12 +990,18 @@ static struct json_token json_read_token(FILE *in)
   }
   case 'f':
   {
-    if (fgetc(in) == 'a' && fgetc(in) == 'l' && fgetc(in) == 's' && fgetc(in) == 'e')
+    i = 1;
+    if (
+        update_error_context(errctx, fgetc(in), i++) == 'a' &&
+        update_error_context(errctx, fgetc(in), i++) == 'l' &&
+        update_error_context(errctx, fgetc(in), i++) == 's' &&
+        update_error_context(errctx, fgetc(in), i++) == 'e')
     {
       token.type = JSON_TOKEN_FALSE;
     }
     else
     {
+
       token.type = JSON_TOKEN_INVALID;
     }
     break;
@@ -955,11 +1040,12 @@ static struct json_token json_read_token(FILE *in)
   {
     char *str = NULL;
     struct linked_list *char_list = NULL, *char_list_ptr = NULL;
-    while ((c = fgetc(in)) != '"')
+    i = 1;
+    while ((c = update_error_context(errctx, fgetc(in), i++)) != '"')
     {
       if (c == '\\')
       {
-        c = fgetc(in);
+        c = update_error_context(errctx, fgetc(in), i++);
         switch (c)
         {
         case 'b':
@@ -983,7 +1069,7 @@ static struct json_token json_read_token(FILE *in)
         case 'u':
         {
           char hex[5] = {0, 0, 0, 0, 0};
-          for (int i = 0; i < 4 && isxdigit(c = fgetc(in)); i++)
+          for (int i = 0; i < 4 && isxdigit(c = update_error_context(errctx, fgetc(in), i++)); i++)
           {
             hex[i] = c;
           }
@@ -1017,9 +1103,9 @@ static struct json_token json_read_token(FILE *in)
       if (str)
       {
         struct linked_list *node = char_list;
-        for (int i = 0; i < length; i++)
+        for (int j = 0; j < length; j++)
         {
-          str[i] = (char)linked_list_value(node);
+          str[j] = (char)linked_list_value(node);
           node = linked_list_next(node);
         }
         str[length] = '\0';
@@ -1038,12 +1124,13 @@ static struct json_token json_read_token(FILE *in)
   {
     ungetc(c, in);
     char buffer[32];
-    int i = 0;
-    while (isdigit(c = fgetc(in)) || c == '.' || c == '-' || c == '+' || c == 'e' || c == 'E')
+    int j = 0;
+    i = 0; // Because of ungetc, we need to reset i
+    while (isdigit(c = update_error_context(errctx, fgetc(in), i++)) || c == '.' || c == '-' || c == '+' || c == 'e' || c == 'E')
     {
-      if (i < sizeof(buffer) - 1)
+      if (j < sizeof(buffer) - 1)
       {
-        buffer[i++] = c;
+        buffer[j++] = c;
       }
       else
       {
@@ -1054,9 +1141,10 @@ static struct json_token json_read_token(FILE *in)
     if (c != EOF)
     {
       ungetc(c, in);
+      i--; // Adjust index for ungetc
     }
-    buffer[i] = '\0';
-    if (i > 0)
+    buffer[j] = '\0';
+    if (j > 0)
     {
       token.value = strdup(buffer);
       token.type = JSON_TOKEN_NUMBER;
@@ -1067,6 +1155,11 @@ static struct json_token json_read_token(FILE *in)
     }
     break;
   }
+  }
+  if (token.type == JSON_TOKEN_INVALID)
+  {
+    errctx->message[i] = '\0';
+    strprep(errctx->message, error);
   }
   return token;
 }

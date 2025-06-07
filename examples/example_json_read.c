@@ -14,7 +14,7 @@ int main()
     }
 
     // Read the JSON from file
-    struct json *input_json = json_read(memfile);
+    struct json *input_json = json_read(memfile, NULL);
     // Print the JSON object to stdout
     json_write(input_json, stdout);
     printf("\n");
@@ -23,7 +23,7 @@ int main()
     fclose(memfile);
 
     // Read JSON from string directly
-    struct json *json_from_string = json_read_string(json_string);
+    struct json *json_from_string = json_read_string(json_string, NULL);
     if (json_from_string == NULL)
     {
         fprintf(stderr, "Failed to read JSON from string\n");

@@ -110,12 +110,10 @@ struct Person {
    int location[2];
 };
 
-// NULL is the default error buffer
 struct json *person_json = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}", NULL);
 
-// NULL is the default error buffer
 if (json_error(NULL)) {
-   fprintf(stderr, "%s\n", json_error(NULL));
+   fprintf(stderr, "%s\n", json_error());
    exit(1);
 }
 
@@ -169,6 +167,22 @@ if (json_error(NULL)) {
 }
 ```
 
+On multi-threaded applications, you can provide an error buffer so that is
+re-entrant:
+
+```c
+// re-entrant error buffer
+char errbuf[512];
+
+struct json *element;
+
+element = json_read_string("{\"name\":\"Bob\",\"age\":25,\"location\":[+1234567,-9876543]}", errbuf);
+if (json_error(errbuf)) {
+  fprintf(stderr, "%s\n", errbuf);
+  exit(1);
+}
+```
+
 ## Running Tests
 
 To run the unit tests, you can use the following command after building the
@@ -219,6 +233,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
 - feat: lazy json read -> only process the when `json_{*}_get()` or
-  `json_{*}_value()` is called. And only until the necessary to return.
-  - note: also handle errbuf in `json_{*}_get(..., errbuf)` and
-    `json_{*}_value(errbuf)`
+        `json_{*}_value()` is called. And only until the necessary to return.
+   - note: also handle errbuf in `json_{*}_get(..., errbuf)` and
+           `json_{*}_value(errbuf)`
