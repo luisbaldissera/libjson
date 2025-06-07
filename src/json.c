@@ -100,6 +100,7 @@ struct error_context
   int column;
 };
 static int update_error_context(struct error_context *errctx, const char c, int index);
+// The default error buffer to store error when no error buffer is provided.
 static char __default_errbuf[LIBJSON_ERRBUF_SiZE];
 
 // Helper function for parsing JSON
@@ -426,7 +427,8 @@ struct json *json_object_remove(struct json *object, const char *key)
   return value;
 }
 
-const char *json_error(char *errbuf) {
+const char *json_error(char *errbuf)
+{
   if (!errbuf)
     errbuf = __default_errbuf;
   if (!errbuf || strlen(errbuf) == 0)
@@ -823,8 +825,9 @@ static int json_parser_array(FILE *in, struct json_token *token, struct json **d
     {
       return 1;
     }
-    else // Error: Unexpected token
+    else
     {
+      strcpy(errctx->message, "Expecting ']' or ','.");
       json_free(*dest);
       *dest = NULL;
       return 0;
@@ -850,8 +853,9 @@ static int json_parser_object(FILE *in, struct json_token *token, struct json **
         {
           *token = json_read_token(in, errctx);
         }
-        else // Error: Unexpected inner JSON
+        else
         {
+          strcpy(errctx->message, "Expecting string after ','.");
           json_free(*dest);
           *dest = NULL;
           return 0;
@@ -862,9 +866,11 @@ static int json_parser_object(FILE *in, struct json_token *token, struct json **
     {
       return 1;
     }
-    else // Error: Unexpected token.
+    else
     {
-      json_free(*dest);
+      strcpy(errctx->message, "Expecting '}' or ','.");
+      if (*dest && json_is_object(*dest))
+        json_free(*dest);
       *dest = NULL;
       return 0;
     }
@@ -897,6 +903,7 @@ static int json_parser_key_value(FILE *in, struct json_token *token, struct json
     }
     else
     {
+      strcpy(errctx->message, "Expecting ':' after key.");
       free(key);
       return 0;
     }
