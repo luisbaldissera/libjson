@@ -11,6 +11,7 @@ int main()
     struct json *invalid_null = json_read_string("nulx", errbuf);
 
     assert(invalid_null == NULL);
+    assert(json_error(errbuf));
     // For now, the column points to the unexpected character 'x' instead of the
     // start of the invalid token.
     assert(strcmp(errbuf, "Error parsing JSON (1:4): Invalid token: nulx") == 0);
