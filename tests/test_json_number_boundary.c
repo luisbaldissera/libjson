@@ -92,16 +92,16 @@ int main()
     assert(temp != NULL);
     json_write(original, temp);
     rewind(temp);
-    
+
     struct json *roundtrip = json_read(temp, errbuf);
     fclose(temp);
-    
+
     assert(roundtrip != NULL);
     assert(json_is_number(roundtrip));
     // May have some precision loss due to string conversion
     double diff = json_double_value(original) - json_double_value(roundtrip);
     assert(diff < 1e-10 && diff > -1e-10); // Allow small precision error
-    
+
     json_free(original);
     json_free(roundtrip);
 

@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 int main()
 {
     // Create a complex JSON structure
@@ -13,18 +12,15 @@ int main()
         (struct json_key_value){"age", json_number(25.5)},
         (struct json_key_value){"active", json_true()},
         (struct json_key_value){"scores", json_array(
-            json_number(95),
-            json_number(87.5),
-            json_number(92)
-        )},
+                                              json_number(95),
+                                              json_number(87.5),
+                                              json_number(92))},
         (struct json_key_value){"address", json_object(
-            (struct json_key_value){"street", json_string("123 Main St")},
-            (struct json_key_value){"city", json_string("Anytown")},
-            (struct json_key_value){"zip", json_number(12345)}
-        )},
+                                               (struct json_key_value){"street", json_string("123 Main St")},
+                                               (struct json_key_value){"city", json_string("Anytown")},
+                                               (struct json_key_value){"zip", json_number(12345)})},
         (struct json_key_value){"empty_array", json_array()},
-        (struct json_key_value){"null_value", json_null()}
-    );
+        (struct json_key_value){"null_value", json_null()});
 
     // Create temporary file for writing
     FILE *temp = tmpfile();
@@ -52,7 +48,7 @@ int main()
     assert(json_is_string(name));
     assert(strcmp(json_string_value(name), "Alice") == 0);
 
-    // Check number value  
+    // Check number value
     struct json *age = json_object_get(parsed, "age");
     assert(json_is_number(age));
     assert(json_double_value(age) == 25.5);
@@ -74,7 +70,7 @@ int main()
     struct json *address = json_object_get(parsed, "address");
     assert(json_is_object(address));
     assert(json_object_length(address) == 3);
-    
+
     struct json *street = json_object_get(address, "street");
     assert(json_is_string(street));
     assert(strcmp(json_string_value(street), "123 Main St") == 0);

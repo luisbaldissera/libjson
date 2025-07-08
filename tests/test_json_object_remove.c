@@ -10,8 +10,7 @@ int main()
     struct json *object = json_object(
         (struct json_key_value){"name", json_string("John")},
         (struct json_key_value){"age", json_number(30)},
-        (struct json_key_value){"active", json_true()}
-    );
+        (struct json_key_value){"active", json_true()});
 
     // Verify initial state
     assert(json_is_object(object));

@@ -9,24 +9,19 @@ int main()
     // Create complex nested structure for copying
     struct json *original = json_object(
         (struct json_key_value){"person", json_object(
-            (struct json_key_value){"name", json_string("Bob")},
-            (struct json_key_value){"age", json_number(42)},
-            (struct json_key_value){"hobbies", json_array(
-                json_string("reading"),
-                json_string("coding"),
-                json_object((struct json_key_value){"sport", json_string("tennis")})
-            )}
-        )},
+                                              (struct json_key_value){"name", json_string("Bob")},
+                                              (struct json_key_value){"age", json_number(42)},
+                                              (struct json_key_value){"hobbies", json_array(
+                                                                                     json_string("reading"),
+                                                                                     json_string("coding"),
+                                                                                     json_object((struct json_key_value){"sport", json_string("tennis")}))})},
         (struct json_key_value){"metadata", json_object(
-            (struct json_key_value){"version", json_number(1.0)},
-            (struct json_key_value){"active", json_true()},
-            (struct json_key_value){"tags", json_array(
-                json_string("important"),
-                json_null(),
-                json_false()
-            )}
-        )}
-    );
+                                                (struct json_key_value){"version", json_number(1.0)},
+                                                (struct json_key_value){"active", json_true()},
+                                                (struct json_key_value){"tags", json_array(
+                                                                                    json_string("important"),
+                                                                                    json_null(),
+                                                                                    json_false())})});
 
     // Make a deep copy
     struct json *copy = json_copy(original);
@@ -84,7 +79,7 @@ int main()
     assert(json_is_array(tags));
     assert(json_array_length(tags) == 3);
     assert(strcmp(json_string_value(json_array_get(tags, 0)), "important") == 0);
-    assert(json_array_get(tags, 1) == json_null()); // Singleton nulls should be same
+    assert(json_array_get(tags, 1) == json_null());  // Singleton nulls should be same
     assert(json_array_get(tags, 2) == json_false()); // Singleton booleans should be same
 
     // Modify original to ensure independence

@@ -131,10 +131,10 @@ void *hash_table_remove(struct hash_table *table, const char *key)
 
     key_closure = hash_table_key_equals(key);
     struct linked_list *prev = NULL;
-    
+
     // Store the next pointer in case we need to update the bucket head
     struct linked_list *next_after_head = linked_list_next(ll_bucket);
-    
+
     // Remove the entry from the linked list and get the entry
     struct hash_table_entry *removed_entry = (struct hash_table_entry *)linked_list_remove(ll_bucket, key_closure, &prev);
     closure_free(key_closure);
@@ -152,7 +152,7 @@ void *hash_table_remove(struct hash_table *table, const char *key)
     // Get the value before freeing the entry
     void *value = removed_entry->value;
     free(removed_entry);
-    
+
     return value;
 }
 

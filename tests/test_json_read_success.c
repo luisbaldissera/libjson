@@ -7,7 +7,7 @@
 int main()
 {
     char errbuf[1024];
-    
+
     // Test successful parsing of various JSON types
     struct json *null_json = json_read_string("null", errbuf);
     assert(null_json != NULL);
@@ -90,11 +90,11 @@ int main()
     assert(object_json != NULL);
     assert(json_is_object(object_json));
     assert(json_object_length(object_json) == 2);
-    
+
     struct json *name = json_object_get(object_json, "name");
     assert(json_is_string(name));
     assert(strcmp(json_string_value(name), "Alice") == 0);
-    
+
     struct json *age = json_object_get(object_json, "age");
     assert(json_is_number(age));
     assert(json_int_value(age) == 30);
@@ -111,12 +111,12 @@ int main()
     struct json *nested = json_read_string("{\"data\": [1, {\"inner\": true}]}", errbuf);
     assert(nested != NULL);
     assert(json_is_object(nested));
-    
+
     struct json *data = json_object_get(nested, "data");
     assert(json_is_array(data));
     assert(json_array_length(data) == 2);
     assert(json_int_value(json_array_get(data, 0)) == 1);
-    
+
     struct json *inner_obj = json_array_get(data, 1);
     assert(json_is_object(inner_obj));
     struct json *inner_val = json_object_get(inner_obj, "inner");

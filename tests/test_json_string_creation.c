@@ -28,11 +28,12 @@ int main()
 
     // Test very long string
     char long_str[1000];
-    for (int i = 0; i < 999; i++) {
+    for (int i = 0; i < 999; i++)
+    {
         long_str[i] = 'a' + (i % 26);
     }
     long_str[999] = '\0';
-    
+
     struct json *long_json = json_string(long_str);
     assert(json_is_string(long_json));
     assert(strcmp(json_string_value(long_json), long_str) == 0);
@@ -40,19 +41,19 @@ int main()
 
     // Test string escaping in JSON output/input round trip
     struct json *escape_test = json_string("Line1\nLine2\tTab\"Quote\"\\Backslash");
-    
+
     // Write to temporary file and parse back
     FILE *temp = tmpfile();
     assert(temp != NULL);
     json_write(escape_test, temp);
     rewind(temp);
-    
+
     struct json *parsed = json_read(temp, errbuf);
     fclose(temp);
     assert(parsed != NULL);
     assert(json_is_string(parsed));
     assert(strcmp(json_string_value(parsed), "Line1\nLine2\tTab\"Quote\"\\Backslash") == 0);
-    
+
     json_free(escape_test);
     json_free(parsed);
 
@@ -65,7 +66,8 @@ int main()
     // Test NULL string handling
     struct json *null_str = json_string(NULL);
     // When NULL is passed to json_string, it returns a null JSON value
-    if (null_str != NULL) {
+    if (null_str != NULL)
+    {
         assert(json_is_null(null_str)); // Should be a null value, not a string
         // Don't free since it's a static singleton
     }
