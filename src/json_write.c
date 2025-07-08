@@ -107,7 +107,10 @@ int json_write_number(struct json *node, FILE *out)
     }
     else
     {
-        return fprintf(out, "%g", node->value.number);
+        // Use higher precision to minimize round-trip loss
+        // %.15g provides enough precision for double while avoiding
+        // unnecessary trailing digits
+        return fprintf(out, "%.15g", node->value.number);
     }
 }
 

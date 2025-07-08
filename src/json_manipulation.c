@@ -84,16 +84,5 @@ struct json *json_object_remove(struct json *object, const char *key)
     if (!object || !key || !json_is_object(object))
         return NULL;
 
-    // We need to use hash_table_get first to get the value before removal
-    struct json *value = (struct json *)hash_table_get(object->value.object, key);
-
-    // Custom closure to remove a key but not free its value
-    struct closure *remove_closure = closure_new((closure_func)NULL, NULL);
-    if (remove_closure)
-    {
-        hash_table_set(object->value.object, key, NULL);
-        closure_free(remove_closure);
-    }
-
-    return value;
+    return (struct json *)hash_table_remove(object->value.object, key);
 }

@@ -117,6 +117,45 @@ void *hash_table_get(const struct hash_table *table, const char *key)
     return entry->value;
 }
 
+void *hash_table_remove(struct hash_table *table, const char *key)
+{
+    if (!table || !key)
+        return NULL;
+
+    int hash = hash_table_hash(key);
+    struct linked_list *ll_bucket = table->bucket[hash];
+    struct closure *key_closure;
+
+    if (!ll_bucket)
+        return NULL;
+
+    key_closure = hash_table_key_equals(key);
+    struct linked_list *prev = NULL;
+    
+    // Store the next pointer in case we need to update the bucket head
+    struct linked_list *next_after_head = linked_list_next(ll_bucket);
+    
+    // Remove the entry from the linked list and get the entry
+    struct hash_table_entry *removed_entry = (struct hash_table_entry *)linked_list_remove(ll_bucket, key_closure, &prev);
+    closure_free(key_closure);
+
+    if (!removed_entry)
+        return NULL;
+
+    // Update the bucket head if we removed the first element
+    if (prev == NULL)
+    {
+        // First element was removed, update bucket head to the next element
+        table->bucket[hash] = next_after_head;
+    }
+
+    // Get the value before freeing the entry
+    void *value = removed_entry->value;
+    free(removed_entry);
+    
+    return value;
+}
+
 void hash_table_free(struct hash_table *table, free_func free_value)
 {
     if (!table)

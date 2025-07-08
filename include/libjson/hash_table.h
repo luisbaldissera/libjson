@@ -66,6 +66,15 @@ void hash_table_set(struct hash_table *table, const char *key, void *value);
 void *hash_table_get(const struct hash_table *table, const char *key);
 
 /**
+ * @brief Removes a key-value pair from the hash table
+ * @param table The hash table to modify
+ * @param key The key to remove
+ * @return Pointer to the removed value, or NULL if key not found
+ * @note The caller is responsible for freeing the returned value if necessary
+ */
+void *hash_table_remove(struct hash_table *table, const char *key);
+
+/**
  * @brief Checks if a key exists in the hash table
  * @param table The hash table to query
  * @param key The key to check
