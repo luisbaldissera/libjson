@@ -1,4 +1,4 @@
-#include "libjson/linked_list.h"
+#include "json_internal.h"
 
 #include <stdlib.h>
 

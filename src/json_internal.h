@@ -2,9 +2,6 @@
 #define LIBJSON_JSON_INTERNAL_H
 
 #include "libjson/json.h"
-#include "libjson/closure.h"
-#include "libjson/linked_list.h"
-#include "libjson/hash_table.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -12,6 +9,76 @@
 #include <math.h>
 #include <ctype.h>
 #include <stdarg.h>
+
+/**
+ * @brief Function pointer type for freeing values
+ */
+typedef void (*free_func)(void *);
+
+/**
+ * @brief Function type for closures with function argument and context.
+ */
+typedef void *(*closure_func)(void *arg, void *ctx);
+
+/**
+ * @brief Function type for closures with function argument only.
+ */
+typedef void *(*pure_func)(void *arg);
+
+/**
+ * @brief Function type for closures with only args and no return value.
+ */
+typedef void (*call_func)(void *arg);
+
+// Forward declarations for internal structures
+struct closure;
+struct linked_list;
+struct hash_table;
+struct hash_table_entry;
+struct hash_table_iter;
+struct linked_list_iter;
+
+// ===== CLOSURE API =====
+struct closure *closure_pure(pure_func func);
+struct closure *closure_call(call_func func);
+struct closure *closure_new(closure_func func, void *ctx);
+void closure_free(struct closure *closure);
+void *closure_invoke(struct closure *closure, void *arg);
+
+// ===== LINKED LIST API =====
+struct linked_list *linked_list_new(void *value);
+int linked_list_length(struct linked_list *list);
+void linked_list_free(struct linked_list *list, free_func free_value);
+void linked_list_foreach(struct linked_list *list, struct closure *closure);
+struct linked_list *linked_list_insert(struct linked_list *last, void *value);
+void *linked_list_value(struct linked_list *node);
+struct linked_list *linked_list_next(struct linked_list *node);
+struct linked_list *linked_list_find(struct linked_list *node, struct closure *closure, struct linked_list **prev);
+void *linked_list_remove(struct linked_list *node, struct closure *closure, struct linked_list **prev);
+
+// Linked list iterator API
+struct linked_list_iter *linked_list_iter_new(struct linked_list *list);
+void *linked_list_iter_next(struct linked_list_iter *iter);
+int linked_list_iter_has_next(struct linked_list_iter *iter);
+void linked_list_iter_free(struct linked_list_iter *iter);
+
+// ===== HASH TABLE API =====
+const char *hash_table_entry_key(const struct hash_table_entry *entry);
+void *hash_table_entry_value(const struct hash_table_entry *entry);
+struct hash_table *hash_table_new();
+void hash_table_free(struct hash_table *table, free_func free_value);
+void hash_table_set(struct hash_table *table, const char *key, void *value);
+void *hash_table_get(const struct hash_table *table, const char *key);
+void *hash_table_remove(struct hash_table *table, const char *key);
+int hash_table_has(const struct hash_table *table, const char *key);
+int hash_table_keys(const struct hash_table *table, char **keys);
+void hash_table_foreach(const struct hash_table *table, struct closure *closure);
+
+// Hash table iterator API
+struct hash_table_iter *hash_table_iter_new(const struct hash_table *table);
+void hash_table_iter_free(struct hash_table_iter *iter);
+struct hash_table_entry *hash_table_iter_next(struct hash_table_iter *iter);
+int hash_table_iter_has_next(struct hash_table_iter *iter);
 
 /**
  * JSON value types

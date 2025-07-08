@@ -1,6 +1,4 @@
-#include "libjson/hash_table.h"
-#include "libjson/linked_list.h"
-#include "libjson/closure.h"
+#include "json_internal.h"
 
 #include <stdlib.h>
 #include <string.h>

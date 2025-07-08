@@ -1,4 +1,4 @@
-#include "libjson/closure.h"
+#include "json_internal.h"
 
 #include <stdlib.h>
 
