@@ -16,17 +16,17 @@ void json_array_push(struct json *array, struct json *value)
     if (!array->value.array)
     {
         // Create the first node
-        array->value.array = linked_list_new(value);
+        array->value.array = linked_list_json_new(value);
     }
     else
     {
         // Find the last node and insert after it
-        struct linked_list *node = array->value.array;
-        while (linked_list_next(node))
+        struct linked_list_json *node = array->value.array;
+        while (linked_list_json_next(node))
         {
-            node = linked_list_next(node);
+            node = linked_list_json_next(node);
         }
-        linked_list_insert(node, value);
+        linked_list_json_insert(node, value);
     }
 }
 
@@ -35,7 +35,7 @@ int json_array_length(struct json *array)
     if (!array || !json_is_array(array))
         return 0;
 
-    return linked_list_length(array->value.array);
+    return linked_list_json_length(array->value.array);
 }
 
 struct json *json_array_get(const struct json *array, int index)
@@ -43,12 +43,7 @@ struct json *json_array_get(const struct json *array, int index)
     if (!array || !json_is_array((struct json *)array) || index < 0)
         return NULL;
 
-    struct linked_list *node = array->value.array;
-    for (int i = 0; i < index && node; i++)
-    {
-        node = linked_list_next(node);
-    }
-    return (struct json *)linked_list_value(node);
+    return linked_list_json_get(array->value.array, index);
 }
 
 /**

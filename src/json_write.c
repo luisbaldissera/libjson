@@ -128,7 +128,7 @@ int json_write_array(struct json *node, FILE *out)
         return -1;
 
     int ret, bytes_written = 0;
-    struct linked_list_iter *iter = linked_list_iter_new(node->value.array);
+    struct linked_list_json_iter *iter = linked_list_json_iter_new(node->value.array);
     if (!iter)
     {
         return -1;
@@ -138,27 +138,27 @@ int json_write_array(struct json *node, FILE *out)
         return ret;
     bytes_written += ret;
     struct json *element;
-    while ((element = linked_list_iter_next(iter)))
+    while ((element = linked_list_json_iter_next(iter)))
     {
         int ret = json_write(element, out);
         if (ret < 0)
         {
-            linked_list_iter_free(iter);
+            linked_list_json_iter_free(iter);
             return ret;
         }
         bytes_written += ret;
-        if (linked_list_iter_has_next(iter))
+        if (linked_list_json_iter_has_next(iter))
         {
             ret = fprintf(out, ",");
             if (ret < 0)
             {
-                linked_list_iter_free(iter);
+                linked_list_json_iter_free(iter);
                 return ret;
             }
             bytes_written += ret;
         }
     }
-    linked_list_iter_free(iter);
+    linked_list_json_iter_free(iter);
     ret = fprintf(out, "]");
     if (ret < 0)
         return ret;

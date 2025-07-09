@@ -118,7 +118,7 @@ struct json *json_copy(struct json *json)
         break;
     case JSON_ARRAY:
     {
-        struct linked_list_iter *ll_iter = linked_list_iter_new(json->value.array);
+        struct linked_list_json_iter *ll_iter = linked_list_json_iter_new(json->value.array);
         if (!ll_iter)
         {
             free(copy);
@@ -126,19 +126,19 @@ struct json *json_copy(struct json *json)
         }
         copy->value.array = NULL;
         struct json *element;
-        while ((element = linked_list_iter_next(ll_iter)))
+        while ((element = linked_list_json_iter_next(ll_iter)))
         {
             struct json *element_copy = json_copy(element);
             if (!element_copy)
             {
-                linked_list_iter_free(ll_iter);
-                linked_list_free(copy->value.array, (free_func)json_free);
+                linked_list_json_iter_free(ll_iter);
+                linked_list_json_free(copy->value.array);
                 free(copy);
                 return NULL;
             }
             json_array_push(copy, element_copy);
         }
-        linked_list_iter_free(ll_iter);
+        linked_list_json_iter_free(ll_iter);
         break;
     }
     case JSON_OBJECT:
@@ -178,8 +178,18 @@ void json_free(struct json *json)
     switch (json->type)
     {
     case JSON_ARRAY:
-        linked_list_free(json->value.array, (free_func)json_free);
+    {
+        // Free all JSON elements in the array first
+        struct linked_list_json *current = json->value.array;
+        while (current)
+        {
+            json_free(linked_list_json_value(current));
+            current = linked_list_json_next(current);
+        }
+        // Then free the linked list structure
+        linked_list_json_free(json->value.array);
         break;
+    }
     case JSON_OBJECT:
         hash_table_free(json->value.object, (free_func)json_free);
         break;

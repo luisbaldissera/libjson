@@ -33,10 +33,12 @@ typedef void (*call_func)(void *arg);
 // Forward declarations for internal structures
 struct closure;
 struct linked_list;
+struct linked_list_json;
 struct hash_table;
 struct hash_table_entry;
 struct hash_table_iter;
 struct linked_list_iter;
+struct linked_list_json_iter;
 
 // ===== CLOSURE API =====
 struct closure *closure_pure(pure_func func);
@@ -61,6 +63,21 @@ struct linked_list_iter *linked_list_iter_new(struct linked_list *list);
 void *linked_list_iter_next(struct linked_list_iter *iter);
 int linked_list_iter_has_next(struct linked_list_iter *iter);
 void linked_list_iter_free(struct linked_list_iter *iter);
+
+// ===== JSON-SPECIFIC LINKED LIST API =====
+struct linked_list_json *linked_list_json_new(struct json *value);
+int linked_list_json_length(struct linked_list_json *list);
+void linked_list_json_free(struct linked_list_json *list);
+struct linked_list_json *linked_list_json_insert(struct linked_list_json *last, struct json *value);
+struct json *linked_list_json_value(struct linked_list_json *node);
+struct linked_list_json *linked_list_json_next(struct linked_list_json *node);
+struct json *linked_list_json_get(struct linked_list_json *list, int index);
+
+// JSON linked list iterator API
+struct linked_list_json_iter *linked_list_json_iter_new(struct linked_list_json *list);
+void linked_list_json_iter_free(struct linked_list_json_iter *iter);
+struct json *linked_list_json_iter_next(struct linked_list_json_iter *iter);
+int linked_list_json_iter_has_next(struct linked_list_json_iter *iter);
 
 // ===== HASH TABLE API =====
 const char *hash_table_entry_key(const struct hash_table_entry *entry);
@@ -104,7 +121,7 @@ struct json
         int boolean;
         double number;
         char *string;
-        struct linked_list *array;
+        struct linked_list_json *array;
         struct hash_table *object;
     } value;
 };
