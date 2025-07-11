@@ -64,38 +64,67 @@ int main()
     assert(json_int_value(age) == 30);
     json_free(object_trailing);
 
-    // Test debug: simple trailing comma first
-    printf("Testing '[1,]'...\n");
-    struct json *simple_trailing = json5_read_string("[1,]", errbuf);
-    if (simple_trailing == NULL) {
-        printf("Error: %s\n", errbuf);
-        return 1;
-    } else {
-        printf("Success: parsed array with length %d\n", json_array_length(simple_trailing));
-        json_free(simple_trailing);
-    }
+    // Test single quotes for strings
+    struct json *single_quote = json5_read_string("'hello world'", errbuf);
+    assert(single_quote != NULL);
+    assert(json_is_string(single_quote));
+    assert(strcmp(json_string_value(single_quote), "hello world") == 0);
+    json_free(single_quote);
 
-    // Test empty array (no trailing comma needed)
-    printf("Testing '[]'...\n");
-    struct json *empty_array = json5_read_string("[]", errbuf);
-    if (empty_array == NULL) {
-        printf("Error: %s\n", errbuf);
-        return 1;
-    } else {
-        printf("Success: parsed array with length %d\n", json_array_length(empty_array));
-        json_free(empty_array);
-    }
+    // Test unquoted keys in objects
+    struct json *unquoted_keys = json5_read_string("{name: 'Alice', age: 30}", errbuf);
+    assert(unquoted_keys != NULL);
+    assert(json_is_object(unquoted_keys));
+    assert(json_object_length(unquoted_keys) == 2);
 
-    // Test empty object (no trailing comma needed)
-    printf("Testing '{}'...\n");
-    struct json *empty_object = json5_read_string("{}", errbuf);
-    if (empty_object == NULL) {
-        printf("Error: %s\n", errbuf);
-        return 1;
-    } else {
-        printf("Success: parsed object with length %d\n", json_object_length(empty_object));
-        json_free(empty_object);
-    }
+    name = json_object_get(unquoted_keys, "name");
+    assert(json_is_string(name));
+    assert(strcmp(json_string_value(name), "Alice") == 0);
+
+    age = json_object_get(unquoted_keys, "age");
+    assert(json_is_number(age));
+    assert(json_int_value(age) == 30);
+    json_free(unquoted_keys);
+
+    // Test single-line comments
+    struct json *with_comments = json5_read_string("{\n  // This is a comment\n  name: 'Bob'\n}", errbuf);
+    assert(with_comments != NULL);
+    assert(json_is_object(with_comments));
+    assert(json_object_length(with_comments) == 1);
+
+    struct json *bob_name = json_object_get(with_comments, "name");
+    assert(json_is_string(bob_name));
+    assert(strcmp(json_string_value(bob_name), "Bob") == 0);
+    json_free(with_comments);
+
+    // Test multi-line comments
+    struct json *multiline_comments = json5_read_string("{\n  /* This is a\n     multi-line comment */\n  value: 42\n}", errbuf);
+    assert(multiline_comments != NULL);
+    assert(json_is_object(multiline_comments));
+    assert(json_object_length(multiline_comments) == 1);
+
+    struct json *value = json_object_get(multiline_comments, "value");
+    assert(json_is_number(value));
+    assert(json_int_value(value) == 42);
+    json_free(multiline_comments);
+
+    // Test mixed JSON5 features
+    struct json *mixed = json5_read_string("{\n  // Configuration\n  name: 'Test',\n  items: [1, 2, 3,], // trailing comma\n  'quoted-key': true,\n}", errbuf);
+    assert(mixed != NULL);
+    assert(json_is_object(mixed));
+    assert(json_object_length(mixed) == 3);
+
+    struct json *test_name = json_object_get(mixed, "name");
+    assert(json_is_string(test_name));
+    assert(strcmp(json_string_value(test_name), "Test") == 0);
+
+    struct json *items = json_object_get(mixed, "items");
+    assert(json_is_array(items));
+    assert(json_array_length(items) == 3);
+
+    struct json *quoted_key = json_object_get(mixed, "quoted-key");
+    assert(quoted_key == json_true());
+    json_free(mixed);
 
     return 0;
 }
