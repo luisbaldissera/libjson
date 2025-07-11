@@ -190,4 +190,12 @@ int json_parser_array(FILE *in, struct json_token *token, struct json **dest, st
 int json_parser_object(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
 int json_parser_key_value(FILE *in, struct json_token *token, struct json *object, struct error_context *errctx);
 
+// JSON5 read helper functions
+struct json_token json5_read_token(FILE *in, struct error_context *errctx);
+int json5_parser_json(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+int json5_parser_literal(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+int json5_parser_array(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+int json5_parser_object(FILE *in, struct json_token *token, struct json **dest, struct error_context *errctx);
+int json5_parser_key_value(FILE *in, struct json_token *token, struct json *object, struct error_context *errctx);
+
 #endif // LIBJSON_JSON_INTERNAL_H
