@@ -34,26 +34,6 @@ int main()
     
     json_free(object);
 
-    // Test object with quoted keys and values
-    const char *quoted_object = 
-        "\"first name\": \"John Doe\"\n"
-        "\"last name\": \"Smith\"\n";
-
-    struct json *quoted = yaml_read_string(quoted_object, errbuf);
-    assert(quoted != NULL);
-    assert(json_is_object(quoted));
-    assert(json_object_length(quoted) == 2);
-    
-    struct json *first_name = json_object_get(quoted, "first name");
-    assert(json_is_string(first_name));
-    assert(strcmp(json_string_value(first_name), "John Doe") == 0);
-    
-    struct json *last_name = json_object_get(quoted, "last name");
-    assert(json_is_string(last_name));
-    assert(strcmp(json_string_value(last_name), "Smith") == 0);
-    
-    json_free(quoted);
-
     printf("YAML object test passed!\n");
     return 0;
 }

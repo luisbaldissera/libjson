@@ -673,17 +673,56 @@ test_yaml_arrays/fast:
 .PHONY : test_yaml_arrays/fast
 
 #=============================================================================
-# Target rules for targets named test_yaml_basic_scalars
+# Target rules for targets named test_yaml_boolean
 
 # Build rule for target.
-test_yaml_basic_scalars: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_basic_scalars
-.PHONY : test_yaml_basic_scalars
+test_yaml_boolean: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_boolean
+.PHONY : test_yaml_boolean
 
 # fast build rule for target.
-test_yaml_basic_scalars/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/build
-.PHONY : test_yaml_basic_scalars/fast
+test_yaml_boolean/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/build
+.PHONY : test_yaml_boolean/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_booleans
+
+# Build rule for target.
+test_yaml_booleans: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_booleans
+.PHONY : test_yaml_booleans
+
+# fast build rule for target.
+test_yaml_booleans/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/build
+.PHONY : test_yaml_booleans/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_comments
+
+# Build rule for target.
+test_yaml_comments: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_comments
+.PHONY : test_yaml_comments
+
+# fast build rule for target.
+test_yaml_comments/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/build
+.PHONY : test_yaml_comments/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_empty
+
+# Build rule for target.
+test_yaml_empty: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_empty
+.PHONY : test_yaml_empty
+
+# fast build rule for target.
+test_yaml_empty/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/build
+.PHONY : test_yaml_empty/fast
 
 #=============================================================================
 # Target rules for targets named test_yaml_error_handling
@@ -699,17 +738,43 @@ test_yaml_error_handling/fast:
 .PHONY : test_yaml_error_handling/fast
 
 #=============================================================================
-# Target rules for targets named test_yaml_features
+# Target rules for targets named test_yaml_mixed
 
 # Build rule for target.
-test_yaml_features: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_features
-.PHONY : test_yaml_features
+test_yaml_mixed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_mixed
+.PHONY : test_yaml_mixed
 
 # fast build rule for target.
-test_yaml_features/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/build
-.PHONY : test_yaml_features/fast
+test_yaml_mixed/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/build
+.PHONY : test_yaml_mixed/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_null
+
+# Build rule for target.
+test_yaml_null: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_null
+.PHONY : test_yaml_null
+
+# fast build rule for target.
+test_yaml_null/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/build
+.PHONY : test_yaml_null/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_number
+
+# Build rule for target.
+test_yaml_number: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_number
+.PHONY : test_yaml_number
+
+# fast build rule for target.
+test_yaml_number/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/build
+.PHONY : test_yaml_number/fast
 
 #=============================================================================
 # Target rules for targets named test_yaml_objects
@@ -738,17 +803,82 @@ test_yaml_roundtrip/fast:
 .PHONY : test_yaml_roundtrip/fast
 
 #=============================================================================
-# Target rules for targets named test_yaml_write
+# Target rules for targets named test_yaml_string
 
 # Build rule for target.
-test_yaml_write: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_write
-.PHONY : test_yaml_write
+test_yaml_string: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_string
+.PHONY : test_yaml_string
 
 # fast build rule for target.
-test_yaml_write/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/build
-.PHONY : test_yaml_write/fast
+test_yaml_string/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/build
+.PHONY : test_yaml_string/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_strings
+
+# Build rule for target.
+test_yaml_strings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_strings
+.PHONY : test_yaml_strings
+
+# fast build rule for target.
+test_yaml_strings/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/build
+.PHONY : test_yaml_strings/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_write_boolean
+
+# Build rule for target.
+test_yaml_write_boolean: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_write_boolean
+.PHONY : test_yaml_write_boolean
+
+# fast build rule for target.
+test_yaml_write_boolean/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/build
+.PHONY : test_yaml_write_boolean/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_write_null
+
+# Build rule for target.
+test_yaml_write_null: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_write_null
+.PHONY : test_yaml_write_null
+
+# fast build rule for target.
+test_yaml_write_null/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/build
+.PHONY : test_yaml_write_null/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_write_number
+
+# Build rule for target.
+test_yaml_write_number: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_write_number
+.PHONY : test_yaml_write_number
+
+# fast build rule for target.
+test_yaml_write_number/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/build
+.PHONY : test_yaml_write_number/fast
+
+#=============================================================================
+# Target rules for targets named test_yaml_write_string
+
+# Build rule for target.
+test_yaml_write_string: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_yaml_write_string
+.PHONY : test_yaml_write_string
+
+# fast build rule for target.
+test_yaml_write_string/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/build
+.PHONY : test_yaml_write_string/fast
 
 #=============================================================================
 # Target rules for targets named example_json_creation
@@ -2157,29 +2287,101 @@ tests/test_yaml_arrays.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_arrays.dir/build.make CMakeFiles/test_yaml_arrays.dir/tests/test_yaml_arrays.c.s
 .PHONY : tests/test_yaml_arrays.c.s
 
-tests/test_yaml_basic_scalars.o: tests/test_yaml_basic_scalars.c.o
-.PHONY : tests/test_yaml_basic_scalars.o
+tests/test_yaml_boolean.o: tests/test_yaml_boolean.c.o
+.PHONY : tests/test_yaml_boolean.o
 
 # target to build an object file
-tests/test_yaml_basic_scalars.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/tests/test_yaml_basic_scalars.c.o
-.PHONY : tests/test_yaml_basic_scalars.c.o
+tests/test_yaml_boolean.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/tests/test_yaml_boolean.c.o
+.PHONY : tests/test_yaml_boolean.c.o
 
-tests/test_yaml_basic_scalars.i: tests/test_yaml_basic_scalars.c.i
-.PHONY : tests/test_yaml_basic_scalars.i
+tests/test_yaml_boolean.i: tests/test_yaml_boolean.c.i
+.PHONY : tests/test_yaml_boolean.i
 
 # target to preprocess a source file
-tests/test_yaml_basic_scalars.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/tests/test_yaml_basic_scalars.c.i
-.PHONY : tests/test_yaml_basic_scalars.c.i
+tests/test_yaml_boolean.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/tests/test_yaml_boolean.c.i
+.PHONY : tests/test_yaml_boolean.c.i
 
-tests/test_yaml_basic_scalars.s: tests/test_yaml_basic_scalars.c.s
-.PHONY : tests/test_yaml_basic_scalars.s
+tests/test_yaml_boolean.s: tests/test_yaml_boolean.c.s
+.PHONY : tests/test_yaml_boolean.s
 
 # target to generate assembly for a file
-tests/test_yaml_basic_scalars.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/tests/test_yaml_basic_scalars.c.s
-.PHONY : tests/test_yaml_basic_scalars.c.s
+tests/test_yaml_boolean.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/tests/test_yaml_boolean.c.s
+.PHONY : tests/test_yaml_boolean.c.s
+
+tests/test_yaml_booleans.o: tests/test_yaml_booleans.c.o
+.PHONY : tests/test_yaml_booleans.o
+
+# target to build an object file
+tests/test_yaml_booleans.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/tests/test_yaml_booleans.c.o
+.PHONY : tests/test_yaml_booleans.c.o
+
+tests/test_yaml_booleans.i: tests/test_yaml_booleans.c.i
+.PHONY : tests/test_yaml_booleans.i
+
+# target to preprocess a source file
+tests/test_yaml_booleans.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/tests/test_yaml_booleans.c.i
+.PHONY : tests/test_yaml_booleans.c.i
+
+tests/test_yaml_booleans.s: tests/test_yaml_booleans.c.s
+.PHONY : tests/test_yaml_booleans.s
+
+# target to generate assembly for a file
+tests/test_yaml_booleans.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/tests/test_yaml_booleans.c.s
+.PHONY : tests/test_yaml_booleans.c.s
+
+tests/test_yaml_comments.o: tests/test_yaml_comments.c.o
+.PHONY : tests/test_yaml_comments.o
+
+# target to build an object file
+tests/test_yaml_comments.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/tests/test_yaml_comments.c.o
+.PHONY : tests/test_yaml_comments.c.o
+
+tests/test_yaml_comments.i: tests/test_yaml_comments.c.i
+.PHONY : tests/test_yaml_comments.i
+
+# target to preprocess a source file
+tests/test_yaml_comments.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/tests/test_yaml_comments.c.i
+.PHONY : tests/test_yaml_comments.c.i
+
+tests/test_yaml_comments.s: tests/test_yaml_comments.c.s
+.PHONY : tests/test_yaml_comments.s
+
+# target to generate assembly for a file
+tests/test_yaml_comments.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/tests/test_yaml_comments.c.s
+.PHONY : tests/test_yaml_comments.c.s
+
+tests/test_yaml_empty.o: tests/test_yaml_empty.c.o
+.PHONY : tests/test_yaml_empty.o
+
+# target to build an object file
+tests/test_yaml_empty.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/tests/test_yaml_empty.c.o
+.PHONY : tests/test_yaml_empty.c.o
+
+tests/test_yaml_empty.i: tests/test_yaml_empty.c.i
+.PHONY : tests/test_yaml_empty.i
+
+# target to preprocess a source file
+tests/test_yaml_empty.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/tests/test_yaml_empty.c.i
+.PHONY : tests/test_yaml_empty.c.i
+
+tests/test_yaml_empty.s: tests/test_yaml_empty.c.s
+.PHONY : tests/test_yaml_empty.s
+
+# target to generate assembly for a file
+tests/test_yaml_empty.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/tests/test_yaml_empty.c.s
+.PHONY : tests/test_yaml_empty.c.s
 
 tests/test_yaml_error_handling.o: tests/test_yaml_error_handling.c.o
 .PHONY : tests/test_yaml_error_handling.o
@@ -2205,29 +2407,77 @@ tests/test_yaml_error_handling.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_error_handling.dir/build.make CMakeFiles/test_yaml_error_handling.dir/tests/test_yaml_error_handling.c.s
 .PHONY : tests/test_yaml_error_handling.c.s
 
-tests/test_yaml_features.o: tests/test_yaml_features.c.o
-.PHONY : tests/test_yaml_features.o
+tests/test_yaml_mixed.o: tests/test_yaml_mixed.c.o
+.PHONY : tests/test_yaml_mixed.o
 
 # target to build an object file
-tests/test_yaml_features.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/tests/test_yaml_features.c.o
-.PHONY : tests/test_yaml_features.c.o
+tests/test_yaml_mixed.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/tests/test_yaml_mixed.c.o
+.PHONY : tests/test_yaml_mixed.c.o
 
-tests/test_yaml_features.i: tests/test_yaml_features.c.i
-.PHONY : tests/test_yaml_features.i
+tests/test_yaml_mixed.i: tests/test_yaml_mixed.c.i
+.PHONY : tests/test_yaml_mixed.i
 
 # target to preprocess a source file
-tests/test_yaml_features.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/tests/test_yaml_features.c.i
-.PHONY : tests/test_yaml_features.c.i
+tests/test_yaml_mixed.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/tests/test_yaml_mixed.c.i
+.PHONY : tests/test_yaml_mixed.c.i
 
-tests/test_yaml_features.s: tests/test_yaml_features.c.s
-.PHONY : tests/test_yaml_features.s
+tests/test_yaml_mixed.s: tests/test_yaml_mixed.c.s
+.PHONY : tests/test_yaml_mixed.s
 
 # target to generate assembly for a file
-tests/test_yaml_features.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/tests/test_yaml_features.c.s
-.PHONY : tests/test_yaml_features.c.s
+tests/test_yaml_mixed.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/tests/test_yaml_mixed.c.s
+.PHONY : tests/test_yaml_mixed.c.s
+
+tests/test_yaml_null.o: tests/test_yaml_null.c.o
+.PHONY : tests/test_yaml_null.o
+
+# target to build an object file
+tests/test_yaml_null.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/tests/test_yaml_null.c.o
+.PHONY : tests/test_yaml_null.c.o
+
+tests/test_yaml_null.i: tests/test_yaml_null.c.i
+.PHONY : tests/test_yaml_null.i
+
+# target to preprocess a source file
+tests/test_yaml_null.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/tests/test_yaml_null.c.i
+.PHONY : tests/test_yaml_null.c.i
+
+tests/test_yaml_null.s: tests/test_yaml_null.c.s
+.PHONY : tests/test_yaml_null.s
+
+# target to generate assembly for a file
+tests/test_yaml_null.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/tests/test_yaml_null.c.s
+.PHONY : tests/test_yaml_null.c.s
+
+tests/test_yaml_number.o: tests/test_yaml_number.c.o
+.PHONY : tests/test_yaml_number.o
+
+# target to build an object file
+tests/test_yaml_number.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/tests/test_yaml_number.c.o
+.PHONY : tests/test_yaml_number.c.o
+
+tests/test_yaml_number.i: tests/test_yaml_number.c.i
+.PHONY : tests/test_yaml_number.i
+
+# target to preprocess a source file
+tests/test_yaml_number.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/tests/test_yaml_number.c.i
+.PHONY : tests/test_yaml_number.c.i
+
+tests/test_yaml_number.s: tests/test_yaml_number.c.s
+.PHONY : tests/test_yaml_number.s
+
+# target to generate assembly for a file
+tests/test_yaml_number.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/tests/test_yaml_number.c.s
+.PHONY : tests/test_yaml_number.c.s
 
 tests/test_yaml_objects.o: tests/test_yaml_objects.c.o
 .PHONY : tests/test_yaml_objects.o
@@ -2277,29 +2527,149 @@ tests/test_yaml_roundtrip.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_roundtrip.dir/build.make CMakeFiles/test_yaml_roundtrip.dir/tests/test_yaml_roundtrip.c.s
 .PHONY : tests/test_yaml_roundtrip.c.s
 
-tests/test_yaml_write.o: tests/test_yaml_write.c.o
-.PHONY : tests/test_yaml_write.o
+tests/test_yaml_string.o: tests/test_yaml_string.c.o
+.PHONY : tests/test_yaml_string.o
 
 # target to build an object file
-tests/test_yaml_write.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/tests/test_yaml_write.c.o
-.PHONY : tests/test_yaml_write.c.o
+tests/test_yaml_string.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/tests/test_yaml_string.c.o
+.PHONY : tests/test_yaml_string.c.o
 
-tests/test_yaml_write.i: tests/test_yaml_write.c.i
-.PHONY : tests/test_yaml_write.i
+tests/test_yaml_string.i: tests/test_yaml_string.c.i
+.PHONY : tests/test_yaml_string.i
 
 # target to preprocess a source file
-tests/test_yaml_write.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/tests/test_yaml_write.c.i
-.PHONY : tests/test_yaml_write.c.i
+tests/test_yaml_string.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/tests/test_yaml_string.c.i
+.PHONY : tests/test_yaml_string.c.i
 
-tests/test_yaml_write.s: tests/test_yaml_write.c.s
-.PHONY : tests/test_yaml_write.s
+tests/test_yaml_string.s: tests/test_yaml_string.c.s
+.PHONY : tests/test_yaml_string.s
 
 # target to generate assembly for a file
-tests/test_yaml_write.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/tests/test_yaml_write.c.s
-.PHONY : tests/test_yaml_write.c.s
+tests/test_yaml_string.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/tests/test_yaml_string.c.s
+.PHONY : tests/test_yaml_string.c.s
+
+tests/test_yaml_strings.o: tests/test_yaml_strings.c.o
+.PHONY : tests/test_yaml_strings.o
+
+# target to build an object file
+tests/test_yaml_strings.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/tests/test_yaml_strings.c.o
+.PHONY : tests/test_yaml_strings.c.o
+
+tests/test_yaml_strings.i: tests/test_yaml_strings.c.i
+.PHONY : tests/test_yaml_strings.i
+
+# target to preprocess a source file
+tests/test_yaml_strings.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/tests/test_yaml_strings.c.i
+.PHONY : tests/test_yaml_strings.c.i
+
+tests/test_yaml_strings.s: tests/test_yaml_strings.c.s
+.PHONY : tests/test_yaml_strings.s
+
+# target to generate assembly for a file
+tests/test_yaml_strings.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/tests/test_yaml_strings.c.s
+.PHONY : tests/test_yaml_strings.c.s
+
+tests/test_yaml_write_boolean.o: tests/test_yaml_write_boolean.c.o
+.PHONY : tests/test_yaml_write_boolean.o
+
+# target to build an object file
+tests/test_yaml_write_boolean.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/tests/test_yaml_write_boolean.c.o
+.PHONY : tests/test_yaml_write_boolean.c.o
+
+tests/test_yaml_write_boolean.i: tests/test_yaml_write_boolean.c.i
+.PHONY : tests/test_yaml_write_boolean.i
+
+# target to preprocess a source file
+tests/test_yaml_write_boolean.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/tests/test_yaml_write_boolean.c.i
+.PHONY : tests/test_yaml_write_boolean.c.i
+
+tests/test_yaml_write_boolean.s: tests/test_yaml_write_boolean.c.s
+.PHONY : tests/test_yaml_write_boolean.s
+
+# target to generate assembly for a file
+tests/test_yaml_write_boolean.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/tests/test_yaml_write_boolean.c.s
+.PHONY : tests/test_yaml_write_boolean.c.s
+
+tests/test_yaml_write_null.o: tests/test_yaml_write_null.c.o
+.PHONY : tests/test_yaml_write_null.o
+
+# target to build an object file
+tests/test_yaml_write_null.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/tests/test_yaml_write_null.c.o
+.PHONY : tests/test_yaml_write_null.c.o
+
+tests/test_yaml_write_null.i: tests/test_yaml_write_null.c.i
+.PHONY : tests/test_yaml_write_null.i
+
+# target to preprocess a source file
+tests/test_yaml_write_null.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/tests/test_yaml_write_null.c.i
+.PHONY : tests/test_yaml_write_null.c.i
+
+tests/test_yaml_write_null.s: tests/test_yaml_write_null.c.s
+.PHONY : tests/test_yaml_write_null.s
+
+# target to generate assembly for a file
+tests/test_yaml_write_null.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/tests/test_yaml_write_null.c.s
+.PHONY : tests/test_yaml_write_null.c.s
+
+tests/test_yaml_write_number.o: tests/test_yaml_write_number.c.o
+.PHONY : tests/test_yaml_write_number.o
+
+# target to build an object file
+tests/test_yaml_write_number.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/tests/test_yaml_write_number.c.o
+.PHONY : tests/test_yaml_write_number.c.o
+
+tests/test_yaml_write_number.i: tests/test_yaml_write_number.c.i
+.PHONY : tests/test_yaml_write_number.i
+
+# target to preprocess a source file
+tests/test_yaml_write_number.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/tests/test_yaml_write_number.c.i
+.PHONY : tests/test_yaml_write_number.c.i
+
+tests/test_yaml_write_number.s: tests/test_yaml_write_number.c.s
+.PHONY : tests/test_yaml_write_number.s
+
+# target to generate assembly for a file
+tests/test_yaml_write_number.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/tests/test_yaml_write_number.c.s
+.PHONY : tests/test_yaml_write_number.c.s
+
+tests/test_yaml_write_string.o: tests/test_yaml_write_string.c.o
+.PHONY : tests/test_yaml_write_string.o
+
+# target to build an object file
+tests/test_yaml_write_string.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/tests/test_yaml_write_string.c.o
+.PHONY : tests/test_yaml_write_string.c.o
+
+tests/test_yaml_write_string.i: tests/test_yaml_write_string.c.i
+.PHONY : tests/test_yaml_write_string.i
+
+# target to preprocess a source file
+tests/test_yaml_write_string.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/tests/test_yaml_write_string.c.i
+.PHONY : tests/test_yaml_write_string.c.i
+
+tests/test_yaml_write_string.s: tests/test_yaml_write_string.c.s
+.PHONY : tests/test_yaml_write_string.s
+
+# target to generate assembly for a file
+tests/test_yaml_write_string.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/tests/test_yaml_write_string.c.s
+.PHONY : tests/test_yaml_write_string.c.s
 
 # Help Target
 help:
@@ -2355,12 +2725,22 @@ help:
 	@echo "... test_json_type_checking"
 	@echo "... test_json_write_read"
 	@echo "... test_yaml_arrays"
-	@echo "... test_yaml_basic_scalars"
+	@echo "... test_yaml_boolean"
+	@echo "... test_yaml_booleans"
+	@echo "... test_yaml_comments"
+	@echo "... test_yaml_empty"
 	@echo "... test_yaml_error_handling"
-	@echo "... test_yaml_features"
+	@echo "... test_yaml_mixed"
+	@echo "... test_yaml_null"
+	@echo "... test_yaml_number"
 	@echo "... test_yaml_objects"
 	@echo "... test_yaml_roundtrip"
-	@echo "... test_yaml_write"
+	@echo "... test_yaml_string"
+	@echo "... test_yaml_strings"
+	@echo "... test_yaml_write_boolean"
+	@echo "... test_yaml_write_null"
+	@echo "... test_yaml_write_number"
+	@echo "... test_yaml_write_string"
 	@echo "... examples/example_json_creation.o"
 	@echo "... examples/example_json_creation.i"
 	@echo "... examples/example_json_creation.s"
@@ -2532,24 +2912,54 @@ help:
 	@echo "... tests/test_yaml_arrays.o"
 	@echo "... tests/test_yaml_arrays.i"
 	@echo "... tests/test_yaml_arrays.s"
-	@echo "... tests/test_yaml_basic_scalars.o"
-	@echo "... tests/test_yaml_basic_scalars.i"
-	@echo "... tests/test_yaml_basic_scalars.s"
+	@echo "... tests/test_yaml_boolean.o"
+	@echo "... tests/test_yaml_boolean.i"
+	@echo "... tests/test_yaml_boolean.s"
+	@echo "... tests/test_yaml_booleans.o"
+	@echo "... tests/test_yaml_booleans.i"
+	@echo "... tests/test_yaml_booleans.s"
+	@echo "... tests/test_yaml_comments.o"
+	@echo "... tests/test_yaml_comments.i"
+	@echo "... tests/test_yaml_comments.s"
+	@echo "... tests/test_yaml_empty.o"
+	@echo "... tests/test_yaml_empty.i"
+	@echo "... tests/test_yaml_empty.s"
 	@echo "... tests/test_yaml_error_handling.o"
 	@echo "... tests/test_yaml_error_handling.i"
 	@echo "... tests/test_yaml_error_handling.s"
-	@echo "... tests/test_yaml_features.o"
-	@echo "... tests/test_yaml_features.i"
-	@echo "... tests/test_yaml_features.s"
+	@echo "... tests/test_yaml_mixed.o"
+	@echo "... tests/test_yaml_mixed.i"
+	@echo "... tests/test_yaml_mixed.s"
+	@echo "... tests/test_yaml_null.o"
+	@echo "... tests/test_yaml_null.i"
+	@echo "... tests/test_yaml_null.s"
+	@echo "... tests/test_yaml_number.o"
+	@echo "... tests/test_yaml_number.i"
+	@echo "... tests/test_yaml_number.s"
 	@echo "... tests/test_yaml_objects.o"
 	@echo "... tests/test_yaml_objects.i"
 	@echo "... tests/test_yaml_objects.s"
 	@echo "... tests/test_yaml_roundtrip.o"
 	@echo "... tests/test_yaml_roundtrip.i"
 	@echo "... tests/test_yaml_roundtrip.s"
-	@echo "... tests/test_yaml_write.o"
-	@echo "... tests/test_yaml_write.i"
-	@echo "... tests/test_yaml_write.s"
+	@echo "... tests/test_yaml_string.o"
+	@echo "... tests/test_yaml_string.i"
+	@echo "... tests/test_yaml_string.s"
+	@echo "... tests/test_yaml_strings.o"
+	@echo "... tests/test_yaml_strings.i"
+	@echo "... tests/test_yaml_strings.s"
+	@echo "... tests/test_yaml_write_boolean.o"
+	@echo "... tests/test_yaml_write_boolean.i"
+	@echo "... tests/test_yaml_write_boolean.s"
+	@echo "... tests/test_yaml_write_null.o"
+	@echo "... tests/test_yaml_write_null.i"
+	@echo "... tests/test_yaml_write_null.s"
+	@echo "... tests/test_yaml_write_number.o"
+	@echo "... tests/test_yaml_write_number.i"
+	@echo "... tests/test_yaml_write_number.s"
+	@echo "... tests/test_yaml_write_string.o"
+	@echo "... tests/test_yaml_write_string.i"
+	@echo "... tests/test_yaml_write_string.s"
 .PHONY : help
 
 

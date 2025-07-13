@@ -105,12 +105,22 @@ all: CMakeFiles/test_json_true.dir/all
 all: CMakeFiles/test_json_type_checking.dir/all
 all: CMakeFiles/test_json_write_read.dir/all
 all: CMakeFiles/test_yaml_arrays.dir/all
-all: CMakeFiles/test_yaml_basic_scalars.dir/all
+all: CMakeFiles/test_yaml_boolean.dir/all
+all: CMakeFiles/test_yaml_booleans.dir/all
+all: CMakeFiles/test_yaml_comments.dir/all
+all: CMakeFiles/test_yaml_empty.dir/all
 all: CMakeFiles/test_yaml_error_handling.dir/all
-all: CMakeFiles/test_yaml_features.dir/all
+all: CMakeFiles/test_yaml_mixed.dir/all
+all: CMakeFiles/test_yaml_null.dir/all
+all: CMakeFiles/test_yaml_number.dir/all
 all: CMakeFiles/test_yaml_objects.dir/all
 all: CMakeFiles/test_yaml_roundtrip.dir/all
-all: CMakeFiles/test_yaml_write.dir/all
+all: CMakeFiles/test_yaml_string.dir/all
+all: CMakeFiles/test_yaml_strings.dir/all
+all: CMakeFiles/test_yaml_write_boolean.dir/all
+all: CMakeFiles/test_yaml_write_null.dir/all
+all: CMakeFiles/test_yaml_write_number.dir/all
+all: CMakeFiles/test_yaml_write_string.dir/all
 all: CMakeFiles/example_json_creation.dir/all
 all: CMakeFiles/example_json_manipulation.dir/all
 all: CMakeFiles/example_json_read.dir/all
@@ -159,12 +169,22 @@ codegen: CMakeFiles/test_json_true.dir/codegen
 codegen: CMakeFiles/test_json_type_checking.dir/codegen
 codegen: CMakeFiles/test_json_write_read.dir/codegen
 codegen: CMakeFiles/test_yaml_arrays.dir/codegen
-codegen: CMakeFiles/test_yaml_basic_scalars.dir/codegen
+codegen: CMakeFiles/test_yaml_boolean.dir/codegen
+codegen: CMakeFiles/test_yaml_booleans.dir/codegen
+codegen: CMakeFiles/test_yaml_comments.dir/codegen
+codegen: CMakeFiles/test_yaml_empty.dir/codegen
 codegen: CMakeFiles/test_yaml_error_handling.dir/codegen
-codegen: CMakeFiles/test_yaml_features.dir/codegen
+codegen: CMakeFiles/test_yaml_mixed.dir/codegen
+codegen: CMakeFiles/test_yaml_null.dir/codegen
+codegen: CMakeFiles/test_yaml_number.dir/codegen
 codegen: CMakeFiles/test_yaml_objects.dir/codegen
 codegen: CMakeFiles/test_yaml_roundtrip.dir/codegen
-codegen: CMakeFiles/test_yaml_write.dir/codegen
+codegen: CMakeFiles/test_yaml_string.dir/codegen
+codegen: CMakeFiles/test_yaml_strings.dir/codegen
+codegen: CMakeFiles/test_yaml_write_boolean.dir/codegen
+codegen: CMakeFiles/test_yaml_write_null.dir/codegen
+codegen: CMakeFiles/test_yaml_write_number.dir/codegen
+codegen: CMakeFiles/test_yaml_write_string.dir/codegen
 codegen: CMakeFiles/example_json_creation.dir/codegen
 codegen: CMakeFiles/example_json_manipulation.dir/codegen
 codegen: CMakeFiles/example_json_read.dir/codegen
@@ -217,12 +237,22 @@ clean: CMakeFiles/test_json_true.dir/clean
 clean: CMakeFiles/test_json_type_checking.dir/clean
 clean: CMakeFiles/test_json_write_read.dir/clean
 clean: CMakeFiles/test_yaml_arrays.dir/clean
-clean: CMakeFiles/test_yaml_basic_scalars.dir/clean
+clean: CMakeFiles/test_yaml_boolean.dir/clean
+clean: CMakeFiles/test_yaml_booleans.dir/clean
+clean: CMakeFiles/test_yaml_comments.dir/clean
+clean: CMakeFiles/test_yaml_empty.dir/clean
 clean: CMakeFiles/test_yaml_error_handling.dir/clean
-clean: CMakeFiles/test_yaml_features.dir/clean
+clean: CMakeFiles/test_yaml_mixed.dir/clean
+clean: CMakeFiles/test_yaml_null.dir/clean
+clean: CMakeFiles/test_yaml_number.dir/clean
 clean: CMakeFiles/test_yaml_objects.dir/clean
 clean: CMakeFiles/test_yaml_roundtrip.dir/clean
-clean: CMakeFiles/test_yaml_write.dir/clean
+clean: CMakeFiles/test_yaml_string.dir/clean
+clean: CMakeFiles/test_yaml_strings.dir/clean
+clean: CMakeFiles/test_yaml_write_boolean.dir/clean
+clean: CMakeFiles/test_yaml_write_null.dir/clean
+clean: CMakeFiles/test_yaml_write_number.dir/clean
+clean: CMakeFiles/test_yaml_write_string.dir/clean
 clean: CMakeFiles/example_json_creation.dir/clean
 clean: CMakeFiles/example_json_manipulation.dir/clean
 clean: CMakeFiles/example_json_read.dir/clean
@@ -235,12 +265,12 @@ clean: CMakeFiles/example_json_read.dir/clean
 CMakeFiles/json.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/json.dir/build.make CMakeFiles/json.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/json.dir/build.make CMakeFiles/json.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16,17 "Built target json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14 "Built target json"
 .PHONY : CMakeFiles/json.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/json.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/json.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/json.dir/rule
@@ -252,7 +282,7 @@ json: CMakeFiles/json.dir/rule
 # codegen rule for target.
 CMakeFiles/json.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/json.dir/build.make CMakeFiles/json.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16,17 "Finished codegen for target json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14 "Finished codegen for target json"
 .PHONY : CMakeFiles/json.dir/codegen
 
 # clean rule for target.
@@ -267,12 +297,12 @@ CMakeFiles/json.dir/clean:
 CMakeFiles/old_test_json_array_manipulation.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_array_manipulation.dir/build.make CMakeFiles/old_test_json_array_manipulation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_array_manipulation.dir/build.make CMakeFiles/old_test_json_array_manipulation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=18,19 "Built target old_test_json_array_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=15,16 "Built target old_test_json_array_manipulation"
 .PHONY : CMakeFiles/old_test_json_array_manipulation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/old_test_json_array_manipulation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/old_test_json_array_manipulation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/old_test_json_array_manipulation.dir/rule
@@ -284,7 +314,7 @@ old_test_json_array_manipulation: CMakeFiles/old_test_json_array_manipulation.di
 # codegen rule for target.
 CMakeFiles/old_test_json_array_manipulation.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_array_manipulation.dir/build.make CMakeFiles/old_test_json_array_manipulation.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=18,19 "Finished codegen for target old_test_json_array_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=15,16 "Finished codegen for target old_test_json_array_manipulation"
 .PHONY : CMakeFiles/old_test_json_array_manipulation.dir/codegen
 
 # clean rule for target.
@@ -299,12 +329,12 @@ CMakeFiles/old_test_json_array_manipulation.dir/clean:
 CMakeFiles/old_test_json_object_manipulation.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_object_manipulation.dir/build.make CMakeFiles/old_test_json_object_manipulation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_object_manipulation.dir/build.make CMakeFiles/old_test_json_object_manipulation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=20,21 "Built target old_test_json_object_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=17 "Built target old_test_json_object_manipulation"
 .PHONY : CMakeFiles/old_test_json_object_manipulation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/old_test_json_object_manipulation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/old_test_json_object_manipulation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/old_test_json_object_manipulation.dir/rule
@@ -316,7 +346,7 @@ old_test_json_object_manipulation: CMakeFiles/old_test_json_object_manipulation.
 # codegen rule for target.
 CMakeFiles/old_test_json_object_manipulation.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_object_manipulation.dir/build.make CMakeFiles/old_test_json_object_manipulation.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=20,21 "Finished codegen for target old_test_json_object_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=17 "Finished codegen for target old_test_json_object_manipulation"
 .PHONY : CMakeFiles/old_test_json_object_manipulation.dir/codegen
 
 # clean rule for target.
@@ -331,12 +361,12 @@ CMakeFiles/old_test_json_object_manipulation.dir/clean:
 CMakeFiles/old_test_json_string_escape.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_string_escape.dir/build.make CMakeFiles/old_test_json_string_escape.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_string_escape.dir/build.make CMakeFiles/old_test_json_string_escape.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=22 "Built target old_test_json_string_escape"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=18,19 "Built target old_test_json_string_escape"
 .PHONY : CMakeFiles/old_test_json_string_escape.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/old_test_json_string_escape.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/old_test_json_string_escape.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/old_test_json_string_escape.dir/rule
@@ -348,7 +378,7 @@ old_test_json_string_escape: CMakeFiles/old_test_json_string_escape.dir/rule
 # codegen rule for target.
 CMakeFiles/old_test_json_string_escape.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/old_test_json_string_escape.dir/build.make CMakeFiles/old_test_json_string_escape.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=22 "Finished codegen for target old_test_json_string_escape"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=18,19 "Finished codegen for target old_test_json_string_escape"
 .PHONY : CMakeFiles/old_test_json_string_escape.dir/codegen
 
 # clean rule for target.
@@ -363,12 +393,12 @@ CMakeFiles/old_test_json_string_escape.dir/clean:
 CMakeFiles/test_json5_comments.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_comments.dir/build.make CMakeFiles/test_json5_comments.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_comments.dir/build.make CMakeFiles/test_json5_comments.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=23,24 "Built target test_json5_comments"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=20 "Built target test_json5_comments"
 .PHONY : CMakeFiles/test_json5_comments.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_comments.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_comments.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_comments.dir/rule
@@ -380,7 +410,7 @@ test_json5_comments: CMakeFiles/test_json5_comments.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_comments.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_comments.dir/build.make CMakeFiles/test_json5_comments.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=23,24 "Finished codegen for target test_json5_comments"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=20 "Finished codegen for target test_json5_comments"
 .PHONY : CMakeFiles/test_json5_comments.dir/codegen
 
 # clean rule for target.
@@ -395,12 +425,12 @@ CMakeFiles/test_json5_comments.dir/clean:
 CMakeFiles/test_json5_compatibility.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_compatibility.dir/build.make CMakeFiles/test_json5_compatibility.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_compatibility.dir/build.make CMakeFiles/test_json5_compatibility.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=25,26 "Built target test_json5_compatibility"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=21,22 "Built target test_json5_compatibility"
 .PHONY : CMakeFiles/test_json5_compatibility.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_compatibility.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_compatibility.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_compatibility.dir/rule
@@ -412,7 +442,7 @@ test_json5_compatibility: CMakeFiles/test_json5_compatibility.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_compatibility.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_compatibility.dir/build.make CMakeFiles/test_json5_compatibility.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=25,26 "Finished codegen for target test_json5_compatibility"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=21,22 "Finished codegen for target test_json5_compatibility"
 .PHONY : CMakeFiles/test_json5_compatibility.dir/codegen
 
 # clean rule for target.
@@ -427,12 +457,12 @@ CMakeFiles/test_json5_compatibility.dir/clean:
 CMakeFiles/test_json5_complex_identifiers.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_complex_identifiers.dir/build.make CMakeFiles/test_json5_complex_identifiers.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_complex_identifiers.dir/build.make CMakeFiles/test_json5_complex_identifiers.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=27,28 "Built target test_json5_complex_identifiers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=23 "Built target test_json5_complex_identifiers"
 .PHONY : CMakeFiles/test_json5_complex_identifiers.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_complex_identifiers.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_complex_identifiers.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_complex_identifiers.dir/rule
@@ -444,7 +474,7 @@ test_json5_complex_identifiers: CMakeFiles/test_json5_complex_identifiers.dir/ru
 # codegen rule for target.
 CMakeFiles/test_json5_complex_identifiers.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_complex_identifiers.dir/build.make CMakeFiles/test_json5_complex_identifiers.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=27,28 "Finished codegen for target test_json5_complex_identifiers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=23 "Finished codegen for target test_json5_complex_identifiers"
 .PHONY : CMakeFiles/test_json5_complex_identifiers.dir/codegen
 
 # clean rule for target.
@@ -459,12 +489,12 @@ CMakeFiles/test_json5_complex_identifiers.dir/clean:
 CMakeFiles/test_json5_empty_input.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_empty_input.dir/build.make CMakeFiles/test_json5_empty_input.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_empty_input.dir/build.make CMakeFiles/test_json5_empty_input.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=29 "Built target test_json5_empty_input"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=24,25 "Built target test_json5_empty_input"
 .PHONY : CMakeFiles/test_json5_empty_input.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_empty_input.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_empty_input.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_empty_input.dir/rule
@@ -476,7 +506,7 @@ test_json5_empty_input: CMakeFiles/test_json5_empty_input.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_empty_input.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_empty_input.dir/build.make CMakeFiles/test_json5_empty_input.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=29 "Finished codegen for target test_json5_empty_input"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=24,25 "Finished codegen for target test_json5_empty_input"
 .PHONY : CMakeFiles/test_json5_empty_input.dir/codegen
 
 # clean rule for target.
@@ -491,12 +521,12 @@ CMakeFiles/test_json5_empty_input.dir/clean:
 CMakeFiles/test_json5_file.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_file.dir/build.make CMakeFiles/test_json5_file.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_file.dir/build.make CMakeFiles/test_json5_file.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=30,31 "Built target test_json5_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=26 "Built target test_json5_file"
 .PHONY : CMakeFiles/test_json5_file.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_file.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_file.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_file.dir/rule
@@ -508,7 +538,7 @@ test_json5_file: CMakeFiles/test_json5_file.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_file.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_file.dir/build.make CMakeFiles/test_json5_file.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=30,31 "Finished codegen for target test_json5_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=26 "Finished codegen for target test_json5_file"
 .PHONY : CMakeFiles/test_json5_file.dir/codegen
 
 # clean rule for target.
@@ -523,12 +553,12 @@ CMakeFiles/test_json5_file.dir/clean:
 CMakeFiles/test_json5_keywords.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_keywords.dir/build.make CMakeFiles/test_json5_keywords.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_keywords.dir/build.make CMakeFiles/test_json5_keywords.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=32,33 "Built target test_json5_keywords"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=27,28 "Built target test_json5_keywords"
 .PHONY : CMakeFiles/test_json5_keywords.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_keywords.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_keywords.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_keywords.dir/rule
@@ -540,7 +570,7 @@ test_json5_keywords: CMakeFiles/test_json5_keywords.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_keywords.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_keywords.dir/build.make CMakeFiles/test_json5_keywords.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=32,33 "Finished codegen for target test_json5_keywords"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=27,28 "Finished codegen for target test_json5_keywords"
 .PHONY : CMakeFiles/test_json5_keywords.dir/codegen
 
 # clean rule for target.
@@ -555,12 +585,12 @@ CMakeFiles/test_json5_keywords.dir/clean:
 CMakeFiles/test_json5_mixed_features.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_mixed_features.dir/build.make CMakeFiles/test_json5_mixed_features.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_mixed_features.dir/build.make CMakeFiles/test_json5_mixed_features.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=34,35 "Built target test_json5_mixed_features"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=29 "Built target test_json5_mixed_features"
 .PHONY : CMakeFiles/test_json5_mixed_features.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_mixed_features.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_mixed_features.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_mixed_features.dir/rule
@@ -572,7 +602,7 @@ test_json5_mixed_features: CMakeFiles/test_json5_mixed_features.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_mixed_features.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_mixed_features.dir/build.make CMakeFiles/test_json5_mixed_features.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=34,35 "Finished codegen for target test_json5_mixed_features"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=29 "Finished codegen for target test_json5_mixed_features"
 .PHONY : CMakeFiles/test_json5_mixed_features.dir/codegen
 
 # clean rule for target.
@@ -587,12 +617,12 @@ CMakeFiles/test_json5_mixed_features.dir/clean:
 CMakeFiles/test_json5_quote_mixing.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_quote_mixing.dir/build.make CMakeFiles/test_json5_quote_mixing.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_quote_mixing.dir/build.make CMakeFiles/test_json5_quote_mixing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=36 "Built target test_json5_quote_mixing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=30,31 "Built target test_json5_quote_mixing"
 .PHONY : CMakeFiles/test_json5_quote_mixing.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_quote_mixing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_quote_mixing.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_quote_mixing.dir/rule
@@ -604,7 +634,7 @@ test_json5_quote_mixing: CMakeFiles/test_json5_quote_mixing.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_quote_mixing.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_quote_mixing.dir/build.make CMakeFiles/test_json5_quote_mixing.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=36 "Finished codegen for target test_json5_quote_mixing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=30,31 "Finished codegen for target test_json5_quote_mixing"
 .PHONY : CMakeFiles/test_json5_quote_mixing.dir/codegen
 
 # clean rule for target.
@@ -619,12 +649,12 @@ CMakeFiles/test_json5_quote_mixing.dir/clean:
 CMakeFiles/test_json5_single_quotes.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_single_quotes.dir/build.make CMakeFiles/test_json5_single_quotes.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_single_quotes.dir/build.make CMakeFiles/test_json5_single_quotes.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=37,38 "Built target test_json5_single_quotes"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=32 "Built target test_json5_single_quotes"
 .PHONY : CMakeFiles/test_json5_single_quotes.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_single_quotes.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_single_quotes.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_single_quotes.dir/rule
@@ -636,7 +666,7 @@ test_json5_single_quotes: CMakeFiles/test_json5_single_quotes.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_single_quotes.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_single_quotes.dir/build.make CMakeFiles/test_json5_single_quotes.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=37,38 "Finished codegen for target test_json5_single_quotes"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=32 "Finished codegen for target test_json5_single_quotes"
 .PHONY : CMakeFiles/test_json5_single_quotes.dir/codegen
 
 # clean rule for target.
@@ -651,12 +681,12 @@ CMakeFiles/test_json5_single_quotes.dir/clean:
 CMakeFiles/test_json5_trailing_commas.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_trailing_commas.dir/build.make CMakeFiles/test_json5_trailing_commas.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_trailing_commas.dir/build.make CMakeFiles/test_json5_trailing_commas.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=39,40 "Built target test_json5_trailing_commas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=33,34 "Built target test_json5_trailing_commas"
 .PHONY : CMakeFiles/test_json5_trailing_commas.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_trailing_commas.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_trailing_commas.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_trailing_commas.dir/rule
@@ -668,7 +698,7 @@ test_json5_trailing_commas: CMakeFiles/test_json5_trailing_commas.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_trailing_commas.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_trailing_commas.dir/build.make CMakeFiles/test_json5_trailing_commas.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=39,40 "Finished codegen for target test_json5_trailing_commas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=33,34 "Finished codegen for target test_json5_trailing_commas"
 .PHONY : CMakeFiles/test_json5_trailing_commas.dir/codegen
 
 # clean rule for target.
@@ -683,12 +713,12 @@ CMakeFiles/test_json5_trailing_commas.dir/clean:
 CMakeFiles/test_json5_unquoted_keys.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_unquoted_keys.dir/build.make CMakeFiles/test_json5_unquoted_keys.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_unquoted_keys.dir/build.make CMakeFiles/test_json5_unquoted_keys.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=41,42 "Built target test_json5_unquoted_keys"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=35 "Built target test_json5_unquoted_keys"
 .PHONY : CMakeFiles/test_json5_unquoted_keys.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json5_unquoted_keys.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json5_unquoted_keys.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json5_unquoted_keys.dir/rule
@@ -700,7 +730,7 @@ test_json5_unquoted_keys: CMakeFiles/test_json5_unquoted_keys.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json5_unquoted_keys.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json5_unquoted_keys.dir/build.make CMakeFiles/test_json5_unquoted_keys.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=41,42 "Finished codegen for target test_json5_unquoted_keys"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=35 "Finished codegen for target test_json5_unquoted_keys"
 .PHONY : CMakeFiles/test_json5_unquoted_keys.dir/codegen
 
 # clean rule for target.
@@ -715,12 +745,12 @@ CMakeFiles/test_json5_unquoted_keys.dir/clean:
 CMakeFiles/test_json_array_elements.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_elements.dir/build.make CMakeFiles/test_json_array_elements.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_elements.dir/build.make CMakeFiles/test_json_array_elements.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=43 "Built target test_json_array_elements"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=36,37 "Built target test_json_array_elements"
 .PHONY : CMakeFiles/test_json_array_elements.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_array_elements.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_array_elements.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_array_elements.dir/rule
@@ -732,7 +762,7 @@ test_json_array_elements: CMakeFiles/test_json_array_elements.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_array_elements.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_elements.dir/build.make CMakeFiles/test_json_array_elements.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=43 "Finished codegen for target test_json_array_elements"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=36,37 "Finished codegen for target test_json_array_elements"
 .PHONY : CMakeFiles/test_json_array_elements.dir/codegen
 
 # clean rule for target.
@@ -747,12 +777,12 @@ CMakeFiles/test_json_array_elements.dir/clean:
 CMakeFiles/test_json_array_empty.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_empty.dir/build.make CMakeFiles/test_json_array_empty.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_empty.dir/build.make CMakeFiles/test_json_array_empty.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=44,45 "Built target test_json_array_empty"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=38 "Built target test_json_array_empty"
 .PHONY : CMakeFiles/test_json_array_empty.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_array_empty.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_array_empty.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_array_empty.dir/rule
@@ -764,7 +794,7 @@ test_json_array_empty: CMakeFiles/test_json_array_empty.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_array_empty.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_empty.dir/build.make CMakeFiles/test_json_array_empty.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=44,45 "Finished codegen for target test_json_array_empty"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=38 "Finished codegen for target test_json_array_empty"
 .PHONY : CMakeFiles/test_json_array_empty.dir/codegen
 
 # clean rule for target.
@@ -779,12 +809,12 @@ CMakeFiles/test_json_array_empty.dir/clean:
 CMakeFiles/test_json_array_push.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_push.dir/build.make CMakeFiles/test_json_array_push.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_push.dir/build.make CMakeFiles/test_json_array_push.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=46,47 "Built target test_json_array_push"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=39,40 "Built target test_json_array_push"
 .PHONY : CMakeFiles/test_json_array_push.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_array_push.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_array_push.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_array_push.dir/rule
@@ -796,7 +826,7 @@ test_json_array_push: CMakeFiles/test_json_array_push.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_array_push.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_array_push.dir/build.make CMakeFiles/test_json_array_push.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=46,47 "Finished codegen for target test_json_array_push"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=39,40 "Finished codegen for target test_json_array_push"
 .PHONY : CMakeFiles/test_json_array_push.dir/codegen
 
 # clean rule for target.
@@ -811,12 +841,12 @@ CMakeFiles/test_json_array_push.dir/clean:
 CMakeFiles/test_json_copy_complex.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_complex.dir/build.make CMakeFiles/test_json_copy_complex.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_complex.dir/build.make CMakeFiles/test_json_copy_complex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=48,49 "Built target test_json_copy_complex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=41 "Built target test_json_copy_complex"
 .PHONY : CMakeFiles/test_json_copy_complex.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_copy_complex.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_copy_complex.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_copy_complex.dir/rule
@@ -828,7 +858,7 @@ test_json_copy_complex: CMakeFiles/test_json_copy_complex.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_copy_complex.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_complex.dir/build.make CMakeFiles/test_json_copy_complex.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=48,49 "Finished codegen for target test_json_copy_complex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=41 "Finished codegen for target test_json_copy_complex"
 .PHONY : CMakeFiles/test_json_copy_complex.dir/codegen
 
 # clean rule for target.
@@ -843,12 +873,12 @@ CMakeFiles/test_json_copy_complex.dir/clean:
 CMakeFiles/test_json_copy_empty_array.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_array.dir/build.make CMakeFiles/test_json_copy_empty_array.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_array.dir/build.make CMakeFiles/test_json_copy_empty_array.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=50 "Built target test_json_copy_empty_array"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=42,43 "Built target test_json_copy_empty_array"
 .PHONY : CMakeFiles/test_json_copy_empty_array.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_copy_empty_array.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_copy_empty_array.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_copy_empty_array.dir/rule
@@ -860,7 +890,7 @@ test_json_copy_empty_array: CMakeFiles/test_json_copy_empty_array.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_copy_empty_array.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_array.dir/build.make CMakeFiles/test_json_copy_empty_array.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=50 "Finished codegen for target test_json_copy_empty_array"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=42,43 "Finished codegen for target test_json_copy_empty_array"
 .PHONY : CMakeFiles/test_json_copy_empty_array.dir/codegen
 
 # clean rule for target.
@@ -875,12 +905,12 @@ CMakeFiles/test_json_copy_empty_array.dir/clean:
 CMakeFiles/test_json_copy_empty_object.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_object.dir/build.make CMakeFiles/test_json_copy_empty_object.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_object.dir/build.make CMakeFiles/test_json_copy_empty_object.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=51,52 "Built target test_json_copy_empty_object"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=44 "Built target test_json_copy_empty_object"
 .PHONY : CMakeFiles/test_json_copy_empty_object.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_copy_empty_object.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_copy_empty_object.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_copy_empty_object.dir/rule
@@ -892,7 +922,7 @@ test_json_copy_empty_object: CMakeFiles/test_json_copy_empty_object.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_copy_empty_object.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_empty_object.dir/build.make CMakeFiles/test_json_copy_empty_object.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=51,52 "Finished codegen for target test_json_copy_empty_object"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=44 "Finished codegen for target test_json_copy_empty_object"
 .PHONY : CMakeFiles/test_json_copy_empty_object.dir/codegen
 
 # clean rule for target.
@@ -907,12 +937,12 @@ CMakeFiles/test_json_copy_empty_object.dir/clean:
 CMakeFiles/test_json_copy_object.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_object.dir/build.make CMakeFiles/test_json_copy_object.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_object.dir/build.make CMakeFiles/test_json_copy_object.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=53,54 "Built target test_json_copy_object"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=45,46 "Built target test_json_copy_object"
 .PHONY : CMakeFiles/test_json_copy_object.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_copy_object.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_copy_object.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_copy_object.dir/rule
@@ -924,7 +954,7 @@ test_json_copy_object: CMakeFiles/test_json_copy_object.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_copy_object.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_copy_object.dir/build.make CMakeFiles/test_json_copy_object.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=53,54 "Finished codegen for target test_json_copy_object"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=45,46 "Finished codegen for target test_json_copy_object"
 .PHONY : CMakeFiles/test_json_copy_object.dir/codegen
 
 # clean rule for target.
@@ -939,12 +969,12 @@ CMakeFiles/test_json_copy_object.dir/clean:
 CMakeFiles/test_json_default_errbuf_failure.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_failure.dir/build.make CMakeFiles/test_json_default_errbuf_failure.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_failure.dir/build.make CMakeFiles/test_json_default_errbuf_failure.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=55,56 "Built target test_json_default_errbuf_failure"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=47 "Built target test_json_default_errbuf_failure"
 .PHONY : CMakeFiles/test_json_default_errbuf_failure.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_default_errbuf_failure.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_default_errbuf_failure.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_default_errbuf_failure.dir/rule
@@ -956,7 +986,7 @@ test_json_default_errbuf_failure: CMakeFiles/test_json_default_errbuf_failure.di
 # codegen rule for target.
 CMakeFiles/test_json_default_errbuf_failure.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_failure.dir/build.make CMakeFiles/test_json_default_errbuf_failure.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=55,56 "Finished codegen for target test_json_default_errbuf_failure"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=47 "Finished codegen for target test_json_default_errbuf_failure"
 .PHONY : CMakeFiles/test_json_default_errbuf_failure.dir/codegen
 
 # clean rule for target.
@@ -971,12 +1001,12 @@ CMakeFiles/test_json_default_errbuf_failure.dir/clean:
 CMakeFiles/test_json_default_errbuf_success.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_success.dir/build.make CMakeFiles/test_json_default_errbuf_success.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_success.dir/build.make CMakeFiles/test_json_default_errbuf_success.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=57 "Built target test_json_default_errbuf_success"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=48,49 "Built target test_json_default_errbuf_success"
 .PHONY : CMakeFiles/test_json_default_errbuf_success.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_default_errbuf_success.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_default_errbuf_success.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_default_errbuf_success.dir/rule
@@ -988,7 +1018,7 @@ test_json_default_errbuf_success: CMakeFiles/test_json_default_errbuf_success.di
 # codegen rule for target.
 CMakeFiles/test_json_default_errbuf_success.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_default_errbuf_success.dir/build.make CMakeFiles/test_json_default_errbuf_success.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=57 "Finished codegen for target test_json_default_errbuf_success"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=48,49 "Finished codegen for target test_json_default_errbuf_success"
 .PHONY : CMakeFiles/test_json_default_errbuf_success.dir/codegen
 
 # clean rule for target.
@@ -1003,12 +1033,12 @@ CMakeFiles/test_json_default_errbuf_success.dir/clean:
 CMakeFiles/test_json_false.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_false.dir/build.make CMakeFiles/test_json_false.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_false.dir/build.make CMakeFiles/test_json_false.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=58,59 "Built target test_json_false"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=50 "Built target test_json_false"
 .PHONY : CMakeFiles/test_json_false.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_false.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_false.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_false.dir/rule
@@ -1020,7 +1050,7 @@ test_json_false: CMakeFiles/test_json_false.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_false.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_false.dir/build.make CMakeFiles/test_json_false.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=58,59 "Finished codegen for target test_json_false"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=50 "Finished codegen for target test_json_false"
 .PHONY : CMakeFiles/test_json_false.dir/codegen
 
 # clean rule for target.
@@ -1035,12 +1065,12 @@ CMakeFiles/test_json_false.dir/clean:
 CMakeFiles/test_json_null.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_null.dir/build.make CMakeFiles/test_json_null.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_null.dir/build.make CMakeFiles/test_json_null.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=60,61 "Built target test_json_null"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=51,52 "Built target test_json_null"
 .PHONY : CMakeFiles/test_json_null.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_null.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_null.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_null.dir/rule
@@ -1052,7 +1082,7 @@ test_json_null: CMakeFiles/test_json_null.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_null.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_null.dir/build.make CMakeFiles/test_json_null.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=60,61 "Finished codegen for target test_json_null"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=51,52 "Finished codegen for target test_json_null"
 .PHONY : CMakeFiles/test_json_null.dir/codegen
 
 # clean rule for target.
@@ -1067,12 +1097,12 @@ CMakeFiles/test_json_null.dir/clean:
 CMakeFiles/test_json_number.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number.dir/build.make CMakeFiles/test_json_number.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number.dir/build.make CMakeFiles/test_json_number.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=62,63 "Built target test_json_number"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=53 "Built target test_json_number"
 .PHONY : CMakeFiles/test_json_number.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_number.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_number.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_number.dir/rule
@@ -1084,7 +1114,7 @@ test_json_number: CMakeFiles/test_json_number.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_number.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number.dir/build.make CMakeFiles/test_json_number.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=62,63 "Finished codegen for target test_json_number"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=53 "Finished codegen for target test_json_number"
 .PHONY : CMakeFiles/test_json_number.dir/codegen
 
 # clean rule for target.
@@ -1099,12 +1129,12 @@ CMakeFiles/test_json_number.dir/clean:
 CMakeFiles/test_json_number_boundary.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number_boundary.dir/build.make CMakeFiles/test_json_number_boundary.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number_boundary.dir/build.make CMakeFiles/test_json_number_boundary.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=64 "Built target test_json_number_boundary"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=54,55 "Built target test_json_number_boundary"
 .PHONY : CMakeFiles/test_json_number_boundary.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_number_boundary.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_number_boundary.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_number_boundary.dir/rule
@@ -1116,7 +1146,7 @@ test_json_number_boundary: CMakeFiles/test_json_number_boundary.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_number_boundary.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_number_boundary.dir/build.make CMakeFiles/test_json_number_boundary.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=64 "Finished codegen for target test_json_number_boundary"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=54,55 "Finished codegen for target test_json_number_boundary"
 .PHONY : CMakeFiles/test_json_number_boundary.dir/codegen
 
 # clean rule for target.
@@ -1131,12 +1161,12 @@ CMakeFiles/test_json_number_boundary.dir/clean:
 CMakeFiles/test_json_object_empty.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_empty.dir/build.make CMakeFiles/test_json_object_empty.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_empty.dir/build.make CMakeFiles/test_json_object_empty.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=65,66 "Built target test_json_object_empty"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=56 "Built target test_json_object_empty"
 .PHONY : CMakeFiles/test_json_object_empty.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_object_empty.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_object_empty.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_object_empty.dir/rule
@@ -1148,7 +1178,7 @@ test_json_object_empty: CMakeFiles/test_json_object_empty.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_object_empty.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_empty.dir/build.make CMakeFiles/test_json_object_empty.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=65,66 "Finished codegen for target test_json_object_empty"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=56 "Finished codegen for target test_json_object_empty"
 .PHONY : CMakeFiles/test_json_object_empty.dir/codegen
 
 # clean rule for target.
@@ -1163,12 +1193,12 @@ CMakeFiles/test_json_object_empty.dir/clean:
 CMakeFiles/test_json_object_remove.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_remove.dir/build.make CMakeFiles/test_json_object_remove.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_remove.dir/build.make CMakeFiles/test_json_object_remove.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=67,68 "Built target test_json_object_remove"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=57,58 "Built target test_json_object_remove"
 .PHONY : CMakeFiles/test_json_object_remove.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_object_remove.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_object_remove.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_object_remove.dir/rule
@@ -1180,7 +1210,7 @@ test_json_object_remove: CMakeFiles/test_json_object_remove.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_object_remove.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_object_remove.dir/build.make CMakeFiles/test_json_object_remove.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=67,68 "Finished codegen for target test_json_object_remove"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=57,58 "Finished codegen for target test_json_object_remove"
 .PHONY : CMakeFiles/test_json_object_remove.dir/codegen
 
 # clean rule for target.
@@ -1195,12 +1225,12 @@ CMakeFiles/test_json_object_remove.dir/clean:
 CMakeFiles/test_json_read_invalid_array_token.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_array_token.dir/build.make CMakeFiles/test_json_read_invalid_array_token.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_array_token.dir/build.make CMakeFiles/test_json_read_invalid_array_token.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=69,70 "Built target test_json_read_invalid_array_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=59 "Built target test_json_read_invalid_array_token"
 .PHONY : CMakeFiles/test_json_read_invalid_array_token.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_invalid_array_token.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_invalid_array_token.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_invalid_array_token.dir/rule
@@ -1212,7 +1242,7 @@ test_json_read_invalid_array_token: CMakeFiles/test_json_read_invalid_array_toke
 # codegen rule for target.
 CMakeFiles/test_json_read_invalid_array_token.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_array_token.dir/build.make CMakeFiles/test_json_read_invalid_array_token.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=69,70 "Finished codegen for target test_json_read_invalid_array_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=59 "Finished codegen for target test_json_read_invalid_array_token"
 .PHONY : CMakeFiles/test_json_read_invalid_array_token.dir/codegen
 
 # clean rule for target.
@@ -1227,12 +1257,12 @@ CMakeFiles/test_json_read_invalid_array_token.dir/clean:
 CMakeFiles/test_json_read_invalid_null_token.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_null_token.dir/build.make CMakeFiles/test_json_read_invalid_null_token.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_null_token.dir/build.make CMakeFiles/test_json_read_invalid_null_token.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=71 "Built target test_json_read_invalid_null_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=60,61 "Built target test_json_read_invalid_null_token"
 .PHONY : CMakeFiles/test_json_read_invalid_null_token.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_invalid_null_token.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_invalid_null_token.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_invalid_null_token.dir/rule
@@ -1244,7 +1274,7 @@ test_json_read_invalid_null_token: CMakeFiles/test_json_read_invalid_null_token.
 # codegen rule for target.
 CMakeFiles/test_json_read_invalid_null_token.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_null_token.dir/build.make CMakeFiles/test_json_read_invalid_null_token.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=71 "Finished codegen for target test_json_read_invalid_null_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=60,61 "Finished codegen for target test_json_read_invalid_null_token"
 .PHONY : CMakeFiles/test_json_read_invalid_null_token.dir/codegen
 
 # clean rule for target.
@@ -1259,12 +1289,12 @@ CMakeFiles/test_json_read_invalid_null_token.dir/clean:
 CMakeFiles/test_json_read_invalid_number_token.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_number_token.dir/build.make CMakeFiles/test_json_read_invalid_number_token.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_number_token.dir/build.make CMakeFiles/test_json_read_invalid_number_token.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=72,73 "Built target test_json_read_invalid_number_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=62 "Built target test_json_read_invalid_number_token"
 .PHONY : CMakeFiles/test_json_read_invalid_number_token.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_invalid_number_token.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_invalid_number_token.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_invalid_number_token.dir/rule
@@ -1276,7 +1306,7 @@ test_json_read_invalid_number_token: CMakeFiles/test_json_read_invalid_number_to
 # codegen rule for target.
 CMakeFiles/test_json_read_invalid_number_token.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_number_token.dir/build.make CMakeFiles/test_json_read_invalid_number_token.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=72,73 "Finished codegen for target test_json_read_invalid_number_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=62 "Finished codegen for target test_json_read_invalid_number_token"
 .PHONY : CMakeFiles/test_json_read_invalid_number_token.dir/codegen
 
 # clean rule for target.
@@ -1291,12 +1321,12 @@ CMakeFiles/test_json_read_invalid_number_token.dir/clean:
 CMakeFiles/test_json_read_invalid_object_token.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_object_token.dir/build.make CMakeFiles/test_json_read_invalid_object_token.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_object_token.dir/build.make CMakeFiles/test_json_read_invalid_object_token.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=74,75 "Built target test_json_read_invalid_object_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=63,64 "Built target test_json_read_invalid_object_token"
 .PHONY : CMakeFiles/test_json_read_invalid_object_token.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_invalid_object_token.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_invalid_object_token.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_invalid_object_token.dir/rule
@@ -1308,7 +1338,7 @@ test_json_read_invalid_object_token: CMakeFiles/test_json_read_invalid_object_to
 # codegen rule for target.
 CMakeFiles/test_json_read_invalid_object_token.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_object_token.dir/build.make CMakeFiles/test_json_read_invalid_object_token.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=74,75 "Finished codegen for target test_json_read_invalid_object_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=63,64 "Finished codegen for target test_json_read_invalid_object_token"
 .PHONY : CMakeFiles/test_json_read_invalid_object_token.dir/codegen
 
 # clean rule for target.
@@ -1323,12 +1353,12 @@ CMakeFiles/test_json_read_invalid_object_token.dir/clean:
 CMakeFiles/test_json_read_invalid_string_token.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_string_token.dir/build.make CMakeFiles/test_json_read_invalid_string_token.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_string_token.dir/build.make CMakeFiles/test_json_read_invalid_string_token.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=76,77 "Built target test_json_read_invalid_string_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=65 "Built target test_json_read_invalid_string_token"
 .PHONY : CMakeFiles/test_json_read_invalid_string_token.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_invalid_string_token.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_invalid_string_token.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_invalid_string_token.dir/rule
@@ -1340,7 +1370,7 @@ test_json_read_invalid_string_token: CMakeFiles/test_json_read_invalid_string_to
 # codegen rule for target.
 CMakeFiles/test_json_read_invalid_string_token.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_invalid_string_token.dir/build.make CMakeFiles/test_json_read_invalid_string_token.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=76,77 "Finished codegen for target test_json_read_invalid_string_token"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=65 "Finished codegen for target test_json_read_invalid_string_token"
 .PHONY : CMakeFiles/test_json_read_invalid_string_token.dir/codegen
 
 # clean rule for target.
@@ -1355,12 +1385,12 @@ CMakeFiles/test_json_read_invalid_string_token.dir/clean:
 CMakeFiles/test_json_read_multiple_invalid_tokens.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_multiple_invalid_tokens.dir/build.make CMakeFiles/test_json_read_multiple_invalid_tokens.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_multiple_invalid_tokens.dir/build.make CMakeFiles/test_json_read_multiple_invalid_tokens.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=78 "Built target test_json_read_multiple_invalid_tokens"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=66,67 "Built target test_json_read_multiple_invalid_tokens"
 .PHONY : CMakeFiles/test_json_read_multiple_invalid_tokens.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_multiple_invalid_tokens.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_multiple_invalid_tokens.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_multiple_invalid_tokens.dir/rule
@@ -1372,7 +1402,7 @@ test_json_read_multiple_invalid_tokens: CMakeFiles/test_json_read_multiple_inval
 # codegen rule for target.
 CMakeFiles/test_json_read_multiple_invalid_tokens.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_multiple_invalid_tokens.dir/build.make CMakeFiles/test_json_read_multiple_invalid_tokens.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=78 "Finished codegen for target test_json_read_multiple_invalid_tokens"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=66,67 "Finished codegen for target test_json_read_multiple_invalid_tokens"
 .PHONY : CMakeFiles/test_json_read_multiple_invalid_tokens.dir/codegen
 
 # clean rule for target.
@@ -1387,12 +1417,12 @@ CMakeFiles/test_json_read_multiple_invalid_tokens.dir/clean:
 CMakeFiles/test_json_read_success.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_success.dir/build.make CMakeFiles/test_json_read_success.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_success.dir/build.make CMakeFiles/test_json_read_success.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=79,80 "Built target test_json_read_success"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=68 "Built target test_json_read_success"
 .PHONY : CMakeFiles/test_json_read_success.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_read_success.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_read_success.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_read_success.dir/rule
@@ -1404,7 +1434,7 @@ test_json_read_success: CMakeFiles/test_json_read_success.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_read_success.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_read_success.dir/build.make CMakeFiles/test_json_read_success.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=79,80 "Finished codegen for target test_json_read_success"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=68 "Finished codegen for target test_json_read_success"
 .PHONY : CMakeFiles/test_json_read_success.dir/codegen
 
 # clean rule for target.
@@ -1419,12 +1449,12 @@ CMakeFiles/test_json_read_success.dir/clean:
 CMakeFiles/test_json_string_creation.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_string_creation.dir/build.make CMakeFiles/test_json_string_creation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_string_creation.dir/build.make CMakeFiles/test_json_string_creation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=81,82 "Built target test_json_string_creation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=69,70 "Built target test_json_string_creation"
 .PHONY : CMakeFiles/test_json_string_creation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_string_creation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_string_creation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_string_creation.dir/rule
@@ -1436,7 +1466,7 @@ test_json_string_creation: CMakeFiles/test_json_string_creation.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_string_creation.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_string_creation.dir/build.make CMakeFiles/test_json_string_creation.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=81,82 "Finished codegen for target test_json_string_creation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=69,70 "Finished codegen for target test_json_string_creation"
 .PHONY : CMakeFiles/test_json_string_creation.dir/codegen
 
 # clean rule for target.
@@ -1451,12 +1481,12 @@ CMakeFiles/test_json_string_creation.dir/clean:
 CMakeFiles/test_json_true.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_true.dir/build.make CMakeFiles/test_json_true.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_true.dir/build.make CMakeFiles/test_json_true.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=83,84 "Built target test_json_true"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=71 "Built target test_json_true"
 .PHONY : CMakeFiles/test_json_true.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_true.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_true.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_true.dir/rule
@@ -1468,7 +1498,7 @@ test_json_true: CMakeFiles/test_json_true.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_true.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_true.dir/build.make CMakeFiles/test_json_true.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=83,84 "Finished codegen for target test_json_true"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=71 "Finished codegen for target test_json_true"
 .PHONY : CMakeFiles/test_json_true.dir/codegen
 
 # clean rule for target.
@@ -1483,12 +1513,12 @@ CMakeFiles/test_json_true.dir/clean:
 CMakeFiles/test_json_type_checking.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_type_checking.dir/build.make CMakeFiles/test_json_type_checking.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_type_checking.dir/build.make CMakeFiles/test_json_type_checking.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=85 "Built target test_json_type_checking"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=72,73 "Built target test_json_type_checking"
 .PHONY : CMakeFiles/test_json_type_checking.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_type_checking.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_type_checking.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_type_checking.dir/rule
@@ -1500,7 +1530,7 @@ test_json_type_checking: CMakeFiles/test_json_type_checking.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_type_checking.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_type_checking.dir/build.make CMakeFiles/test_json_type_checking.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=85 "Finished codegen for target test_json_type_checking"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=72,73 "Finished codegen for target test_json_type_checking"
 .PHONY : CMakeFiles/test_json_type_checking.dir/codegen
 
 # clean rule for target.
@@ -1515,12 +1545,12 @@ CMakeFiles/test_json_type_checking.dir/clean:
 CMakeFiles/test_json_write_read.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_write_read.dir/build.make CMakeFiles/test_json_write_read.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_write_read.dir/build.make CMakeFiles/test_json_write_read.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=86,87 "Built target test_json_write_read"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=74 "Built target test_json_write_read"
 .PHONY : CMakeFiles/test_json_write_read.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_json_write_read.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_json_write_read.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_json_write_read.dir/rule
@@ -1532,7 +1562,7 @@ test_json_write_read: CMakeFiles/test_json_write_read.dir/rule
 # codegen rule for target.
 CMakeFiles/test_json_write_read.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_json_write_read.dir/build.make CMakeFiles/test_json_write_read.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=86,87 "Finished codegen for target test_json_write_read"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=74 "Finished codegen for target test_json_write_read"
 .PHONY : CMakeFiles/test_json_write_read.dir/codegen
 
 # clean rule for target.
@@ -1547,12 +1577,12 @@ CMakeFiles/test_json_write_read.dir/clean:
 CMakeFiles/test_yaml_arrays.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_arrays.dir/build.make CMakeFiles/test_yaml_arrays.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_arrays.dir/build.make CMakeFiles/test_yaml_arrays.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=88,89 "Built target test_yaml_arrays"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=75,76 "Built target test_yaml_arrays"
 .PHONY : CMakeFiles/test_yaml_arrays.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_yaml_arrays.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_arrays.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_yaml_arrays.dir/rule
@@ -1564,7 +1594,7 @@ test_yaml_arrays: CMakeFiles/test_yaml_arrays.dir/rule
 # codegen rule for target.
 CMakeFiles/test_yaml_arrays.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_arrays.dir/build.make CMakeFiles/test_yaml_arrays.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=88,89 "Finished codegen for target test_yaml_arrays"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=75,76 "Finished codegen for target test_yaml_arrays"
 .PHONY : CMakeFiles/test_yaml_arrays.dir/codegen
 
 # clean rule for target.
@@ -1573,36 +1603,132 @@ CMakeFiles/test_yaml_arrays.dir/clean:
 .PHONY : CMakeFiles/test_yaml_arrays.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_yaml_basic_scalars.dir
+# Target rules for target CMakeFiles/test_yaml_boolean.dir
 
 # All Build rule for target.
-CMakeFiles/test_yaml_basic_scalars.dir/all: CMakeFiles/json.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=90,91 "Built target test_yaml_basic_scalars"
-.PHONY : CMakeFiles/test_yaml_basic_scalars.dir/all
+CMakeFiles/test_yaml_boolean.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=77 "Built target test_yaml_boolean"
+.PHONY : CMakeFiles/test_yaml_boolean.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_yaml_basic_scalars.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_basic_scalars.dir/all
+CMakeFiles/test_yaml_boolean.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_boolean.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
-.PHONY : CMakeFiles/test_yaml_basic_scalars.dir/rule
+.PHONY : CMakeFiles/test_yaml_boolean.dir/rule
 
 # Convenience name for target.
-test_yaml_basic_scalars: CMakeFiles/test_yaml_basic_scalars.dir/rule
-.PHONY : test_yaml_basic_scalars
+test_yaml_boolean: CMakeFiles/test_yaml_boolean.dir/rule
+.PHONY : test_yaml_boolean
 
 # codegen rule for target.
-CMakeFiles/test_yaml_basic_scalars.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=90,91 "Finished codegen for target test_yaml_basic_scalars"
-.PHONY : CMakeFiles/test_yaml_basic_scalars.dir/codegen
+CMakeFiles/test_yaml_boolean.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=77 "Finished codegen for target test_yaml_boolean"
+.PHONY : CMakeFiles/test_yaml_boolean.dir/codegen
 
 # clean rule for target.
-CMakeFiles/test_yaml_basic_scalars.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_basic_scalars.dir/build.make CMakeFiles/test_yaml_basic_scalars.dir/clean
-.PHONY : CMakeFiles/test_yaml_basic_scalars.dir/clean
+CMakeFiles/test_yaml_boolean.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_boolean.dir/build.make CMakeFiles/test_yaml_boolean.dir/clean
+.PHONY : CMakeFiles/test_yaml_boolean.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_booleans.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_booleans.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=78,79 "Built target test_yaml_booleans"
+.PHONY : CMakeFiles/test_yaml_booleans.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_booleans.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_booleans.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_booleans.dir/rule
+
+# Convenience name for target.
+test_yaml_booleans: CMakeFiles/test_yaml_booleans.dir/rule
+.PHONY : test_yaml_booleans
+
+# codegen rule for target.
+CMakeFiles/test_yaml_booleans.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=78,79 "Finished codegen for target test_yaml_booleans"
+.PHONY : CMakeFiles/test_yaml_booleans.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_booleans.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_booleans.dir/build.make CMakeFiles/test_yaml_booleans.dir/clean
+.PHONY : CMakeFiles/test_yaml_booleans.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_comments.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_comments.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=80 "Built target test_yaml_comments"
+.PHONY : CMakeFiles/test_yaml_comments.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_comments.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_comments.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_comments.dir/rule
+
+# Convenience name for target.
+test_yaml_comments: CMakeFiles/test_yaml_comments.dir/rule
+.PHONY : test_yaml_comments
+
+# codegen rule for target.
+CMakeFiles/test_yaml_comments.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=80 "Finished codegen for target test_yaml_comments"
+.PHONY : CMakeFiles/test_yaml_comments.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_comments.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_comments.dir/build.make CMakeFiles/test_yaml_comments.dir/clean
+.PHONY : CMakeFiles/test_yaml_comments.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_empty.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_empty.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=81,82 "Built target test_yaml_empty"
+.PHONY : CMakeFiles/test_yaml_empty.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_empty.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_empty.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_empty.dir/rule
+
+# Convenience name for target.
+test_yaml_empty: CMakeFiles/test_yaml_empty.dir/rule
+.PHONY : test_yaml_empty
+
+# codegen rule for target.
+CMakeFiles/test_yaml_empty.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=81,82 "Finished codegen for target test_yaml_empty"
+.PHONY : CMakeFiles/test_yaml_empty.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_empty.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_empty.dir/build.make CMakeFiles/test_yaml_empty.dir/clean
+.PHONY : CMakeFiles/test_yaml_empty.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/test_yaml_error_handling.dir
@@ -1611,12 +1737,12 @@ CMakeFiles/test_yaml_basic_scalars.dir/clean:
 CMakeFiles/test_yaml_error_handling.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_error_handling.dir/build.make CMakeFiles/test_yaml_error_handling.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_error_handling.dir/build.make CMakeFiles/test_yaml_error_handling.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=92 "Built target test_yaml_error_handling"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=83 "Built target test_yaml_error_handling"
 .PHONY : CMakeFiles/test_yaml_error_handling.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_yaml_error_handling.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_error_handling.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_yaml_error_handling.dir/rule
@@ -1628,7 +1754,7 @@ test_yaml_error_handling: CMakeFiles/test_yaml_error_handling.dir/rule
 # codegen rule for target.
 CMakeFiles/test_yaml_error_handling.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_error_handling.dir/build.make CMakeFiles/test_yaml_error_handling.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=92 "Finished codegen for target test_yaml_error_handling"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=83 "Finished codegen for target test_yaml_error_handling"
 .PHONY : CMakeFiles/test_yaml_error_handling.dir/codegen
 
 # clean rule for target.
@@ -1637,36 +1763,100 @@ CMakeFiles/test_yaml_error_handling.dir/clean:
 .PHONY : CMakeFiles/test_yaml_error_handling.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_yaml_features.dir
+# Target rules for target CMakeFiles/test_yaml_mixed.dir
 
 # All Build rule for target.
-CMakeFiles/test_yaml_features.dir/all: CMakeFiles/json.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=93,94 "Built target test_yaml_features"
-.PHONY : CMakeFiles/test_yaml_features.dir/all
+CMakeFiles/test_yaml_mixed.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=84,85 "Built target test_yaml_mixed"
+.PHONY : CMakeFiles/test_yaml_mixed.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_yaml_features.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_features.dir/all
+CMakeFiles/test_yaml_mixed.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_mixed.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
-.PHONY : CMakeFiles/test_yaml_features.dir/rule
+.PHONY : CMakeFiles/test_yaml_mixed.dir/rule
 
 # Convenience name for target.
-test_yaml_features: CMakeFiles/test_yaml_features.dir/rule
-.PHONY : test_yaml_features
+test_yaml_mixed: CMakeFiles/test_yaml_mixed.dir/rule
+.PHONY : test_yaml_mixed
 
 # codegen rule for target.
-CMakeFiles/test_yaml_features.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=93,94 "Finished codegen for target test_yaml_features"
-.PHONY : CMakeFiles/test_yaml_features.dir/codegen
+CMakeFiles/test_yaml_mixed.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=84,85 "Finished codegen for target test_yaml_mixed"
+.PHONY : CMakeFiles/test_yaml_mixed.dir/codegen
 
 # clean rule for target.
-CMakeFiles/test_yaml_features.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_features.dir/build.make CMakeFiles/test_yaml_features.dir/clean
-.PHONY : CMakeFiles/test_yaml_features.dir/clean
+CMakeFiles/test_yaml_mixed.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_mixed.dir/build.make CMakeFiles/test_yaml_mixed.dir/clean
+.PHONY : CMakeFiles/test_yaml_mixed.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_null.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_null.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=86 "Built target test_yaml_null"
+.PHONY : CMakeFiles/test_yaml_null.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_null.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_null.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_null.dir/rule
+
+# Convenience name for target.
+test_yaml_null: CMakeFiles/test_yaml_null.dir/rule
+.PHONY : test_yaml_null
+
+# codegen rule for target.
+CMakeFiles/test_yaml_null.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=86 "Finished codegen for target test_yaml_null"
+.PHONY : CMakeFiles/test_yaml_null.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_null.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_null.dir/build.make CMakeFiles/test_yaml_null.dir/clean
+.PHONY : CMakeFiles/test_yaml_null.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_number.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_number.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=87,88 "Built target test_yaml_number"
+.PHONY : CMakeFiles/test_yaml_number.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_number.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_number.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_number.dir/rule
+
+# Convenience name for target.
+test_yaml_number: CMakeFiles/test_yaml_number.dir/rule
+.PHONY : test_yaml_number
+
+# codegen rule for target.
+CMakeFiles/test_yaml_number.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=87,88 "Finished codegen for target test_yaml_number"
+.PHONY : CMakeFiles/test_yaml_number.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_number.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_number.dir/build.make CMakeFiles/test_yaml_number.dir/clean
+.PHONY : CMakeFiles/test_yaml_number.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/test_yaml_objects.dir
@@ -1675,12 +1865,12 @@ CMakeFiles/test_yaml_features.dir/clean:
 CMakeFiles/test_yaml_objects.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_objects.dir/build.make CMakeFiles/test_yaml_objects.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_objects.dir/build.make CMakeFiles/test_yaml_objects.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=95,96 "Built target test_yaml_objects"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=89 "Built target test_yaml_objects"
 .PHONY : CMakeFiles/test_yaml_objects.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_yaml_objects.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_objects.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_yaml_objects.dir/rule
@@ -1692,7 +1882,7 @@ test_yaml_objects: CMakeFiles/test_yaml_objects.dir/rule
 # codegen rule for target.
 CMakeFiles/test_yaml_objects.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_objects.dir/build.make CMakeFiles/test_yaml_objects.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=95,96 "Finished codegen for target test_yaml_objects"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=89 "Finished codegen for target test_yaml_objects"
 .PHONY : CMakeFiles/test_yaml_objects.dir/codegen
 
 # clean rule for target.
@@ -1707,12 +1897,12 @@ CMakeFiles/test_yaml_objects.dir/clean:
 CMakeFiles/test_yaml_roundtrip.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_roundtrip.dir/build.make CMakeFiles/test_yaml_roundtrip.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_roundtrip.dir/build.make CMakeFiles/test_yaml_roundtrip.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=97,98 "Built target test_yaml_roundtrip"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=90,91 "Built target test_yaml_roundtrip"
 .PHONY : CMakeFiles/test_yaml_roundtrip.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_yaml_roundtrip.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_roundtrip.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/test_yaml_roundtrip.dir/rule
@@ -1724,7 +1914,7 @@ test_yaml_roundtrip: CMakeFiles/test_yaml_roundtrip.dir/rule
 # codegen rule for target.
 CMakeFiles/test_yaml_roundtrip.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_roundtrip.dir/build.make CMakeFiles/test_yaml_roundtrip.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=97,98 "Finished codegen for target test_yaml_roundtrip"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=90,91 "Finished codegen for target test_yaml_roundtrip"
 .PHONY : CMakeFiles/test_yaml_roundtrip.dir/codegen
 
 # clean rule for target.
@@ -1733,36 +1923,196 @@ CMakeFiles/test_yaml_roundtrip.dir/clean:
 .PHONY : CMakeFiles/test_yaml_roundtrip.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_yaml_write.dir
+# Target rules for target CMakeFiles/test_yaml_string.dir
 
 # All Build rule for target.
-CMakeFiles/test_yaml_write.dir/all: CMakeFiles/json.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=99,100 "Built target test_yaml_write"
-.PHONY : CMakeFiles/test_yaml_write.dir/all
+CMakeFiles/test_yaml_string.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=92 "Built target test_yaml_string"
+.PHONY : CMakeFiles/test_yaml_string.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_yaml_write.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_write.dir/all
+CMakeFiles/test_yaml_string.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_string.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
-.PHONY : CMakeFiles/test_yaml_write.dir/rule
+.PHONY : CMakeFiles/test_yaml_string.dir/rule
 
 # Convenience name for target.
-test_yaml_write: CMakeFiles/test_yaml_write.dir/rule
-.PHONY : test_yaml_write
+test_yaml_string: CMakeFiles/test_yaml_string.dir/rule
+.PHONY : test_yaml_string
 
 # codegen rule for target.
-CMakeFiles/test_yaml_write.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=99,100 "Finished codegen for target test_yaml_write"
-.PHONY : CMakeFiles/test_yaml_write.dir/codegen
+CMakeFiles/test_yaml_string.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=92 "Finished codegen for target test_yaml_string"
+.PHONY : CMakeFiles/test_yaml_string.dir/codegen
 
 # clean rule for target.
-CMakeFiles/test_yaml_write.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write.dir/build.make CMakeFiles/test_yaml_write.dir/clean
-.PHONY : CMakeFiles/test_yaml_write.dir/clean
+CMakeFiles/test_yaml_string.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_string.dir/build.make CMakeFiles/test_yaml_string.dir/clean
+.PHONY : CMakeFiles/test_yaml_string.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_strings.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_strings.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=93,94 "Built target test_yaml_strings"
+.PHONY : CMakeFiles/test_yaml_strings.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_strings.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_strings.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_strings.dir/rule
+
+# Convenience name for target.
+test_yaml_strings: CMakeFiles/test_yaml_strings.dir/rule
+.PHONY : test_yaml_strings
+
+# codegen rule for target.
+CMakeFiles/test_yaml_strings.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=93,94 "Finished codegen for target test_yaml_strings"
+.PHONY : CMakeFiles/test_yaml_strings.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_strings.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_strings.dir/build.make CMakeFiles/test_yaml_strings.dir/clean
+.PHONY : CMakeFiles/test_yaml_strings.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_write_boolean.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_write_boolean.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=95 "Built target test_yaml_write_boolean"
+.PHONY : CMakeFiles/test_yaml_write_boolean.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_write_boolean.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_write_boolean.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_write_boolean.dir/rule
+
+# Convenience name for target.
+test_yaml_write_boolean: CMakeFiles/test_yaml_write_boolean.dir/rule
+.PHONY : test_yaml_write_boolean
+
+# codegen rule for target.
+CMakeFiles/test_yaml_write_boolean.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=95 "Finished codegen for target test_yaml_write_boolean"
+.PHONY : CMakeFiles/test_yaml_write_boolean.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_write_boolean.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_boolean.dir/build.make CMakeFiles/test_yaml_write_boolean.dir/clean
+.PHONY : CMakeFiles/test_yaml_write_boolean.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_write_null.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_write_null.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=96,97 "Built target test_yaml_write_null"
+.PHONY : CMakeFiles/test_yaml_write_null.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_write_null.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_write_null.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_write_null.dir/rule
+
+# Convenience name for target.
+test_yaml_write_null: CMakeFiles/test_yaml_write_null.dir/rule
+.PHONY : test_yaml_write_null
+
+# codegen rule for target.
+CMakeFiles/test_yaml_write_null.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=96,97 "Finished codegen for target test_yaml_write_null"
+.PHONY : CMakeFiles/test_yaml_write_null.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_write_null.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_null.dir/build.make CMakeFiles/test_yaml_write_null.dir/clean
+.PHONY : CMakeFiles/test_yaml_write_null.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_write_number.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_write_number.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=98 "Built target test_yaml_write_number"
+.PHONY : CMakeFiles/test_yaml_write_number.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_write_number.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_write_number.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_write_number.dir/rule
+
+# Convenience name for target.
+test_yaml_write_number: CMakeFiles/test_yaml_write_number.dir/rule
+.PHONY : test_yaml_write_number
+
+# codegen rule for target.
+CMakeFiles/test_yaml_write_number.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=98 "Finished codegen for target test_yaml_write_number"
+.PHONY : CMakeFiles/test_yaml_write_number.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_write_number.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_number.dir/build.make CMakeFiles/test_yaml_write_number.dir/clean
+.PHONY : CMakeFiles/test_yaml_write_number.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_yaml_write_string.dir
+
+# All Build rule for target.
+CMakeFiles/test_yaml_write_string.dir/all: CMakeFiles/json.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=99,100 "Built target test_yaml_write_string"
+.PHONY : CMakeFiles/test_yaml_write_string.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_yaml_write_string.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_yaml_write_string.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
+.PHONY : CMakeFiles/test_yaml_write_string.dir/rule
+
+# Convenience name for target.
+test_yaml_write_string: CMakeFiles/test_yaml_write_string.dir/rule
+.PHONY : test_yaml_write_string
+
+# codegen rule for target.
+CMakeFiles/test_yaml_write_string.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=99,100 "Finished codegen for target test_yaml_write_string"
+.PHONY : CMakeFiles/test_yaml_write_string.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_yaml_write_string.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_yaml_write_string.dir/build.make CMakeFiles/test_yaml_write_string.dir/clean
+.PHONY : CMakeFiles/test_yaml_write_string.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/example_json_creation.dir
@@ -1776,7 +2126,7 @@ CMakeFiles/example_json_creation.dir/all: CMakeFiles/json.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/example_json_creation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/example_json_creation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/example_json_creation.dir/rule
@@ -1803,12 +2153,12 @@ CMakeFiles/example_json_creation.dir/clean:
 CMakeFiles/example_json_manipulation.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_manipulation.dir/build.make CMakeFiles/example_json_manipulation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_manipulation.dir/build.make CMakeFiles/example_json_manipulation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=2,3 "Built target example_json_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=2 "Built target example_json_manipulation"
 .PHONY : CMakeFiles/example_json_manipulation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/example_json_manipulation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/example_json_manipulation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/example_json_manipulation.dir/rule
@@ -1820,7 +2170,7 @@ example_json_manipulation: CMakeFiles/example_json_manipulation.dir/rule
 # codegen rule for target.
 CMakeFiles/example_json_manipulation.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_manipulation.dir/build.make CMakeFiles/example_json_manipulation.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=2,3 "Finished codegen for target example_json_manipulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=2 "Finished codegen for target example_json_manipulation"
 .PHONY : CMakeFiles/example_json_manipulation.dir/codegen
 
 # clean rule for target.
@@ -1835,12 +2185,12 @@ CMakeFiles/example_json_manipulation.dir/clean:
 CMakeFiles/example_json_read.dir/all: CMakeFiles/json.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_read.dir/build.make CMakeFiles/example_json_read.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_read.dir/build.make CMakeFiles/example_json_read.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=4,5 "Built target example_json_read"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=3,4 "Built target example_json_read"
 .PHONY : CMakeFiles/example_json_read.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/example_json_read.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/example_json_read.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/libjson/libjson/CMakeFiles 0
 .PHONY : CMakeFiles/example_json_read.dir/rule
@@ -1852,7 +2202,7 @@ example_json_read: CMakeFiles/example_json_read.dir/rule
 # codegen rule for target.
 CMakeFiles/example_json_read.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example_json_read.dir/build.make CMakeFiles/example_json_read.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=4,5 "Finished codegen for target example_json_read"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/libjson/libjson/CMakeFiles --progress-num=3,4 "Finished codegen for target example_json_read"
 .PHONY : CMakeFiles/example_json_read.dir/codegen
 
 # clean rule for target.

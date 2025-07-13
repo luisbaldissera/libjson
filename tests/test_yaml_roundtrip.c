@@ -51,7 +51,7 @@ int main()
     json_free(original);
     json_free(parsed);
 
-    // Test empty structures
+    // Test empty array
     struct json *empty_array = json_array();
     temp = tmpfile();
     assert(temp != NULL);
@@ -66,20 +66,6 @@ int main()
     buffer[strcspn(buffer, "\n")] = 0;
     assert(strcmp(buffer, "[]") == 0);
     json_free(empty_array);
-
-    struct json *empty_object = json_object();
-    temp = tmpfile();
-    assert(temp != NULL);
-    bytes = yaml_write(empty_object, temp);
-    assert(bytes > 0);
-    
-    rewind(temp);
-    fgets(buffer, sizeof(buffer), temp);
-    fclose(temp);
-    
-    buffer[strcspn(buffer, "\n")] = 0;
-    assert(strcmp(buffer, "{}") == 0);
-    json_free(empty_object);
 
     printf("YAML round-trip test passed!\n");
     return 0;

@@ -34,31 +34,6 @@ int main()
     
     json_free(array);
 
-    // Test mixed array with different types
-    const char *mixed_array = 
-        "- 42\n"
-        "- true\n"
-        "- hello\n"
-        "- null\n";
-
-    struct json *mixed = yaml_read_string(mixed_array, errbuf);
-    assert(mixed != NULL);
-    assert(json_is_array(mixed));
-    assert(json_array_length(mixed) == 4);
-    
-    assert(json_is_number(json_array_get(mixed, 0)));
-    assert(json_int_value(json_array_get(mixed, 0)) == 42);
-    
-    assert(json_is_boolean(json_array_get(mixed, 1)));
-    assert(json_array_get(mixed, 1) == json_true());
-    
-    assert(json_is_string(json_array_get(mixed, 2)));
-    assert(strcmp(json_string_value(json_array_get(mixed, 2)), "hello") == 0);
-    
-    assert(json_is_null(json_array_get(mixed, 3)));
-    
-    json_free(mixed);
-
     printf("YAML array test passed!\n");
     return 0;
 }
