@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/old_test_json_object_manipulation.dir/link.d CMakeFiles/old_test_json_object_manipulation.dir/tests/old_test_json_object_manipulation.c.o -o old_test_json_object_manipulation  libjson.a

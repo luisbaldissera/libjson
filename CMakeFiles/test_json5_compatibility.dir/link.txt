@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json5_compatibility.dir/link.d CMakeFiles/test_json5_compatibility.dir/tests/test_json5_compatibility.c.o -o test_json5_compatibility  libjson.a

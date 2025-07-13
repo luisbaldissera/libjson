@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json_read_invalid_string_token.dir/link.d CMakeFiles/test_json_read_invalid_string_token.dir/tests/test_json_read_invalid_string_token.c.o -o test_json_read_invalid_string_token  libjson.a

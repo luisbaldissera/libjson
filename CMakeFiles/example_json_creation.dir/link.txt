@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_json_creation.dir/link.d CMakeFiles/example_json_creation.dir/examples/example_json_creation.c.o -o example_json_creation  libjson.a

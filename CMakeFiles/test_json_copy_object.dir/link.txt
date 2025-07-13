@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json_copy_object.dir/link.d CMakeFiles/test_json_copy_object.dir/tests/test_json_copy_object.c.o -o test_json_copy_object  libjson.a

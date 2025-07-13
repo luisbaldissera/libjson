@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json5_complex_identifiers.dir/link.d CMakeFiles/test_json5_complex_identifiers.dir/tests/test_json5_complex_identifiers.c.o -o test_json5_complex_identifiers  libjson.a

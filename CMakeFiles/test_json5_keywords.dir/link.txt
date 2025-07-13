@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json5_keywords.dir/link.d CMakeFiles/test_json5_keywords.dir/tests/test_json5_keywords.c.o -o test_json5_keywords  libjson.a

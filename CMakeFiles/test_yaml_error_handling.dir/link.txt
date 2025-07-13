@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_yaml_error_handling.dir/link.d CMakeFiles/test_yaml_error_handling.dir/tests/test_yaml_error_handling.c.o -o test_yaml_error_handling  libjson.a

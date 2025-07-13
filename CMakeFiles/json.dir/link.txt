@@ -1,2 +1,0 @@
-/usr/bin/ar qc libjson.a CMakeFiles/json.dir/src/closure.c.o CMakeFiles/json.dir/src/hash_table.c.o CMakeFiles/json.dir/src/json5_read.c.o CMakeFiles/json.dir/src/json_creation.c.o CMakeFiles/json.dir/src/json_internal.c.o CMakeFiles/json.dir/src/json_manipulation.c.o CMakeFiles/json.dir/src/json_read.c.o CMakeFiles/json.dir/src/json_types.c.o CMakeFiles/json.dir/src/json_write.c.o CMakeFiles/json.dir/src/linked_list.c.o CMakeFiles/json.dir/src/linked_list_json.c.o CMakeFiles/json.dir/src/yaml_read.c.o CMakeFiles/json.dir/src/yaml_write.c.o
-/usr/bin/ranlib libjson.a

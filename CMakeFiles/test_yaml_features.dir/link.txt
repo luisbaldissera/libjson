@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_yaml_features.dir/link.d CMakeFiles/test_yaml_features.dir/tests/test_yaml_features.c.o -o test_yaml_features  libjson.a

@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json_array_push.dir/link.d CMakeFiles/test_json_array_push.dir/tests/test_json_array_push.c.o -o test_json_array_push  libjson.a

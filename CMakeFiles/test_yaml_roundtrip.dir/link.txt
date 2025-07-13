@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_yaml_roundtrip.dir/link.d CMakeFiles/test_yaml_roundtrip.dir/tests/test_yaml_roundtrip.c.o -o test_yaml_roundtrip  libjson.a
