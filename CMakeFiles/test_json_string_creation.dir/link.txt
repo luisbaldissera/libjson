@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json_string_creation.dir/link.d CMakeFiles/test_json_string_creation.dir/tests/test_json_string_creation.c.o -o test_json_string_creation  libjson.a

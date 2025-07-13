@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json5_trailing_commas.dir/link.d CMakeFiles/test_json5_trailing_commas.dir/tests/test_json5_trailing_commas.c.o -o test_json5_trailing_commas  libjson.a

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_json_read.dir/link.d CMakeFiles/example_json_read.dir/examples/example_json_read.c.o -o example_json_read  libjson.a

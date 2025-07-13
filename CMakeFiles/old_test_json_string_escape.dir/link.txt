@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/old_test_json_string_escape.dir/link.d CMakeFiles/old_test_json_string_escape.dir/tests/old_test_json_string_escape.c.o -o old_test_json_string_escape  libjson.a

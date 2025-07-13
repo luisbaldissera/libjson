@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json5_comments.dir/link.d CMakeFiles/test_json5_comments.dir/tests/test_json5_comments.c.o -o test_json5_comments  libjson.a

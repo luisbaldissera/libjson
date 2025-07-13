@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_json_manipulation.dir/link.d CMakeFiles/example_json_manipulation.dir/examples/example_json_manipulation.c.o -o example_json_manipulation  libjson.a

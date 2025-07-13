@@ -1,0 +1,718 @@
+Start testing: Jul 13 05:17 UTC
+----------------------------------------------------------
+1/47 Testing: old_test_json_array_manipulation
+1/47 Test: old_test_json_array_manipulation
+Command: "/home/runner/work/libjson/libjson/old_test_json_array_manipulation"
+Directory: /home/runner/work/libjson/libjson
+"old_test_json_array_manipulation" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+All array tests passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"old_test_json_array_manipulation" end time: Jul 13 05:17 UTC
+"old_test_json_array_manipulation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/47 Testing: old_test_json_object_manipulation
+2/47 Test: old_test_json_object_manipulation
+Command: "/home/runner/work/libjson/libjson/old_test_json_object_manipulation"
+Directory: /home/runner/work/libjson/libjson
+"old_test_json_object_manipulation" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+All object tests passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"old_test_json_object_manipulation" end time: Jul 13 05:17 UTC
+"old_test_json_object_manipulation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/47 Testing: old_test_json_string_escape
+3/47 Test: old_test_json_string_escape
+Command: "/home/runner/work/libjson/libjson/old_test_json_string_escape"
+Directory: /home/runner/work/libjson/libjson
+"old_test_json_string_escape" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+All object tests passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"old_test_json_string_escape" end time: Jul 13 05:17 UTC
+"old_test_json_string_escape" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/47 Testing: test_json5_comments
+4/47 Test: test_json5_comments
+Command: "/home/runner/work/libjson/libjson/test_json5_comments"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_comments" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_comments" end time: Jul 13 05:17 UTC
+"test_json5_comments" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/47 Testing: test_json5_compatibility
+5/47 Test: test_json5_compatibility
+Command: "/home/runner/work/libjson/libjson/test_json5_compatibility"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_compatibility" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_compatibility" end time: Jul 13 05:17 UTC
+"test_json5_compatibility" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/47 Testing: test_json5_complex_identifiers
+6/47 Test: test_json5_complex_identifiers
+Command: "/home/runner/work/libjson/libjson/test_json5_complex_identifiers"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_complex_identifiers" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_complex_identifiers" end time: Jul 13 05:17 UTC
+"test_json5_complex_identifiers" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/47 Testing: test_json5_empty_input
+7/47 Test: test_json5_empty_input
+Command: "/home/runner/work/libjson/libjson/test_json5_empty_input"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_empty_input" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_empty_input" end time: Jul 13 05:17 UTC
+"test_json5_empty_input" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/47 Testing: test_json5_file
+8/47 Test: test_json5_file
+Command: "/home/runner/work/libjson/libjson/test_json5_file"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_file" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_file" end time: Jul 13 05:17 UTC
+"test_json5_file" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/47 Testing: test_json5_keywords
+9/47 Test: test_json5_keywords
+Command: "/home/runner/work/libjson/libjson/test_json5_keywords"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_keywords" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_keywords" end time: Jul 13 05:17 UTC
+"test_json5_keywords" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/47 Testing: test_json5_mixed_features
+10/47 Test: test_json5_mixed_features
+Command: "/home/runner/work/libjson/libjson/test_json5_mixed_features"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_mixed_features" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_mixed_features" end time: Jul 13 05:17 UTC
+"test_json5_mixed_features" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/47 Testing: test_json5_quote_mixing
+11/47 Test: test_json5_quote_mixing
+Command: "/home/runner/work/libjson/libjson/test_json5_quote_mixing"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_quote_mixing" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_quote_mixing" end time: Jul 13 05:17 UTC
+"test_json5_quote_mixing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/47 Testing: test_json5_single_quotes
+12/47 Test: test_json5_single_quotes
+Command: "/home/runner/work/libjson/libjson/test_json5_single_quotes"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_single_quotes" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_single_quotes" end time: Jul 13 05:17 UTC
+"test_json5_single_quotes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/47 Testing: test_json5_trailing_commas
+13/47 Test: test_json5_trailing_commas
+Command: "/home/runner/work/libjson/libjson/test_json5_trailing_commas"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_trailing_commas" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_trailing_commas" end time: Jul 13 05:17 UTC
+"test_json5_trailing_commas" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/47 Testing: test_json5_unquoted_keys
+14/47 Test: test_json5_unquoted_keys
+Command: "/home/runner/work/libjson/libjson/test_json5_unquoted_keys"
+Directory: /home/runner/work/libjson/libjson
+"test_json5_unquoted_keys" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json5_unquoted_keys" end time: Jul 13 05:17 UTC
+"test_json5_unquoted_keys" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/47 Testing: test_json_array_elements
+15/47 Test: test_json_array_elements
+Command: "/home/runner/work/libjson/libjson/test_json_array_elements"
+Directory: /home/runner/work/libjson/libjson
+"test_json_array_elements" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_array_elements" end time: Jul 13 05:17 UTC
+"test_json_array_elements" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/47 Testing: test_json_array_empty
+16/47 Test: test_json_array_empty
+Command: "/home/runner/work/libjson/libjson/test_json_array_empty"
+Directory: /home/runner/work/libjson/libjson
+"test_json_array_empty" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_array_empty" end time: Jul 13 05:17 UTC
+"test_json_array_empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/47 Testing: test_json_array_push
+17/47 Test: test_json_array_push
+Command: "/home/runner/work/libjson/libjson/test_json_array_push"
+Directory: /home/runner/work/libjson/libjson
+"test_json_array_push" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_array_push" end time: Jul 13 05:17 UTC
+"test_json_array_push" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/47 Testing: test_json_copy_complex
+18/47 Test: test_json_copy_complex
+Command: "/home/runner/work/libjson/libjson/test_json_copy_complex"
+Directory: /home/runner/work/libjson/libjson
+"test_json_copy_complex" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_copy_complex" end time: Jul 13 05:17 UTC
+"test_json_copy_complex" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/47 Testing: test_json_copy_empty_array
+19/47 Test: test_json_copy_empty_array
+Command: "/home/runner/work/libjson/libjson/test_json_copy_empty_array"
+Directory: /home/runner/work/libjson/libjson
+"test_json_copy_empty_array" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_copy_empty_array" end time: Jul 13 05:17 UTC
+"test_json_copy_empty_array" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/47 Testing: test_json_copy_empty_object
+20/47 Test: test_json_copy_empty_object
+Command: "/home/runner/work/libjson/libjson/test_json_copy_empty_object"
+Directory: /home/runner/work/libjson/libjson
+"test_json_copy_empty_object" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_copy_empty_object" end time: Jul 13 05:17 UTC
+"test_json_copy_empty_object" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/47 Testing: test_json_copy_object
+21/47 Test: test_json_copy_object
+Command: "/home/runner/work/libjson/libjson/test_json_copy_object"
+Directory: /home/runner/work/libjson/libjson
+"test_json_copy_object" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_copy_object" end time: Jul 13 05:17 UTC
+"test_json_copy_object" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/47 Testing: test_json_default_errbuf_failure
+22/47 Test: test_json_default_errbuf_failure
+Command: "/home/runner/work/libjson/libjson/test_json_default_errbuf_failure"
+Directory: /home/runner/work/libjson/libjson
+"test_json_default_errbuf_failure" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_default_errbuf_failure" end time: Jul 13 05:17 UTC
+"test_json_default_errbuf_failure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/47 Testing: test_json_default_errbuf_success
+23/47 Test: test_json_default_errbuf_success
+Command: "/home/runner/work/libjson/libjson/test_json_default_errbuf_success"
+Directory: /home/runner/work/libjson/libjson
+"test_json_default_errbuf_success" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_default_errbuf_success" end time: Jul 13 05:17 UTC
+"test_json_default_errbuf_success" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/47 Testing: test_json_false
+24/47 Test: test_json_false
+Command: "/home/runner/work/libjson/libjson/test_json_false"
+Directory: /home/runner/work/libjson/libjson
+"test_json_false" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_false" end time: Jul 13 05:17 UTC
+"test_json_false" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/47 Testing: test_json_null
+25/47 Test: test_json_null
+Command: "/home/runner/work/libjson/libjson/test_json_null"
+Directory: /home/runner/work/libjson/libjson
+"test_json_null" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_null" end time: Jul 13 05:17 UTC
+"test_json_null" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/47 Testing: test_json_number
+26/47 Test: test_json_number
+Command: "/home/runner/work/libjson/libjson/test_json_number"
+Directory: /home/runner/work/libjson/libjson
+"test_json_number" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_number" end time: Jul 13 05:17 UTC
+"test_json_number" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/47 Testing: test_json_number_boundary
+27/47 Test: test_json_number_boundary
+Command: "/home/runner/work/libjson/libjson/test_json_number_boundary"
+Directory: /home/runner/work/libjson/libjson
+"test_json_number_boundary" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_number_boundary" end time: Jul 13 05:17 UTC
+"test_json_number_boundary" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/47 Testing: test_json_object_empty
+28/47 Test: test_json_object_empty
+Command: "/home/runner/work/libjson/libjson/test_json_object_empty"
+Directory: /home/runner/work/libjson/libjson
+"test_json_object_empty" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_object_empty" end time: Jul 13 05:17 UTC
+"test_json_object_empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/47 Testing: test_json_object_remove
+29/47 Test: test_json_object_remove
+Command: "/home/runner/work/libjson/libjson/test_json_object_remove"
+Directory: /home/runner/work/libjson/libjson
+"test_json_object_remove" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_object_remove" end time: Jul 13 05:17 UTC
+"test_json_object_remove" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/47 Testing: test_json_read_invalid_array_token
+30/47 Test: test_json_read_invalid_array_token
+Command: "/home/runner/work/libjson/libjson/test_json_read_invalid_array_token"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_invalid_array_token" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_invalid_array_token" end time: Jul 13 05:17 UTC
+"test_json_read_invalid_array_token" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/47 Testing: test_json_read_invalid_null_token
+31/47 Test: test_json_read_invalid_null_token
+Command: "/home/runner/work/libjson/libjson/test_json_read_invalid_null_token"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_invalid_null_token" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_invalid_null_token" end time: Jul 13 05:17 UTC
+"test_json_read_invalid_null_token" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/47 Testing: test_json_read_invalid_number_token
+32/47 Test: test_json_read_invalid_number_token
+Command: "/home/runner/work/libjson/libjson/test_json_read_invalid_number_token"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_invalid_number_token" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_invalid_number_token" end time: Jul 13 05:17 UTC
+"test_json_read_invalid_number_token" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/47 Testing: test_json_read_invalid_object_token
+33/47 Test: test_json_read_invalid_object_token
+Command: "/home/runner/work/libjson/libjson/test_json_read_invalid_object_token"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_invalid_object_token" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_invalid_object_token" end time: Jul 13 05:17 UTC
+"test_json_read_invalid_object_token" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/47 Testing: test_json_read_invalid_string_token
+34/47 Test: test_json_read_invalid_string_token
+Command: "/home/runner/work/libjson/libjson/test_json_read_invalid_string_token"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_invalid_string_token" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_invalid_string_token" end time: Jul 13 05:17 UTC
+"test_json_read_invalid_string_token" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/47 Testing: test_json_read_multiple_invalid_tokens
+35/47 Test: test_json_read_multiple_invalid_tokens
+Command: "/home/runner/work/libjson/libjson/test_json_read_multiple_invalid_tokens"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_multiple_invalid_tokens" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_multiple_invalid_tokens" end time: Jul 13 05:17 UTC
+"test_json_read_multiple_invalid_tokens" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/47 Testing: test_json_read_success
+36/47 Test: test_json_read_success
+Command: "/home/runner/work/libjson/libjson/test_json_read_success"
+Directory: /home/runner/work/libjson/libjson
+"test_json_read_success" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_read_success" end time: Jul 13 05:17 UTC
+"test_json_read_success" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/47 Testing: test_json_string_creation
+37/47 Test: test_json_string_creation
+Command: "/home/runner/work/libjson/libjson/test_json_string_creation"
+Directory: /home/runner/work/libjson/libjson
+"test_json_string_creation" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_string_creation" end time: Jul 13 05:17 UTC
+"test_json_string_creation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/47 Testing: test_json_true
+38/47 Test: test_json_true
+Command: "/home/runner/work/libjson/libjson/test_json_true"
+Directory: /home/runner/work/libjson/libjson
+"test_json_true" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_true" end time: Jul 13 05:17 UTC
+"test_json_true" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/47 Testing: test_json_type_checking
+39/47 Test: test_json_type_checking
+Command: "/home/runner/work/libjson/libjson/test_json_type_checking"
+Directory: /home/runner/work/libjson/libjson
+"test_json_type_checking" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_type_checking" end time: Jul 13 05:17 UTC
+"test_json_type_checking" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/47 Testing: test_json_write_read
+40/47 Test: test_json_write_read
+Command: "/home/runner/work/libjson/libjson/test_json_write_read"
+Directory: /home/runner/work/libjson/libjson
+"test_json_write_read" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_json_write_read" end time: Jul 13 05:17 UTC
+"test_json_write_read" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/47 Testing: test_yaml_arrays
+41/47 Test: test_yaml_arrays
+Command: "/home/runner/work/libjson/libjson/test_yaml_arrays"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_arrays" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML array test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_arrays" end time: Jul 13 05:17 UTC
+"test_yaml_arrays" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/47 Testing: test_yaml_basic_scalars
+42/47 Test: test_yaml_basic_scalars
+Command: "/home/runner/work/libjson/libjson/test_yaml_basic_scalars"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_basic_scalars" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML basic scalars test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_basic_scalars" end time: Jul 13 05:17 UTC
+"test_yaml_basic_scalars" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/47 Testing: test_yaml_error_handling
+43/47 Test: test_yaml_error_handling
+Command: "/home/runner/work/libjson/libjson/test_yaml_error_handling"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_error_handling" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML error handling test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_error_handling" end time: Jul 13 05:17 UTC
+"test_yaml_error_handling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/47 Testing: test_yaml_features
+44/47 Test: test_yaml_features
+Command: "/home/runner/work/libjson/libjson/test_yaml_features"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_features" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML features test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_features" end time: Jul 13 05:17 UTC
+"test_yaml_features" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/47 Testing: test_yaml_objects
+45/47 Test: test_yaml_objects
+Command: "/home/runner/work/libjson/libjson/test_yaml_objects"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_objects" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML object test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_objects" end time: Jul 13 05:17 UTC
+"test_yaml_objects" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/47 Testing: test_yaml_roundtrip
+46/47 Test: test_yaml_roundtrip
+Command: "/home/runner/work/libjson/libjson/test_yaml_roundtrip"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_roundtrip" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML round-trip test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_roundtrip" end time: Jul 13 05:17 UTC
+"test_yaml_roundtrip" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/47 Testing: test_yaml_write
+47/47 Test: test_yaml_write
+Command: "/home/runner/work/libjson/libjson/test_yaml_write"
+Directory: /home/runner/work/libjson/libjson
+"test_yaml_write" start time: Jul 13 05:17 UTC
+Output:
+----------------------------------------------------------
+YAML write test passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_yaml_write" end time: Jul 13 05:17 UTC
+"test_yaml_write" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 13 05:17 UTC

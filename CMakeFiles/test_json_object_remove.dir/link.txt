@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_json_object_remove.dir/link.d CMakeFiles/test_json_object_remove.dir/tests/test_json_object_remove.c.o -o test_json_object_remove  libjson.a
