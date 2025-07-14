@@ -11,14 +11,12 @@ int main()
 
     // Test empty input
     struct json *result = yaml_read_string("", errbuf);
-    // Empty string could legitimately return NULL or an empty structure
-    if (result) {
-        json_free(result);
-    }
+    // Empty string should return NULL
+    assert(result == NULL);
 
     // Test whitespace-only input
     result = yaml_read_string("   \n  \t  \n  ", errbuf);
-    // Whitespace-only could legitimately return NULL or an empty structure
+    // Whitespace-only input may return a valid JSON structure, so we just check it's handled gracefully
     if (result) {
         json_free(result);
     }

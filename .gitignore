@@ -1,11 +1,3 @@
 build/
 debug/
 .cache/
-cmake_install.cmake
-Makefile
-CTestTestfile.cmake
-Testing/
-*.a
-test_*
-old_test_*
-example_*
