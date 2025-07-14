@@ -463,7 +463,8 @@ struct json *yaml_read_string(const char *str, char *errbuf) {
     return yaml_parse_value(&parser, 0);
 }
 
-struct json *yaml_read_document(FILE *in, char *errbuf) {
+
+struct json *yaml_read(FILE *in, char *errbuf) {
     if (!in) {
         if (errbuf) {
             strcpy(errbuf, "YAML input file is NULL");
@@ -555,36 +556,6 @@ struct json *yaml_read_document(FILE *in, char *errbuf) {
         free(buffer);
         return NULL; // No more documents
     }
-    
-    struct json *result = yaml_read_string(buffer, errbuf);
-    free(buffer);
-    
-    return result;
-}
-
-struct json *yaml_read(FILE *in, char *errbuf) {
-    if (!in) {
-        if (errbuf) {
-            strcpy(errbuf, "YAML input file is NULL");
-        }
-        return NULL;
-    }
-    
-    // Read entire file into string
-    fseek(in, 0, SEEK_END);
-    long length = ftell(in);
-    fseek(in, 0, SEEK_SET);
-    
-    char *buffer = malloc(length + 1);
-    if (!buffer) {
-        if (errbuf) {
-            strcpy(errbuf, "Failed to allocate memory for YAML input");
-        }
-        return NULL;
-    }
-    
-    size_t read_length = fread(buffer, 1, length, in);
-    buffer[read_length] = '\0';
     
     struct json *result = yaml_read_string(buffer, errbuf);
     free(buffer);

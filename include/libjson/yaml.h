@@ -14,12 +14,13 @@
  */
 
 /**
- * @brief Reads a YAML value from a file stream
+ * @brief Reads a YAML document from a file stream
  * @param in File stream to read from
  * @param errbuf Buffer to store error messages (optional). Use in
  * multi-threaded applications to avoid storing error messages in a static
  * buffer.
- * @return The parsed JSON value representing the YAML data, or NULL on parsing error
+ * @return The parsed JSON value representing the YAML data, or NULL if no more documents or on parsing error.
+ * @note Supports YAML streams with --- document separators. Call in a loop to read multiple documents from the same stream.
  * @see yaml_read_string()
  */
 struct json *yaml_read(FILE *in, char *errbuf);
@@ -43,15 +44,6 @@ struct json *yaml_read_string(const char *str, char *errbuf);
  */
 int yaml_write(struct json *element, FILE *out);
 
-/**
- * @brief Reads next YAML document from a stream (for YAML streams with --- separators)
- * @param in File stream to read from
- * @param errbuf Buffer to store error messages (optional). Use in
- * multi-threaded applications to avoid storing error messages in a static
- * buffer.
- * @return The parsed JSON value representing the next YAML document, or NULL if no more documents or on error
- * @see yaml_read()
- */
-struct json *yaml_read_document(FILE *in, char *errbuf);
+
 
 #endif // LIBJSON_YAML_H

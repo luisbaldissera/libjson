@@ -32,7 +32,7 @@ int main()
     rewind(temp);
 
     // Read first document
-    struct json *doc1 = yaml_read_document(temp, errbuf);
+    struct json *doc1 = yaml_read(temp, errbuf);
     assert(doc1 != NULL);
     assert(json_is_object(doc1));
     
@@ -47,7 +47,7 @@ int main()
     json_free(doc1);
 
     // Read second document
-    struct json *doc2 = yaml_read_document(temp, errbuf);
+    struct json *doc2 = yaml_read(temp, errbuf);
     assert(doc2 != NULL);
     assert(json_is_object(doc2));
     
@@ -66,7 +66,7 @@ int main()
     json_free(doc2);
 
     // Read third document (array)
-    struct json *doc3 = yaml_read_document(temp, errbuf);
+    struct json *doc3 = yaml_read(temp, errbuf);
     assert(doc3 != NULL);
     assert(json_is_array(doc3));
     assert(json_array_length(doc3) == 3);
@@ -86,7 +86,7 @@ int main()
     json_free(doc3);
 
     // Try to read fourth document (should be NULL)
-    struct json *doc4 = yaml_read_document(temp, errbuf);
+    struct json *doc4 = yaml_read(temp, errbuf);
     assert(doc4 == NULL);
 
     fclose(temp);
@@ -102,7 +102,7 @@ int main()
     fprintf(temp, "%s", simple_stream);
     rewind(temp);
 
-    struct json *simple1 = yaml_read_document(temp, errbuf);
+    struct json *simple1 = yaml_read(temp, errbuf);
     assert(simple1 != NULL);
     assert(json_is_object(simple1));
     
@@ -112,7 +112,7 @@ int main()
     
     json_free(simple1);
 
-    struct json *simple2 = yaml_read_document(temp, errbuf);
+    struct json *simple2 = yaml_read(temp, errbuf);
     assert(simple2 != NULL);
     assert(json_is_object(simple2));
     
@@ -123,7 +123,7 @@ int main()
     json_free(simple2);
 
     // Should be no more documents
-    struct json *simple3 = yaml_read_document(temp, errbuf);
+    struct json *simple3 = yaml_read(temp, errbuf);
     assert(simple3 == NULL);
 
     fclose(temp);
