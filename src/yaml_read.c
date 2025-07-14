@@ -21,6 +21,7 @@ typedef struct {
     yaml_token_type type;
     char *value;
     int indent_level;
+    bool is_quoted;
 } yaml_token;
 
 typedef struct {
@@ -77,7 +78,7 @@ static int yaml_count_indent(yaml_parser *parser) {
 }
 
 static yaml_token yaml_read_token(yaml_parser *parser) {
-    yaml_token token = {0};
+    yaml_token token = {.is_quoted = false};
     
     // Skip empty lines and comments
     while (true) {
@@ -113,6 +114,29 @@ static yaml_token yaml_read_token(yaml_parser *parser) {
         return token;
     }
     
+    // Check for document separator "---"
+    if (c == '-' && parser->position + 2 < parser->length && 
+        parser->input[parser->position + 1] == '-' && parser->input[parser->position + 2] == '-') {
+        // Check if it's a line with only "---" (possibly followed by whitespace/comment)
+        size_t pos = parser->position + 3;
+        while (pos < parser->length && (parser->input[pos] == ' ' || parser->input[pos] == '\t')) {
+            pos++;
+        }
+        if (pos >= parser->length || parser->input[pos] == '\n' || parser->input[pos] == '#') {
+            // This is a document separator
+            parser->position = pos;
+            if (pos < parser->length && parser->input[pos] == '#') {
+                // Skip comment after ---
+                while (pos < parser->length && parser->input[pos] != '\n') {
+                    pos++;
+                }
+                parser->position = pos;
+            }
+            token.type = YAML_TOKEN_EOF; // Signal end of current document
+            return token;
+        }
+    }
+    
     if (c == '-' && (parser->position + 1 >= parser->length || parser->input[parser->position + 1] == ' ' || parser->input[parser->position + 1] == '\n')) {
         yaml_next(parser); // consume '-'
         yaml_skip_whitespace(parser);
@@ -137,6 +161,7 @@ static yaml_token yaml_read_token(yaml_parser *parser) {
     
     if (c == '"' || c == '\'') {
         is_quoted = true;
+        token.is_quoted = true;
         char quote_char = yaml_next(parser);
         start = parser->position; // Start after the quote
         
@@ -201,19 +226,37 @@ static yaml_token yaml_read_token(yaml_parser *parser) {
     return token;
 }
 
-static struct json *yaml_parse_scalar(const char *value) {
+static int yaml_strcasecmp(const char *s1, const char *s2) {
+    while (*s1 && *s2) {
+        char c1 = (*s1 >= 'A' && *s1 <= 'Z') ? *s1 + 32 : *s1;
+        char c2 = (*s2 >= 'A' && *s2 <= 'Z') ? *s2 + 32 : *s2;
+        if (c1 != c2) {
+            return c1 - c2;
+        }
+        s1++;
+        s2++;
+    }
+    return *s1 - *s2;
+}
+
+static struct json *yaml_parse_scalar(const char *value, bool is_quoted) {
     if (!value) {
         return json_null();
     }
     
-    // Handle special values
-    if (strcmp(value, "null") == 0 || strcmp(value, "~") == 0 || strcmp(value, "") == 0) {
+    // If quoted, always treat as string (except for empty which can still be string)
+    if (is_quoted) {
+        return json_string(value);
+    }
+    
+    // Handle special values (case-insensitive) for unquoted only
+    if (yaml_strcasecmp(value, "null") == 0 || strcmp(value, "~") == 0 || strcmp(value, "") == 0) {
         return json_null();
     }
-    if (strcmp(value, "true") == 0 || strcmp(value, "yes") == 0 || strcmp(value, "on") == 0) {
+    if (yaml_strcasecmp(value, "true") == 0 || yaml_strcasecmp(value, "yes") == 0 || yaml_strcasecmp(value, "on") == 0) {
         return json_true();
     }
-    if (strcmp(value, "false") == 0 || strcmp(value, "no") == 0 || strcmp(value, "off") == 0) {
+    if (yaml_strcasecmp(value, "false") == 0 || yaml_strcasecmp(value, "no") == 0 || yaml_strcasecmp(value, "off") == 0) {
         return json_false();
     }
     
@@ -310,7 +353,7 @@ static struct json *yaml_parse_value(yaml_parser *parser, int base_indent) {
     }
     
     if (token.type == YAML_TOKEN_SCALAR) {
-        struct json *result = yaml_parse_scalar(token.value);
+        struct json *result = yaml_parse_scalar(token.value, token.is_quoted);
         free(token.value);
         return result;
     }
@@ -320,7 +363,7 @@ static struct json *yaml_parse_value(yaml_parser *parser, int base_indent) {
         struct json *array = json_array();
         
         // Add the first item we just read
-        struct json *first_item = yaml_parse_scalar(token.value);
+        struct json *first_item = yaml_parse_scalar(token.value, token.is_quoted);
         json_array_push(array, first_item);
         free(token.value);
         
@@ -338,7 +381,7 @@ static struct json *yaml_parse_value(yaml_parser *parser, int base_indent) {
             }
             
             if (next_token.type == YAML_TOKEN_ARRAY_ITEM && next_token.indent_level == token.indent_level) {
-                struct json *item = yaml_parse_scalar(next_token.value);
+                struct json *item = yaml_parse_scalar(next_token.value, next_token.is_quoted);
                 json_array_push(array, item);
                 free(next_token.value);
             } else {
@@ -418,6 +461,105 @@ struct json *yaml_read_string(const char *str, char *errbuf) {
     };
     
     return yaml_parse_value(&parser, 0);
+}
+
+struct json *yaml_read_document(FILE *in, char *errbuf) {
+    if (!in) {
+        if (errbuf) {
+            strcpy(errbuf, "YAML input file is NULL");
+        }
+        return NULL;
+    }
+    
+    // Read line by line until we find a non-empty line or document separator
+    char line[4096];
+    long start_pos = ftell(in);
+    char *buffer = NULL;
+    size_t buffer_size = 0;
+    size_t buffer_len = 0;
+    
+    // Skip any document separators and whitespace at the beginning
+    while (fgets(line, sizeof(line), in)) {
+        // Trim leading and trailing whitespace
+        char *trimmed = line;
+        while (*trimmed == ' ' || *trimmed == '\t') trimmed++;
+        
+        size_t len = strlen(trimmed);
+        while (len > 0 && (trimmed[len-1] == '\n' || trimmed[len-1] == '\r' || 
+                          trimmed[len-1] == ' ' || trimmed[len-1] == '\t')) {
+            trimmed[--len] = '\0';
+        }
+        
+        // Skip empty lines and comments
+        if (len == 0 || trimmed[0] == '#') {
+            continue;
+        }
+        
+        // Check for document separator
+        if (len >= 3 && strncmp(trimmed, "---", 3) == 0) {
+            // Check if it's only "---" (possibly with comment)
+            char *after_separator = trimmed + 3;
+            while (*after_separator == ' ' || *after_separator == '\t') after_separator++;
+            if (*after_separator == '\0' || *after_separator == '#') {
+                continue; // Skip this separator and continue
+            }
+        }
+        
+        // This is the start of a document, seek back and break
+        fseek(in, start_pos, SEEK_SET);
+        break;
+    }
+    
+    // Read the document until we hit EOF or next document separator
+    while (fgets(line, sizeof(line), in)) {
+        // Check for document separator
+        char *trimmed = line;
+        while (*trimmed == ' ' || *trimmed == '\t') trimmed++;
+        
+        if (strlen(trimmed) >= 3 && strncmp(trimmed, "---", 3) == 0) {
+            // Check if it's only "---" (possibly with comment)
+            char *after_separator = trimmed + 3;
+            while (*after_separator == ' ' || *after_separator == '\t') after_separator++;
+            if (*after_separator == '\0' || *after_separator == '\n' || *after_separator == '#') {
+                // This is a document separator, stop reading
+                break;
+            }
+        }
+        
+        // Add this line to the buffer
+        size_t line_len = strlen(line);
+        if (buffer_len + line_len + 1 > buffer_size) {
+            buffer_size = (buffer_size == 0) ? 4096 : buffer_size * 2;
+            char *new_buffer = realloc(buffer, buffer_size);
+            if (!new_buffer) {
+                free(buffer);
+                if (errbuf) {
+                    strcpy(errbuf, "Failed to allocate memory for YAML document");
+                }
+                return NULL;
+            }
+            buffer = new_buffer;
+        }
+        
+        if (buffer_len == 0) {
+            strcpy(buffer, line);
+        } else {
+            strcat(buffer, line);
+        }
+        buffer_len += line_len;
+        
+        start_pos = ftell(in);
+    }
+    
+    if (!buffer || buffer_len == 0) {
+        free(buffer);
+        return NULL; // No more documents
+    }
+    
+    struct json *result = yaml_read_string(buffer, errbuf);
+    free(buffer);
+    
+    return result;
 }
 
 struct json *yaml_read(FILE *in, char *errbuf) {

@@ -43,4 +43,15 @@ struct json *yaml_read_string(const char *str, char *errbuf);
  */
 int yaml_write(struct json *element, FILE *out);
 
+/**
+ * @brief Reads next YAML document from a stream (for YAML streams with --- separators)
+ * @param in File stream to read from
+ * @param errbuf Buffer to store error messages (optional). Use in
+ * multi-threaded applications to avoid storing error messages in a static
+ * buffer.
+ * @return The parsed JSON value representing the next YAML document, or NULL if no more documents or on error
+ * @see yaml_read()
+ */
+struct json *yaml_read_document(FILE *in, char *errbuf);
+
 #endif // LIBJSON_YAML_H
