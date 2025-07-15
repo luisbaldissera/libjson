@@ -52,11 +52,13 @@ To use libjson in your project, include the header file in your source code:
 ```
 
 For JSON5 support:
+
 ```c
 #include <libjson/json5.h>
 ```
 
 For YAML support:
+
 ```c
 #include <libjson/yaml.h>
 ```
@@ -158,9 +160,232 @@ struct json *person_to_json(struct Person *p) {
 }
 ```
 
+## JSON5 Support
+
+libjson provides JSON5 support, allowing you to parse JSON5 format into standard JSON structures. JSON5 is a superset of JSON that adds several convenient features while maintaining compatibility with existing JSON parsers.
+
+### JSON5 Features Supported
+
+- **Comments**: Both single-line (`//`) and multi-line (`/* */`) comments
+- **Trailing commas**: Optional trailing commas in arrays and objects
+- **Unquoted keys**: Object keys can be unquoted if they're valid identifiers
+- **Single quotes**: Strings can use single quotes in addition to double quotes
+- **Keywords as keys**: Reserved words like `default`, `class` can be used as unquoted keys
+- **Complex identifiers**: Support for `$`, `_`, and alphanumeric characters in unquoted keys
+
+### Basic JSON5 Reading
+
+```c
+#include <libjson/json5.h>
+#include <libjson/json.h>
+
+const char *json5_data =
+    "{\n"
+    "  // This is a comment\n"
+    "  name: 'John Doe',  // Unquoted key, single quotes\n"
+    "  age: 30,\n"
+    "  active: true,\n"
+    "  scores: [95, 87, 92,], // Trailing comma\n"
+    "  /* Multi-line comment\n"
+    "     can span multiple lines */\n"
+    "  class: 'developer', // 'class' is a keyword but valid as unquoted key\n"
+    "}";
+
+char errbuf[1024];
+struct json *parsed = json5_read_string(json5_data, errbuf);
+
+if (!parsed) {
+    fprintf(stderr, "JSON5 parse error: %s\n", errbuf);
+    exit(1);
+}
+
+// Access data using standard JSON API
+struct json *name = json_object_get(parsed, "name");
+printf("Name: %s\n", json_string_value(name));
+
+struct json *scores = json_object_get(parsed, "scores");
+printf("Number of scores: %d\n", json_array_length(scores));
+
+json_free(parsed);
+```
+
+### Reading JSON5 from Files
+
+```c
+FILE *json5_file = fopen("config.json5", "r");
+if (!json5_file) {
+    perror("Failed to open JSON5 file");
+    exit(1);
+}
+
+char errbuf[512];
+struct json *config = json5_read(json5_file, errbuf);
+if (!config) {
+    fprintf(stderr, "Failed to parse JSON5: %s\n", errbuf);
+    fclose(json5_file);
+    exit(1);
+}
+
+// Use the config with standard JSON API...
+json_free(config);
+fclose(json5_file);
+```
+
+### JSON5 Comment Examples
+
+```c
+// Single-line comments
+const char *single_line_comments =
+    "{\n"
+    "  // Configuration settings\n"
+    "  timeout: 30, // seconds\n"
+    "  retries: 3   // maximum attempts\n"
+    "}";
+
+// Multi-line comments
+const char *multi_line_comments =
+    "{\n"
+    "  /*\n"
+    "   * Application configuration\n"
+    "   * Updated: 2025-07-15\n"
+    "   */\n"
+    "  debug: false,\n"
+    "  /* TODO: Add more options */ version: '1.0'\n"
+    "}";
+
+struct json *config1 = json5_read_string(single_line_comments, NULL);
+struct json *config2 = json5_read_string(multi_line_comments, NULL);
+```
+
+### Unquoted Keys and String Variations
+
+```c
+const char *mixed_syntax =
+    "{\n"
+    "  // Various key formats\n"
+    "  unquoted: 'value',\n"
+    "  'single-quoted': \"value\",\n"
+    "  \"double-quoted\": 'value',\n"
+    "  $special: 'identifiers work',\n"
+    "  _underscore: 'also work',\n"
+    "  default: 'keywords as keys',\n"
+    "  class: 'also work',\n"
+    "  \n"
+    "  // String variations\n"
+    "  singleQuotes: 'This uses single quotes',\n"
+    "  doubleQuotes: \"This uses double quotes\",\n"
+    "}";
+
+struct json *data = json5_read_string(mixed_syntax, NULL);
+
+// Access values normally
+printf("Special: %s\n", json_string_value(json_object_get(data, "$special")));
+printf("Underscore: %s\n", json_string_value(json_object_get(data, "_underscore")));
+printf("Single quotes: %s\n", json_string_value(json_object_get(data, "singleQuotes")));
+
+json_free(data);
+```
+
+### Trailing Commas Support
+
+```c
+const char *trailing_commas =
+    "{\n"
+    "  users: [\n"
+    "    {\n"
+    "      name: 'Alice',\n"
+    "      role: 'admin',\n"
+    "    }, // Trailing comma in object\n"
+    "    {\n"
+    "      name: 'Bob',\n"
+    "      role: 'user',\n"
+    "    }, // Another trailing comma\n"
+    "  ], // Trailing comma in array\n"
+    "  settings: {\n"
+    "    theme: 'dark',\n"
+    "    notifications: true,\n"
+    "  }, // Final trailing comma\n"
+    "}";
+
+struct json *data = json5_read_string(trailing_commas, NULL);
+struct json *users = json_object_get(data, "users");
+printf("Number of users: %d\n", json_array_length(users));
+
+json_free(data);
+```
+
+### Error Handling
+
+JSON5 parsing follows the same error handling pattern as regular JSON:
+
+```c
+char errbuf[512];  // Thread-safe error buffer
+
+const char *invalid_json5 = "{ invalid syntax here }";
+struct json *result = json5_read_string(invalid_json5, errbuf);
+
+if (!result) {
+    printf("JSON5 Error: %s\n", errbuf);
+    // Handle error appropriately
+}
+
+// Or use default error buffer (not thread-safe)
+result = json5_read_string(invalid_json5, NULL);
+if (!result) {
+    printf("Error: %s\n", json_error(NULL));
+}
+```
+
+### Migration from JSON to JSON5
+
+Since JSON5 is a superset of JSON, any valid JSON is also valid JSON5:
+
+```c
+// This JSON works with both json_read_string() and json5_read_string()
+const char *standard_json = "{\"name\": \"value\", \"array\": [1, 2, 3]}";
+
+struct json *via_json = json_read_string(standard_json, NULL);
+struct json *via_json5 = json5_read_string(standard_json, NULL);
+
+// Both produce identical results
+assert(json_is_object(via_json));
+assert(json_is_object(via_json5));
+
+json_free(via_json);
+json_free(via_json5);
+```
+
+### Best Practices
+
+1. **Use comments for documentation**: JSON5's comment support makes configuration files self-documenting
+2. **Trailing commas for maintainability**: Makes adding/removing items easier in version control
+3. **Consistent quoting**: While JSON5 allows mixed quoting, pick a style and stick to it
+4. **Error handling**: Always provide error buffers in multi-threaded applications
+
+```c
+// Good: Well-formatted JSON5 with consistent style
+const char *config =
+    "{\n"
+    "  // Database configuration\n"
+    "  database: {\n"
+    "    host: 'localhost',\n"
+    "    port: 5432,\n"
+    "    name: 'myapp',\n"
+    "    ssl: true, // Always use SSL in production\n"
+    "  },\n"
+    "  \n"
+    "  // Feature flags\n"
+    "  features: {\n"
+    "    newUI: false,\n"
+    "    analytics: true,\n"
+    "    betaFeatures: false,\n"
+    "  },\n"
+    "}";
+```
+
 ## YAML Support
 
-libjson provides comprehensive YAML support, allowing you to read YAML documents into JSON structures and write JSON structures as YAML output.
+libjson provides YAML support, allowing you to read YAML documents into JSON structures and write JSON structures as YAML output.
 
 ### Basic YAML Reading
 
@@ -168,7 +393,7 @@ libjson provides comprehensive YAML support, allowing you to read YAML documents
 #include <libjson/yaml.h>
 #include <libjson/json.h>
 
-const char *yaml_data = 
+const char *yaml_data =
     "name: John Doe\n"
     "age: 30\n"
     "active: true\n"
@@ -228,7 +453,7 @@ json_free(person);
 YAML supports multiple documents in a single file/stream, separated by `---`:
 
 ```c
-const char *yaml_stream = 
+const char *yaml_stream =
     "name: Alice\n"
     "role: developer\n"
     "---\n"
@@ -279,7 +504,7 @@ fclose(yaml_file);
 
 - **All JSON data types**: Objects, arrays, strings, numbers, booleans, null
 - **YAML-specific booleans**: `true`/`false`, `yes`/`no`, `on`/`off` (case-insensitive)
-- **YAML null values**: `null`, `~` 
+- **YAML null values**: `null`, `~`
 - **Comments**: Full `#` comment support (inline and standalone)
 - **Quoted strings**: Both single and double quotes
 - **Unquoted strings**: Simple scalar values
@@ -381,6 +606,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
 - feat: lazy json read -> only process the when `json_{*}_get()` or
-        `json_{*}_value()` is called. And only until the necessary to return.
-   - note: also handle errbuf in `json_{*}_get(..., errbuf)` and
-           `json_{*}_value(errbuf)`
+  `json_{*}_value()` is called. And only until the necessary to return.
+  - note: also handle errbuf in `json_{*}_get(..., errbuf)` and
+    `json_{*}_value(errbuf)`
