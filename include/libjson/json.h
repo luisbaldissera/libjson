@@ -12,7 +12,6 @@
  * from users while providing a clean, simple API.
  */
 
-#define LIBJSON_ERRBUF_SiZE 1024
 
 /**
  * @brief Opaque JSON structure

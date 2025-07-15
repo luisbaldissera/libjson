@@ -10,6 +10,9 @@
 #include <ctype.h>
 #include <stdarg.h>
 
+#define LIBJSON_ERRBUF_SiZE 1024
+#define LIBJSON_INSTANCES_MIN 16
+
 /**
  * @brief Function pointer type for freeing values
  */
