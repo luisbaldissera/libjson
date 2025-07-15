@@ -27,6 +27,13 @@ struct json_key_value
     struct json *value; /**< JSON value associated with the key */
 };
 
+enum json_metric_key {
+    JSON_METRIC_USED_BYTES,
+    JSON_METRIC_ALLOCATED_BYTES,
+    JSON_METRIC_INSTANCE_COUNT,
+    JSON_METRIC_ALLOCATED_COUNT
+};
+
 ////////////////////////////////////
 // JSON Creation functions
 ////////////////////////////////////
@@ -258,5 +265,13 @@ struct json *json_read_string(const char *json_string, char *errbuf);
  * @return Error message string, or NULL if no error occurred
  */
 const char *json_error(char *errbuf);
+
+/**
+ * @brief Gets the current metrics of the JSON library
+ * @return Pointer to a struct containing metrics about JSON instances
+ *         and memory usage. The returned pointer is valid until the next
+ *         call to this function.
+ */
+size_t json_get_metric(enum json_metric_key metric_key);
 
 #endif // LIBJSON_JSON_H
