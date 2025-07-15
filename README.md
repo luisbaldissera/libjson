@@ -9,6 +9,8 @@ making it easy to integrate into your C projects.
 - Create JSON objects, arrays, strings, numbers, and booleans.
 - Manipulate JSON data structures with ease.
 - Serialize JSON objects to strings for output or storage.
+- **JSON5 support** with comments, single quotes, unquoted keys, and trailing commas.
+- **YAML support** for reading and writing YAML documents.
 - Unit tests to ensure reliability and correctness.
 
 ## Installation
@@ -47,6 +49,16 @@ To use libjson in your project, include the header file in your source code:
 
 ```c
 #include <libjson/json.h>
+```
+
+For JSON5 support:
+```c
+#include <libjson/json5.h>
+```
+
+For YAML support:
+```c
+#include <libjson/yaml.h>
 ```
 
 ### Example
@@ -146,6 +158,149 @@ struct json *person_to_json(struct Person *p) {
 }
 ```
 
+## YAML Support
+
+libjson provides comprehensive YAML support, allowing you to read YAML documents into JSON structures and write JSON structures as YAML output.
+
+### Basic YAML Reading
+
+```c
+#include <libjson/yaml.h>
+#include <libjson/json.h>
+
+const char *yaml_data = 
+    "name: John Doe\n"
+    "age: 30\n"
+    "active: true\n"
+    "scores:\n"
+    "  - 95\n"
+    "  - 87\n"
+    "  - 92\n";
+
+char errbuf[1024];
+struct json *parsed = yaml_read_string(yaml_data, errbuf);
+
+if (!parsed) {
+    fprintf(stderr, "YAML parse error: %s\n", errbuf);
+    exit(1);
+}
+
+// Access data using standard JSON API
+struct json *name = json_object_get(parsed, "name");
+printf("Name: %s\n", json_string_value(name));
+
+struct json *scores = json_object_get(parsed, "scores");
+struct json *first_score = json_array_get(scores, 0);
+printf("First score: %d\n", json_int_value(first_score));
+
+json_free(parsed);
+```
+
+### YAML Writing
+
+```c
+// Create a JSON structure
+struct json *person = json_object(
+    (struct json_key_value){"name", json_string("Alice")},
+    (struct json_key_value){"age", json_number(25)},
+    (struct json_key_value){"hobbies", json_array(
+        json_string("reading"),
+        json_string("swimming"),
+        json_string("coding")
+    )}
+);
+
+// Write as YAML
+yaml_write(person, stdout);
+// Output:
+// name: Alice
+// age: 25
+// hobbies:
+//   - reading
+//   - swimming
+//   - coding
+
+json_free(person);
+```
+
+### YAML Streams (Multiple Documents)
+
+YAML supports multiple documents in a single file/stream, separated by `---`:
+
+```c
+const char *yaml_stream = 
+    "name: Alice\n"
+    "role: developer\n"
+    "---\n"
+    "name: Bob\n"
+    "role: designer\n"
+    "---\n"
+    "- apple\n"
+    "- banana\n"
+    "- cherry\n";
+
+FILE *stream = fmemopen(yaml_stream, strlen(yaml_stream), "r");
+
+struct json *doc1 = yaml_read_document(stream, errbuf);
+struct json *doc2 = yaml_read_document(stream, errbuf);
+struct json *doc3 = yaml_read_document(stream, errbuf);
+
+// doc1 and doc2 are objects, doc3 is an array
+// Process each document...
+
+json_free(doc1);
+json_free(doc2);
+json_free(doc3);
+fclose(stream);
+```
+
+### Reading YAML from Files
+
+```c
+FILE *yaml_file = fopen("config.yaml", "r");
+if (!yaml_file) {
+    perror("Failed to open YAML file");
+    exit(1);
+}
+
+struct json *config = yaml_read(yaml_file, errbuf);
+if (!config) {
+    fprintf(stderr, "Failed to parse YAML: %s\n", errbuf);
+    fclose(yaml_file);
+    exit(1);
+}
+
+// Use the config...
+json_free(config);
+fclose(yaml_file);
+```
+
+### YAML Features Supported
+
+- **All JSON data types**: Objects, arrays, strings, numbers, booleans, null
+- **YAML-specific booleans**: `true`/`false`, `yes`/`no`, `on`/`off` (case-insensitive)
+- **YAML null values**: `null`, `~` 
+- **Comments**: Full `#` comment support (inline and standalone)
+- **Quoted strings**: Both single and double quotes
+- **Unquoted strings**: Simple scalar values
+- **Document streams**: Multiple documents with `---` separators
+- **Nested structures**: Objects within objects, arrays within arrays
+- **Mixed arrays**: Arrays containing different data types
+
+### Error Handling
+
+All YAML functions follow the same error handling pattern as the JSON functions:
+
+```c
+char errbuf[512];  // Thread-safe error buffer
+
+struct json *result = yaml_read_string(yaml_input, errbuf);
+if (!result) {
+    // Check for error
+    printf("Error: %s\n", errbuf);
+}
+```
+
 Example of reading from json stream, by parsing each json individually until the
 end.
 
@@ -222,13 +377,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 - test: write more consistent tests and increase coverage
 - feat(test): auto generate coverage
 - feat: add options to `json_write`. E.g. `{ .pretty = true, .sort_keys = true, .indent = 4 }`
-- feat: add support for json5 (in different `json5.h` header)
-  - `struct json * json5_read(FILE*)`
-  - `struct json * json5_read_string(const char *)`
-- feat: add support for YAML (in different `yaml.h` header)
-  - `struct json *yaml_read(FILE*)`
-  - `struct json *yaml_read_string(const char *)`
-  - `void yaml_write(struct json *, FILE*)`
 - optm: refactor iterators to be static in memory
 - optm: implement and use binary tree for hash maps, instead of linked list
 - optm: use static buffer in "raw" data structures in general
