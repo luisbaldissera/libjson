@@ -105,6 +105,7 @@ int hash_table_iter_has_next(struct hash_table_iter *iter);
  */
 typedef enum json_type
 {
+    JSON_UNSET,
     JSON_NULL,
     JSON_BOOLEAN,
     JSON_NUMBER,
@@ -119,12 +120,17 @@ typedef enum json_type
 struct json
 {
     json_type type;
+    size_t self_index;
     union
     {
         int boolean;
         double number;
         char *string;
-        struct linked_list_json *array;
+        struct
+        {
+            size_t count;
+            size_t *ptr;
+        } array;
         struct hash_table *object;
     } value;
 };
